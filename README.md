@@ -33,7 +33,29 @@ The OLS regression is run by simply declaring an OLS object with the arguments:
     - Matrix "x" containing the independent variables (it can include intercept, trend, etc...)
     - control named "stats" (optional, false by default) will compute additional statistics if turned to true as R2, adjusted R2, F statistic and Durbin-Watson statistic
 This class has 2 functions:
-    - "get_stats()"
+    - "get_stats()" taking the same Vector "x" and Matrix "y" as arguments, it computes the additional OLS regression statistics
+    - "show()" outputs the results
+NB: I made the choice not to copy the Vector "y" and Matrix "x" when declaring an object OLS for performance reasons, when "x" becomes large it can quickly lead to a significative difference in term of performance.
+
+    - code example:
+    '''
+    #include "./URT/include/URT.hpp"
+
+    int main()
+    {
+       int nrows = 1000;
+       int ncols = 10;
+
+      Vector<double> y = arma::randn<Vector<double>>(nrows);
+      Matrix<double> x = arma::randn<Matrix<double>>(nrows, ncols);
+
+      urt::add_intercept(x);
+
+      urt::OLS<double> fit(y, x, true);
+
+      fit.show();
+   }
+   '''
 
 - C++ template class UnitRoot: 
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
@@ -41,7 +63,7 @@ Abstract base class from which all unit-root tests will inherit, it contains all
   This class has 3 pure virtual functions:
     - "statistic()" computes the test statistic
     - "pvalue()" calls "statistic()" and computes the p-value
-    - "show()" calls "pvalue()" and output the test results
+    - "show()" calls "pvalue()" and outputs the test results
     
 - C++ template class ADF: 
 Derived class from UnitRoot, this class has 2 constructors:
