@@ -27,10 +27,10 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
 - C++ template class UnitRoot: 
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
 
-This class has 3 pure virtual functions:
-  - statistic() which computes the test statistic
-  - pvalue() which calls statistic() and computes the p-value
-  - show() with calls pvalue() and output the test results
-  - C++ template class ADF: 
-  
+  This class has 3 pure virtual functions:
+    - statistic() which computes the test statistic
+    - pvalue() which calls statistic() and computes the p-value
+    - show() with calls pvalue() and output the test results
+    
+- C++ template class ADF: 
 Derived class from UnitRoot, 
