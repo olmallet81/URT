@@ -28,13 +28,18 @@ Unit-root tests use lags in order to reduce as much as possible auto-correlation
 # Design
 - C++ template class OLS: 
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
+
+  - Constructor
 The OLS regression is run by simply declaring an OLS object with the arguments:
     - Vector *y* containing the dependent variable
     - Matrix *x* containing the independent variables (it can include intercept, constant trend, etc...)
     - control named *stats* (optional, *false* by default) will compute additional statistics if turned to *true* as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
-This class has 2 functions:
+    
+   - Member functions
     - *get_stats()* taking the same Vector *x* and Matrix *y* as arguments, it computes the additional OLS regression statistics
     - *show()* outputs the results
+    
+   - Member variables
     
     code example using Armadillo:
     ```
