@@ -54,6 +54,7 @@ This class has 2 functions:
         fit.show();
     }
     ```
+urt::Vector<double> and urt::Matrix<double> here correspond to arma::vec and arma::mat, Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of each linear algebra library.
 URT provides 3 functions allowing to add quickly constant terms to a Matrix:
     - "add_intercept()" to insert a column of one into a Matrix as shown in the example above
     - "add_constant_trend()" to insert a column of the type 1,2,3,...,n
