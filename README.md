@@ -59,7 +59,7 @@ URT provides 3 functions allowing to add quickly constant terms to a Matrix:
     - "add_constant_trend()" to insert a column of the type 1,2,3,...,n
     - "add_quadratic_trend()" to insert a column of the type 1,4,9,...,n^2
     
-NB: I made the choice not to copy the Vector "y" and Matrix "x" when declaring an object OLS for performance reasons, when "x" becomes large it can quickly lead to a significative difference in term of performance.
+    NB: I made the choice not to copy the Vector "y" and Matrix "x" when declaring an object OLS for performance reasons, when "x" becomes large it can quickly lead to a significative difference in term of performance.
 
 - C++ template class UnitRoot: 
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
