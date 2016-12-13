@@ -70,6 +70,7 @@ int main()
 Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of the linear algebra in use.
     
 URT provides 3 functions allowing to add quickly constant terms to a Matrix:
+
     - *add_intercept()* to insert a column of ones into a Matrix as shown in the example above
     - *add_constant_trend()* to insert a column (1,2,3,...,nrows)
     - *add_quadratic_trend()* to insert a column (1,4,9,...,nrows^2)
