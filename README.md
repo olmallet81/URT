@@ -2,7 +2,7 @@
 Fast Unit-Root Tests and OLS regression in C++ with wrappers for R and Python
 
 # Description
-URT is designed to procure speed while keeping a high level of flexibility for the user when running unit-root tests. 
+URT is a library designed to procure speed while keeping a high level of flexibility for the user when running unit-root tests. 
 The original code is in C++, its core is based on three of the most widely used linear algebra C++ libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another as he wishes and compare performaces. While some are faster than other depending on the Vector and Matrix dimensions I wanted to give them all a chance as they are under active development and future updates could improve their respective performances. They all offer great flexibility as they can be compiled using their own BLAS/LAPACK wrappers or by calling external libraries as for instance Intel MKL and OpenBLAS. 
 URT can also be used under R and Python. The R version is currenty using Armadillo and developped under Rcpp using the RcppArmadillo R package. The Python version is currently using Blaze and developped under Cython.
 URT contains an OLS regression and four different unit-root tests among the most famous and most used: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic method.
@@ -31,7 +31,10 @@ Unit-root tests use lags in order to reduce as much as possible auto-correlation
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
 
 - ### Constructor
-The OLS regression is run by simply declaring an OLS object with the arguments:
+The OLS regression is run by declaring an OLS object with the arguments:
+```
+OLS<T>::OLS(const Vector<T>& y, const Matrix<T>& x, bool stats = false)
+```
     - Vector *y* containing the dependent variable
     - Matrix *x* containing the independent variables (it can include intercept, constant trend, etc...)
     - control named *stats* (optional, *false* by default) will compute additional statistics if turned to *true* as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
@@ -53,8 +56,8 @@ The OLS regression is run by simply declaring an OLS object with the arguments:
 - ### Additionnal tools
 URT provides 3 functions allowing to add quickly constant terms to a Matrix:
     - *add_intercept()* to insert a column of ones into a Matrix as shown in the example above
-    - *add_constant_trend()* to insert a column (1,2,3,...,nrows)
-    - *add_quadratic_trend()* to insert a column (1,4,9,...,nrows^2
+    - *add_constant_trend()* to insert a column (1,2,3,...)
+    - *add_quadratic_trend()* to insert a column (1,4,9,...)
     
 Code example using Armadillo:
 
