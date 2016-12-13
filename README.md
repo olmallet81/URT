@@ -32,12 +32,13 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
 
 - ### Constructor
 The OLS regression is run by declaring an OLS object with the arguments:
+
 ```
 OLS<T>::OLS(const Vector<T>& y, const Matrix<T>& x, bool stats = false)
 ```
-    - Vector *y* containing the dependent variable
-    - Matrix *x* containing the independent variables (it can include intercept, constant trend, etc...)
-    - control named *stats* (optional, *false* by default) will compute additional statistics if turned to *true* as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
+- Vector *y* containing the dependent variable
+- Matrix *x* containing the independent variables (it can include intercept, constant trend, etc...)
+- control named *stats* (optional, *false* by default) will compute additional statistics if turned to *true* as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
      
 - ### Member variables
     - *param* to get the regressors coefficients
