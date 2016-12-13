@@ -48,26 +48,25 @@ The OLS regression is run by simply declaring an OLS object with the arguments:
     
 Code example using Armadillo:
 
-    ```
+```
+#include "./URT/include/URT.hpp"
+
+int main()
+{
+    int nrows = 1000;
+    int ncols = 10;
+
+    urt::Vector<double> y = arma::randn<urt::Vector<double>>(nrows);
+    urt::Matrix<double> x = arma::randn<urt::Matrix<double>>(nrows, ncols);
+
+    urt::add_intercept(x);
+
+    urt::OLS<double> fit(y, x, true);
+
+    fit.show();
+}
     
-    #include "./URT/include/URT.hpp"
-
-    int main()
-    {
-        int nrows = 1000;
-        int ncols = 10;
-
-        urt::Vector<double> y = arma::randn<urt::Vector<double>>(nrows);
-        urt::Matrix<double> x = arma::randn<urt::Matrix<double>>(nrows, ncols);
-
-        urt::add_intercept(x);
-
-        urt::OLS<double> fit(y, x, true);
-
-        fit.show();
-    }
-    
-    ```
+```
 Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of the linear algebra in use.
     
 URT provides 3 functions allowing to add quickly constant terms to a Matrix:
