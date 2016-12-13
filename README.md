@@ -37,14 +37,19 @@ The OLS regression is run by simply declaring an OLS object with the arguments:
     - control named *stats* (optional, *false* by default) will compute additional statistics if turned to *true* as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
      
 - ### Member variables
-    - *param* containing regressors coefficients
-    - *t_stat* containing regressors t-statistics
-    - *resid* containing regression residuals
-    - *var* containing regressors variances
+    - *param*   regressors coefficients
+    - *t_stat*  regressors t-statistics
+    - *resid*   regression residuals
+    - *var*     regressors variances
+    - *R2*      R-squared
+    - *adj_R2*  adjusted R-squared
+    - *F_stat*  F-statistic
+    - *DW_stat* Durbin-Watson statistic
     
 - ### Member functions
     - *get_stats()* taking the same Vector *x* and Matrix *y* as arguments, it computes the additional OLS regression statistics
     - *show()* outputs the results
+    
     
 Code example using Armadillo:
 
@@ -68,7 +73,8 @@ int main()
     
 ```
 Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of the linear algebra in use.
-    
+
+-### Additionnal tools
 URT provides 3 functions allowing to add quickly constant terms to a Matrix:
     - *add_intercept()* to insert a column of ones into a Matrix as shown in the example above
     - *add_constant_trend()* to insert a column (1,2,3,...,nrows)
