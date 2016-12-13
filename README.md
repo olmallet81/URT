@@ -54,7 +54,7 @@ This class has 2 functions:
         fit.show();
     }
     ```
-    Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of each linear algebra library.
+    Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of the linear algebra in use.
     
     URT provides 3 functions allowing to add quickly constant terms to a Matrix:
     - "add_intercept()" to insert a column of one into a Matrix as shown in the example above
