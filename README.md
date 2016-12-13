@@ -37,14 +37,14 @@ The OLS regression is run by simply declaring an OLS object with the arguments:
     - control named *stats* (optional, *false* by default) will compute additional statistics if turned to *true* as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
      
 - ### Member variables
-    - *param*   regressors coefficients
-    - *t_stat*  regressors t-statistics
-    - *resid*   regression residuals
-    - *var*     regressors variances
-    - *R2*      R-squared
-    - *adj_R2*  adjusted R-squared
-    - *F_stat*  F-statistic
-    - *DW_stat* Durbin-Watson statistic
+    - *param* to get the regressors coefficients
+    - *t_stat* to get the theregressors t-statistics
+    - *resid* to get the regression residuals
+    - *var* to get the regressors variances
+    - *R2* to get the R-squared
+    - *adj_R2* to get the adjusted R-squared
+    - *F_stat* to get the F-statistic
+    - *DW_stat* to get the Durbin-Watson statistic
     
 - ### Member functions
     - *get_stats()* taking the same Vector *x* and Matrix *y* as arguments, it computes the additional OLS regression statistics
