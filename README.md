@@ -35,7 +35,8 @@ The OLS regression is run by simply declaring an OLS object with the arguments:
 This class has 2 functions:
     - "get_stats()" taking the same Vector "x" and Matrix "y" as arguments, it computes the additional OLS regression statistics
     - "show()" outputs the results
-    - code example using Armadillo:
+    
+    code example using Armadillo:
     ```
     #include "./URT/include/URT.hpp"
 
