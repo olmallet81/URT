@@ -21,9 +21,17 @@ During my experimentations I have tried to find the correct set up for each line
 - Rcpp wrapper for R
 - Cython wrapper for Python
 
+# Innovation
+Unit-root tests use lags in order to reduce as much as possible auto-correlation in the tested data serie. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for large number of lags.  
+
 # Design
 - C++ template class OLS: 
-To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute their t-statistics. This statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.  
+To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute their t-statistics. This statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
+The OLS regression is run by simply declaring an OLS object with the parameters:
+    - a Vector y containing the dependent variable
+    - a Matrix x containing the independent variables (it can include intercept, trend, etc...)
+    - a control named stats will compute additional statistics if true as R2, adjusted R2, F statistic and Durbin-Watson statistic
+
 - C++ template class UnitRoot: 
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
 
