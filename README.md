@@ -25,10 +25,12 @@ During my experimentations I have tried to find the correct set up for each line
 - C++ template class OLS: 
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute their t-statistics. This statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.  
 - C++ template class UnitRoot: 
-Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need. 
+Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
+
 This class has 3 pure virtual functions:
-- statistic() which computes the test statistic
-- pvalue() which calls statistic() and computes the p-value
-- show() with calls pvalue() and output the test results
-- C++ template class ADF: 
+  - statistic() which computes the test statistic
+  - pvalue() which calls statistic() and computes the p-value
+  - show() with calls pvalue() and output the test results
+  - C++ template class ADF: 
+  
 Derived class from UnitRoot, 
