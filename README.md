@@ -47,8 +47,9 @@ The OLS regression is run by simply declaring an OLS object with the arguments:
     - *show()* outputs the results
     
 Code example using Armadillo:
-    
+
     ```
+    
     #include "./URT/include/URT.hpp"
 
     int main()
@@ -65,6 +66,7 @@ Code example using Armadillo:
 
         fit.show();
     }
+    
     ```
 Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of the linear algebra in use.
     
