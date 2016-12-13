@@ -36,9 +36,9 @@ The OLS regression is run by simply declaring an OLS object with the parameters:
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
 
   This class has 3 pure virtual functions:
-    - statistic() which computes the test statistic
-    - pvalue() which calls statistic() and computes the p-value
-    - show() with calls pvalue() and output the test results
+    - statistic() computes the test statistic
+    - pvalue() calls statistic() and computes the p-value
+    - show() calls pvalue() and output the test results
     
 - C++ template class ADF: 
 Derived class from UnitRoot, 
