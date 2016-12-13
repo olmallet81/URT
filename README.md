@@ -11,6 +11,7 @@ URT contains an OLS regression and four different unit-root tests among the most
 I have been for a while developping tools for algorithmic trading and it is no secret that unit-root tests are widely used in this domain to decide if a time serie is (weakly) stationary or not and construct on this idea a profitable mean-reversion strategy. Nowadays you often have to look at smaller and smaller time frames to find such trading opportunities and that means on the back-testing side using more and more historical data to test whether the strategy can be profitable on the long term or not. I found frustrating that the available libraries under R and Python, which are commonly used in the first steps when building a trading algorithm, were too slow or did not offer enough flexibility. To that extent I wanted to develop a library that could be used under higher level languages to get a first idea on the profitability of a strategy and also when developping a more serious back-testing model on a larger amount of historical data under a lower level language as C++.
 In algorithmic trading we have to find the right sample size to test for stationarity. If we use a too short sample the back-testing will be faster but the test precision will be smaller and the results will be less reliable, on the contrary if we use a too large sample the back-testing will be slower but the test precision will be greater and the results will be more reliable. Hence, when testing for stationarity we have to always keep this tradeoff in mind. Optimal sample size are in general between 100 to 2000, leading to relatively small size arrays. I have then decided not to use parallelism when doing Matrix/Vector operations as it could slow down the code on such small dimensions. Through my benchmarks between linear algebra libraries I am using the sequential versions of Intel MKL and OpenBLAS. Although Armadillo does not allow parallelism yet, Blaze and Eigen do but I made sure to turn off this ability. However, parallelism is used to speed up the lag length optimization in ADF and DF-GLS tests by using OpenMP. 
 During my experimentations I have tried to find the correct set up for each linear algebra C++ library (Armadillo, Blaze and Eigen compiled with Intel MKL or OpenBLAS) in order to get the fastest results on a standard sample size of 1000. If anyone can find a faster configuration for one of them he is more than welcome to bring his contribution to this project.
+More generally, if anyone has an idea about any kind of modifications that could allow the code to run significantly faster, feel free to propose. 
 
 # What is inside this package ?
 - OLS regression
@@ -27,18 +28,58 @@ Unit-root tests use lags in order to reduce as much as possible auto-correlation
 # Design
 - C++ template class OLS: 
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute their t-statistics. This statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
-The OLS regression is run by simply declaring an OLS object with the parameters:
-    - a Vector y containing the dependent variable
-    - a Matrix x containing the independent variables (it can include intercept, trend, etc...)
-    - a control named stats will compute additional statistics if true as R2, adjusted R2, F statistic and Durbin-Watson statistic
+The OLS regression is run by simply declaring an OLS object with the arguments:
+    - Vector "y" containing the dependent variable
+    - Matrix "x" containing the independent variables (it can include intercept, trend, etc...)
+    - control named "stats" (optional, false by default) will compute additional statistics if turned to true as R2, adjusted R2, F statistic and Durbin-Watson statistic
+This class has 2 functions:
+    - "get_stats()"
 
 - C++ template class UnitRoot: 
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
 
   This class has 3 pure virtual functions:
-    - statistic() computes the test statistic
-    - pvalue() calls statistic() and computes the p-value
-    - show() calls pvalue() and output the test results
+    - "statistic()" computes the test statistic
+    - "pvalue()" calls "statistic()" and computes the p-value
+    - "show()" calls "pvalue()" and output the test results
     
 - C++ template class ADF: 
-Derived class from UnitRoot, 
+Derived class from UnitRoot, this class has 2 constructors:
+    - 1st constructor to compute the test for a given lag
+    - 2nd constructor to compute the test with lag length optimization
+The constructors accept the following arguments:
+    - Vector "data" containing the data on which the test will be processed
+    - the number of "lags" (1st constructor only)
+    - the optimization "method" (2nd constructor only)
+    - the type of "trend" (optional, default to constant or intercept term)
+    - control "regression" (optional, default to false) to indicate if the additional statistics of the OLS regression must be computed
+Once an object ADF declare, one of the overriden pure virtual functions from the base class must be called to get the test results. The user can switch from a test to another by simply modifying the arguments above.
+The user can switch from a test for a given lag to a test with lag length optimization by using "method"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
