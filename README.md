@@ -36,11 +36,7 @@ This class has 2 functions:
     - "get_stats()" taking the same Vector "x" and Matrix "y" as arguments, it computes the additional OLS regression statistics
     - "show()" outputs the results
 NB: I made the choice not to copy the Vector "y" and Matrix "x" when declaring an object OLS for performance reasons, when "x" becomes large it can quickly lead to a significative difference in term of performance.
-
-    - code example:
-    '''
-    #include "./URT/include/URT.hpp"
-
+    ```
     int main()
     {
        int nrows = 1000;
@@ -55,7 +51,7 @@ NB: I made the choice not to copy the Vector "y" and Matrix "x" when declaring a
 
       fit.show();
    }
-   '''
+   ```
 
 - C++ template class UnitRoot: 
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
