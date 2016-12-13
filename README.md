@@ -29,12 +29,12 @@ Unit-root tests use lags in order to reduce as much as possible auto-correlation
 - C++ template class OLS: 
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
 The OLS regression is run by simply declaring an OLS object with the arguments:
-    - Vector "y" containing the dependent variable
-    - Matrix "x" containing the independent variables (it can include intercept, constant trend, etc...)
-    - control named "stats" (optional, "false" by default) will compute additional statistics if turned to "true" as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
+    - Vector *y* containing the dependent variable
+    - Matrix *x* containing the independent variables (it can include intercept, constant trend, etc...)
+    - control named *stats* (optional, *false* by default) will compute additional statistics if turned to *true* as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
 This class has 2 functions:
-    - "get_stats()" taking the same Vector "x" and Matrix "y" as arguments, it computes the additional OLS regression statistics
-    - "show()" outputs the results
+    - *get_stats()* taking the same Vector *x* and Matrix *y* as arguments, it computes the additional OLS regression statistics
+    - *show()* outputs the results
     
     code example using Armadillo:
     ```
@@ -58,11 +58,11 @@ This class has 2 functions:
     Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of the linear algebra in use.
     
     URT provides 3 functions allowing to add quickly constant terms to a Matrix:
-    - "add_intercept()" to insert a column of ones into a Matrix as shown in the example above
-    - "add_constant_trend()" to insert a column (1,2,3,...,nrows)
-    - "add_quadratic_trend()" to insert a column (1,4,9,...,nrows^2)
+    - *add_intercept()* to insert a column of ones into a Matrix as shown in the example above
+    - *add_constant_trend()* to insert a column (1,2,3,...,nrows)
+    - *add_quadratic_trend()* to insert a column (1,4,9,...,nrows^2)
     
-    NB: I made the choice not to copy the Vector "y" and Matrix "x" when declaring an object OLS for performance reasons, when "x" becomes large it can quickly lead to a significative difference in term of performance. Also, if "stats" has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
+    NB: I made the choice not to copy the Vector and Matrix arguments when declaring an object OLS for performance reasons, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
 
 - C++ template class UnitRoot: 
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
