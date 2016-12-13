@@ -50,6 +50,11 @@ The OLS regression is run by simply declaring an OLS object with the arguments:
     - *get_stats()* taking the same Vector *x* and Matrix *y* as arguments, it computes the additional OLS regression statistics
     - *show()* outputs the results
     
+- ### Additionnal tools
+URT provides 3 functions allowing to add quickly constant terms to a Matrix:
+    - *add_intercept()* to insert a column of ones into a Matrix as shown in the example above
+    - *add_constant_trend()* to insert a column (1,2,3,...,nrows)
+    - *add_quadratic_trend()* to insert a column (1,4,9,...,nrows^2
     
 Code example using Armadillo:
 
@@ -74,13 +79,6 @@ int main()
 ```
 Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of the linear algebra in use.
 
-- ### Additionnal tools
-
-URT provides 3 functions allowing to add quickly constant terms to a Matrix:
-    - *add_intercept()* to insert a column of ones into a Matrix as shown in the example above
-    - *add_constant_trend()* to insert a column (1,2,3,...,nrows)
-    - *add_quadratic_trend()* to insert a column (1,4,9,...,nrows^2)
-    
 NB: I made the choice not to copy the Vector and Matrix arguments when declaring an object OLS for performance reasons, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
 
 ## C++ template class UnitRoot: 
