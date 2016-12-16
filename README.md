@@ -91,6 +91,10 @@ int main()
 }
     
 ```
+
+![example1](https://cloud.githubusercontent.com/assets/20603093/21258517/a26cb8be-c37d-11e6-810e-57e43da8a12a.png)
+
+
 Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of the linear algebra in use.
 
 NB: I made the choice not to copy the Vector and Matrix arguments when declaring an object OLS for performance reasons, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
