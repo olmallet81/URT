@@ -34,39 +34,36 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
 
 - # URT with Armadillo
 ```c++
-  namespace urt {
-
-     template <typename T>
-     using Matrix = arma::Mat<T>;
-     template <typename T>
-     using Vector = arma::Col<T>;
-  }
+namespace urt {
+   template <typename T>
+   using Matrix = arma::Mat<T>;
+   template <typename T>
+   using Vector = arma::Col<T>;
+}
 ```
 
 - # URT with Blaze
 ```c++
-  namespace urt {
-
-     template <typename T>
-     using Matrix = blaze::DynamicMatrix<T, blaze::columnMajor>;
-     template <typename T>
-     using CMatrix = blaze::CustomMatrix<T, blaze::unaligned, blaze::unpadded, blaze::columnMajor>;
-     template <typename T>
-     using Vector = blaze::DynamicVector<T>;
-     template <typename T>
-     using CVector = blaze::CustomVector<T, blaze::unaligned, blaze::unpadded>;
-  }
+namespace urt {
+   template <typename T>
+   using Matrix = blaze::DynamicMatrix<T, blaze::columnMajor>;
+   template <typename T>
+   using CMatrix = blaze::CustomMatrix<T, blaze::unaligned, blaze::unpadded, blaze::columnMajor>;
+   template <typename T>
+   using Vector = blaze::DynamicVector<T>;
+   template <typename T>
+   using CVector = blaze::CustomVector<T, blaze::unaligned, blaze::unpadded>;
+}
 ```
 
 - # URT with Eigen
 ```c++
-  namespace urt {
-
-     template <typename T>
-     using Matrix = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>;
-     template <typename T>
-     using Vector = Eigen::Matrix<T, Eigen::Dynamic, 1>;
- }
+namespace urt {
+   template <typename T>
+   using Matrix = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>;
+   template <typename T>
+   using Vector = Eigen::Matrix<T, Eigen::Dynamic, 1>;
+}
 ```
 
 ## C++ template class OLS: 
