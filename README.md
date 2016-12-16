@@ -32,13 +32,13 @@ The methodology is simple, starting from a chosen set of sample sizes and a chos
 - step 2: compute the corresponding test statistic for a given number of lags
 - repeat step 1 and 2 many times to get a sample of test statistics from a given couple (sample size, number of lags)
 - step 3: sort the statistics sample obtained to get their distribution and record the critical value for each confidence level of your choice
-- repeat step 1 to 3 for all combinations (sample size, number of lags) and fit by OLS regression these critical values for each required significance level to the equation proposed by Cheung and Lai:
+- repeat step 1 to 3 for all combinations of sample size and number of lags and fit by OLS regression these critical values for each required significance level to the equation proposed by Cheung and Lai:
 
     ![screenshot from 2016-12-16 17-10-54](https://cloud.githubusercontent.com/assets/20603093/21269345/b6abd474-c3b2-11e6-8247-d43163a11b39.png)
     
     where CR(N,k) is the critical value estimate for a sample of size N and a number of lags k (and for a given significance level), T = N - k being the effective number of observations and e(N,k) the model residuals
 
-In order to increase the precision of the method some terms have been added to each sum while trying to get significant heteroskedasticity consistent t-statistics for the regression coefficients obtained. Both sample sizes and number of lags sets proposed by Cheung and Kai have been expanded. For the most important critical values that is the ones at the confidence levels 1%, 5% and 10% for ADF, DF-GLS and Phillips-Perron tests and at 99%, 95% and 90% for the KPSS test, Monte-Carlo critical values have been computed using a high number of simulations and for reduced set of sizes and lags to compare and improve the estimated critical values precision by modifying the initial set of sizes and lags and by adding or removing some terms to the equation proposed by Cheung and Lai.
+In order to increase the precision of the method some terms have been added by increasing degree of the first sum and/or the second sum, while trying to get significant heteroskedasticity consistent t-statistics for the regression coefficients obtained. Both sample sizes and number of lags sets proposed by Cheung and Kai have been expanded. For the most important critical values that is the ones at the confidence levels 1%, 5% and 10% for ADF, DF-GLS and Phillips-Perron tests and at 99%, 95% and 90% for the KPSS test, Monte-Carlo critical values have been computed using a high number of simulations and for reduced set of sizes and lags to compare and improve the estimated critical values precision by modifying the initial set of sizes and lags and by adding or removing some terms to the equation proposed by Cheung and Lai.
 
 The coefficients obtained by OLS regression for each unit-root test and each significance level are reported in the header files in ./URT/include:
 - Coeff_adf.hpp for ADF test
