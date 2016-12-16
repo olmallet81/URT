@@ -14,18 +14,33 @@ During my experimentations I have tried to find the correct set up for each line
 More generally, if anyone has an idea about any kind of modifications that could allow the code to run significantly faster, feel free to propose. 
 
 # What is inside this package ?
-- OLS regression
+- Ordinary Least Squares regression
 - Augmented Dickey-Fuller test
 - Dickey-Fuller Generalized Least Squares test
 - Phillips-Perron test
 - Kwiatkowski–Phillips–Schmidt–Shin test
-- Rcpp wrapper for R
-- Cython wrapper for Python
+- Lag dependent unit-root test p-values
+- Bootstrap to get unit-root test p-values 
+- Wrapper to expose URT to R 
+- Wrapper to expose URT to Python
 
 # Innovation
-Unit-root tests use lags in order to reduce as much as possible auto-correlation in the tested data serie. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for large number of lags.  
+Unit-root tests use lags in order to reduce as much as possible auto-correlation in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags.  
 
 # Design
+
+## Introduction
+All URT classes and functions are within the namespace urt. As it allows the use of three different linear algebra libraries, I defined convienent typedefs for arrays as Vector and Matrix.
+- # when using Armadillo
+```c++
+  namespace urt {
+
+     template <typename T>
+     using Matrix = arma::Mat<T>;
+     template <typename T>
+     using Vector = arma::Col<T>;
+  }
+```
 
 ## C++ template class OLS: 
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
@@ -91,12 +106,6 @@ int main()
 }
     
 ```
-
-![example1](https://cloud.githubusercontent.com/assets/20603093/21258517/a26cb8be-c37d-11e6-810e-57e43da8a12a.png)
-
-
-Vector and Matrix are convenient typedefs in the namespace urt, they are alias for vector and matrix representation of the linear algebra in use.
-
 NB: I made the choice not to copy the Vector and Matrix arguments when declaring an object OLS for performance reasons, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
 
 ## C++ template class UnitRoot: 
