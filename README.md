@@ -57,13 +57,13 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
     - *ndef* = number of degrees of freedom
     - *lags* = number of lags
     
-     NB: *IC* and *lags* are for the case when OLS<T> is called by UnitRoot<T> for lag length optimization by information criterion minimization.
+NB: *IC* and *lags* are for the case when OLS<T> is called by UnitRoot<T> for lag length optimization by information criterion minimization.
     
 - ### Member functions (public)
-    - *get_stats()* taking the same Vector *x* and Matrix *y* as arguments, it computes the additional OLS regression statistics
+    - *get_stats()* taking same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics
     - *show()* outputs the results
     
-- ### Additionnal tools
+- ### Additionnal tools (not members of OLS<T>)
 URT provides 3 functions allowing to add quickly constant terms to a Matrix:
     - *add_intercept()* to insert a column of ones into a Matrix as shown in the example above
     - *add_constant_trend()* to insert a column (1,2,3,...)
@@ -79,6 +79,7 @@ int main()
     int nrows = 1000;
     int ncols = 10;
 
+    // generating random arrays
     urt::Vector<double> y = arma::randn<urt::Vector<double>>(nrows);
     urt::Matrix<double> x = arma::randn<urt::Matrix<double>>(nrows, ncols);
 
