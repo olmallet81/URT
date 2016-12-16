@@ -47,9 +47,9 @@ The user can set the following variables to get the desired shared library:
 - USE_MKL = 1 to use Intel MKL library
 - USE_BLAS = 1 to use OpenBLAS library
 
-The default configuration when running *make* is no parallelism and Armadillo.
+The default configuration when running *make* is no parallelism and Armadillo without external BLAS/LAPACK libraries.
 
-Example: *make USE_OPENMP=1 USE_BLAZE USE_MKL=1* => the shared library libURT.so will be compiled using OpenMP and Blaze with Intel MK.
+Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1* => the shared library libURT.so will be compiled using OpenMP and Blaze with Intel MK.
 
 NB: when compiling with Intel MKL or OpenBLAS, static version of these libraries have been chosen, the shared library obtained will be larger in size but URT will run faster under C++ and the difference will be more important when wrapped for R and Python. You will need to adjust the path of these static libraries in the makefile to your own paths.
 
