@@ -185,20 +185,24 @@ NB: the choice has been made not to copy Vector and Matrix, arguments of OLS con
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
 
   This class has 3 pure virtual functions:
+  
     - "statistic()" computes the test statistic
     - "pvalue()" calls "statistic()" and computes the p-value
     - "show()" calls "pvalue()" and outputs the test results
     
-- C++ template class ADF: 
+## C++ template class ADF: 
 Derived class from UnitRoot, this class has 2 constructors:
+
     - 1st constructor to compute the test for a given lag
     - 2nd constructor to compute the test with lag length optimization
+    
 The constructors accept the following arguments:
     - Vector "data" containing the data on which the test will be processed
     - the number of "lags" (1st constructor only)
     - the optimization "method" (2nd constructor only)
     - the type of "trend" (optional, default to constant or intercept term)
     - control "regression" (optional, default to false) to indicate if the additional statistics of the OLS regression must be computed
+    
 Once an object ADF declare, one of the overriden pure virtual functions from the base class must be called to get the test results. The user can switch from a test to another by simply modifying the arguments above.
 The user can switch from a test for a given lag to a test with lag length optimization by using "method"
     
