@@ -45,14 +45,14 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
 - ### with Blaze
    ```c++
    namespace urt {
-   template <typename T>
-   using Matrix = blaze::DynamicMatrix<T, blaze::columnMajor>;
-   template <typename T>
-   using CMatrix = blaze::CustomMatrix<T, blaze::unaligned, blaze::unpadded, blaze::columnMajor>;
-   template <typename T>
-   using Vector = blaze::DynamicVector<T>;
-   template <typename T>
-   using CVector = blaze::CustomVector<T, blaze::unaligned, blaze::unpadded>;
+      template <typename T>
+      using Matrix = blaze::DynamicMatrix<T, blaze::columnMajor>;
+      template <typename T>
+      using CMatrix = blaze::CustomMatrix<T, blaze::unaligned, blaze::unpadded, blaze::columnMajor>;
+      template <typename T>
+      using Vector = blaze::DynamicVector<T>;
+      template <typename T>
+      using CVector = blaze::CustomVector<T, blaze::unaligned, blaze::unpadded>;
    }
    ```
 
@@ -70,31 +70,31 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
 
 - ### Constructor
-     The OLS regression is run by declaring an OLS object using the following constructor:
-     ```c++
-     OLS<T>::OLS(const Vector<T>& y, const Matrix<T>& x, bool stats = false)
-     ```
-     with:
-     - *y* = vector of the dependent variable
-     - *x* = matrix of the independent variables (it can include intercept, constant trend, etc...)
-     - *stats* if turned to *true*, additional statistics will be computed as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
+    The OLS regression is run by declaring an OLS object using the following constructor:
+    ```c++
+    OLS<T>::OLS(const Vector<T>& y, const Matrix<T>& x, bool stats = false)
+    ```
+    with:
+    - *y* = vector of the dependent variable
+    - *x* = matrix of the independent variables (it can include intercept, constant trend, etc...)
+    - *stats* if turned to *true*, additional statistics will be computed as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
      
 - ### Member variables (public)
-    - *param* = regressors coefficients
-    - *t_stat* = regressors t-statistics
-    - *resid* = regression residuals
-    - *var* = regressors variances
-    - *MSE* = mean of squares for error
-    - *SSR* = sum of squares residuals
-    - *R2* = R-squared
-    - *adj_R2* = adjusted R-squared
-    - *F_stat* = F-statistic
-    - *DW_stat* = Durbin-Watson statistic
-    - *IC* = information criterion
-    - *nobs* = number of observations
-    - *nreg* = number of regressors
-    - *ndef* = number of degrees of freedom
-    - *lags* = number of lags
+   - *param* = regressors coefficients
+   - *t_stat* = regressors t-statistics
+   - *resid* = regression residuals
+   - *var* = regressors variances
+   - *MSE* = mean of squares for error
+   - *SSR* = sum of squares residuals
+   - *R2* = R-squared
+   - *adj_R2* = adjusted R-squared
+   - *F_stat* = F-statistic
+   - *DW_stat* = Durbin-Watson statistic
+   - *IC* = information criterion
+   - *nobs* = number of observations
+   - *nreg* = number of regressors
+   - *ndef* = number of degrees of freedom
+   - *lags* = number of lags
     
 NB: *IC* and *lags* are for the case when OLS<T> is called by UnitRoot<T> for lag length optimization by information criterion minimization.
     
