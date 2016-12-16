@@ -36,8 +36,8 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
      OLS<T>::OLS(const Vector<T>& y, const Matrix<T>& x, bool stats = false)
      ```
      with:
-     - *y* the vector of the dependent variable
-     - *x* the matrix of the independent variables (it can include intercept, constant trend, etc...)
+     - *y* = vector of the dependent variable
+     - *x* = matrix of the independent variables (it can include intercept, constant trend, etc...)
      - *stats* if turned to *true*, additional statistics will be computed as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
      
 - ### Member variables (public)
@@ -56,6 +56,7 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
     - *nreg* = number of regressors
     - *ndef* = number of degrees of freedom
     - *lags* = number of lags
+NB: *IC* and *lags* are for the case when OLS<T> is called by UnitRoot<T> for lag length optimization by information criterion minimization.
     
 - ### Member functions (public)
     - *get_stats()* taking the same Vector *x* and Matrix *y* as arguments, it computes the additional OLS regression statistics
