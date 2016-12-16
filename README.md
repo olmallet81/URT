@@ -79,7 +79,7 @@ NB: when compiling with Intel MKL or OpenBLAS, static version of these libraries
 # Design
 
 ## Introduction
-All URT classes and functions are within the namespace *urt*. As URT allows the use of three different linear algebra libraries, convienent typedefs are defined for manipulating arrays, Vector and Matrix defined as below:
+All URT classes and functions are within the namespace *urt*. As URT allows the use of three different linear algebra libraries, convienent typedefs Vector and Matrix have been defined for manipulating arrays:
 
 - ### with Armadillo
    ```c++
