@@ -32,7 +32,10 @@ The methodology is simple, it consists in
 - step 2: compute the corresponding test statistic for a panel of different lags
 - step 3: sort the statistics obtained to get their distribution and record the critical value for each confidence level of your choice
 - repeat step 1 to 3 many times to get enough data in order to fit these critical values for each confidence level to the equation proposed by Cheung and Lai:
+
 ![screenshot from 2016-12-16 17-10-54](https://cloud.githubusercontent.com/assets/20603093/21269345/b6abd474-c3b2-11e6-8247-d43163a11b39.png)
+
+
 
 
 # Requirement
