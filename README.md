@@ -56,6 +56,7 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
     - *nreg* = number of regressors
     - *ndef* = number of degrees of freedom
     - *lags* = number of lags
+    
 NB: *IC* and *lags* are for the case when OLS<T> is called by UnitRoot<T> for lag length optimization by information criterion minimization.
     
 - ### Member functions (public)
