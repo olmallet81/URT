@@ -46,7 +46,7 @@ The coefficients obtained by OLS regression for each unit-root test and each con
 - Coeff_pp.hpp for Phillips-Perron tests (t-statistic and normalized statistic)
 - Coeff_kpss.hpp for KPSS test
 
-NB: each index 0 array contains to the asymptotic estimate of the critical value for the corresponding confidence level and the coefficients of the first term of the equation, each index 1 array contains contains the coefficients of the second term of the equation.
+NB: each index 0 array contains the asymptotic estimate of the critical value for the corresponding confidence level *Tau(0)* and the coefficients of the first term of the equation *Tau(i)*, each index 1 array contains contains the coefficients of the second term of the equation *Phi(j)*.
 
 # Requirement
 To use this package you will need at least one of these 3 free linear algebra libraries:
