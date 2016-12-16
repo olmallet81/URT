@@ -32,7 +32,7 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
 
 - ### Constructor
      The OLS regression is run by declaring an OLS object using the following constructor:
-     ```
+     ```c++
      OLS<T>::OLS(const Vector<T>& y, const Matrix<T>& x, bool stats = false)
      ```
      with:
