@@ -27,7 +27,7 @@ More generally, if anyone has an idea about any kind of modifications that could
 # Innovation
 Unit-root tests use lags in order to reduce as much as possible auto-correlation in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags. The method used in this project is the one explained by Cheung and Lai in "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (1995). This method has been pushed further and adapted to other unit-root tests. 
 
-The methodology is simple, it consists in 
+The methodology is simple, it consists in 3 steps:
 - step 1: generate a random non-stationary sample of a given size (wiener process) for ADF, DF-GLS and PP tests and a random stationary sample of a given size (Gaussian noise) for KPSS test
 - step 2: compute the corresponding test statistic for a given number of lags
 - repeat step 1 and 2 many times to get a sample of test statistics from a given couple (sample size, number of lags)
