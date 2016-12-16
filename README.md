@@ -31,13 +31,15 @@ Unit-root tests use lags in order to reduce as much as possible auto-correlation
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
 
 - ### Constructor
+
 The OLS regression is run by declaring an OLS object using the following constructor:
 ```
 OLS<T>::OLS(const Vector<T>& y, const Matrix<T>& x, bool stats = false)
 ```
-- Vector *y* containing the dependent variable
-- Matrix *x* containing the independent variables (it can include intercept, constant trend, etc...)
-- control named *stats* (optional, *false* by default) will compute additional statistics if turned to *true* as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
+with:
+- *y* is the vector of the dependent variable
+- *x* is the matrix of the independent variables (it can include intercept, constant trend, etc...)
+- *stats* if turned to *true*, additional statistics will be computed as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
      
 - ### Member variables
     - *param* to get the regressors coefficients
