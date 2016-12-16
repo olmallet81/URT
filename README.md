@@ -28,14 +28,15 @@ More generally, if anyone has an idea about any kind of modifications that could
 Unit-root tests use lags in order to reduce as much as possible auto-correlation in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags. The method used in this project is the one explained by Cheung and Lai in "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (1995). This method has been pushed further and adapted to other unit-root tests. 
 
 The methodology is simple, it consists in 
-- step 1: generate non-stationary samples for ADF, DF-GLS and PP tests and stationary samples for KPSS test for a panel different sizes
-- step 2: compute the corresponding test statistic for a panel of different lags
-- step 3: sort the statistics obtained to get their distribution and record the critical value for each confidence level of your choice
-- repeat step 1 to 3 many times to get enough data in order to fit these critical values for each confidence level to the equation proposed by Cheung and Lai:
+- step 1: generate a random non-stationary sample of a given size (wiener process) for ADF, DF-GLS and PP tests and a random stationary sample of a given size (Gaussian noise) for KPSS test
+- step 2: compute the corresponding test statistic for a given number of lags
+- repeat step 1 and 2 many times to get a sample of test statistics from a given couple (sample size, number of lags)
+- step 3: sort the statistics sample obtained to get their distribution and record the critical value for each confidence level of your choice
+- repeat step 1 to 3 for all combinations (sample size, number of lags) and fit by OLS these critical values for each confidence level to the equation proposed by Cheung and Lai:
 
 ![screenshot from 2016-12-16 17-10-54](https://cloud.githubusercontent.com/assets/20603093/21269345/b6abd474-c3b2-11e6-8247-d43163a11b39.png)
 
-
+In order to increase the precision of the method I added degrees in some cases to both terms while trying to get significant heteroskedasticity robust t-statistics for the regression coefficients obtained.
 
 
 # Requirement
