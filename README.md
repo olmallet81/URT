@@ -40,17 +40,24 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
      - *x* the matrix of the independent variables (it can include intercept, constant trend, etc...)
      - *stats* if turned to *true*, additional statistics will be computed as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
      
-- ### Member variables
-    - *param* to get the regressors coefficients
-    - *t_stat* to get the theregressors t-statistics
-    - *resid* to get the regression residuals
-    - *var* to get the regressors variances
-    - *R2* to get the R-squared
-    - *adj_R2* to get the adjusted R-squared
-    - *F_stat* to get the F-statistic
-    - *DW_stat* to get the Durbin-Watson statistic
+- ### Member variables (public)
+    - *param* = regressors coefficients
+    - *t_stat* = regressors t-statistics
+    - *resid* = regression residuals
+    - *var* = regressors variances
+    - *MSE* = mean of squares for error
+    - *SSR* = sum of squares residuals
+    - *R2* = R-squared
+    - *adj_R2* = adjusted R-squared
+    - *F_stat* = F-statistic
+    - *DW_stat* = Durbin-Watson statistic
+    - *IC* = information criterion
+    - *nobs* = number of observations
+    - *nreg* = number of regressors
+    - *ndef* = number of degrees of freedom
+    - *lags* = number of lags
     
-- ### Member functions
+- ### Member functions (public)
     - *get_stats()* taking the same Vector *x* and Matrix *y* as arguments, it computes the additional OLS regression statistics
     - *show()* outputs the results
     
@@ -62,7 +69,7 @@ URT provides 3 functions allowing to add quickly constant terms to a Matrix:
     
 Code example using Armadillo:
 
-```c++-objdump
+```c++
 #include "./URT/include/URT.hpp"
 
 int main()
