@@ -138,7 +138,7 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
    - *R2* = R-squared
    - *adj_R2* = adjusted R-squared
    - *F_stat* = F-statistic
-   - *DW_stat* = Durbin-Watson statistic
+   - *DW_stat* = Durbin-Watson test statistic
    - *IC* = information criterion
    - *nobs* = number of observations
    - *nreg* = number of regressors
