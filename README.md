@@ -32,7 +32,7 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
 
 - ### Constructor
      The OLS regression is run by declaring an OLS object using the following constructor:
-     ```c++-objdump
+     ```c++
      OLS<T>::OLS(const Vector<T>& y, const Matrix<T>& x, bool stats = false)
      ```
      with:
@@ -62,7 +62,7 @@ URT provides 3 functions allowing to add quickly constant terms to a Matrix:
     
 Code example using Armadillo:
 
-```
+```c++-objdump
 #include "./URT/include/URT.hpp"
 
 int main()
