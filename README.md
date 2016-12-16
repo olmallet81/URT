@@ -25,24 +25,28 @@ More generally, if anyone has an idea about any kind of modifications that could
 - Wrapper to expose URT to Python
 
 # Innovation
-Unit-root tests use lags in order to reduce as much as possible auto-correlation in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags.  
+Unit-root tests use lags in order to reduce as much as possible auto-correlation in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags. The method used in this project is the one explained by Cheung and Lai in "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (1995). This method has been pushed further and adapted to other unit-root tests. The methodology is simple, it consists in 
+- generate non-stationary samples for ADF, DF-GLS and PP tests and stationary samples for KPSS test for a panel different sizes
+- compute the corresponding test statistic for a panel of different lags
+- compute the 
+
 
 # Requirement
-To use this package you will need at least one of these three free linear algebra libraries:
+To use this package you will need at least one of these 3 free linear algebra libraries:
 - Armadillo version >= 7.600.1
 - Blaze version >= 3.0
 - Eigen version >= 3.3.1
 
-It is not necessary to install Intel MKL and/or OpenBLAS (both are now free) for BLAS/LAPACK routines as these three libraries have their own wrapper, however I recommend to use one of them as they will run a lot faster especially Armadillo and Blaze, for Eigen the difference is small. All these libraries will obviously need to be on your path.
+It is not necessary to install Intel MKL and/or OpenBLAS (both are now free) for BLAS/LAPACK routines as these 3 libraries have their own wrapper, however I recommend to link to one of them as they will run a lot faster especially Armadillo and Blaze, for Eigen the difference is small. All these libraries will obviously need to be on your path.
 
-NB: 
+NB: if you decide to link to Intel MKL or OpenBLAS, please use their sequential and not parallel version. Intel MKL has the two versions already by default, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0. 
  
 # Compilation
-URT is not header only to provide an easy way to be exported as a shared library to Rcpp and Cython. Build the shared library using the provided makefile located in /URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily adapted to run under Windows/OSX and with another compiler. 
+URT is not header only to provide an easy way to be exported as a shared library to Rcpp and Cython. Build the shared library using the provided makefile located in ./URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily adapted to run under Windows/OSX and with another compiler, adapt this makefile to your own requirements. 
 
-All linear algebra librairies now use vectorization, in general it should be enabled by default when compiled with -march=native.
+All linear algebra librairies now use vectorization, in general it should be enabled by default for all of them when compiling with -march=native.
 
-The user can set the following variables to get the desired shared library:
+In URT, the user can set the following variables to get the desired shared library:
 - USE_OPENMP = 1 to activate parallelism in URT
 - USE_BLAZE = 1 to use Blaze library
 - USE_EIGEN = 1 to use Eigen library
