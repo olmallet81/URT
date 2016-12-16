@@ -29,9 +29,9 @@ Unit-root tests use lags in order to reduce as much as possible auto-correlation
 
 # Requirement
 To use this package you will need at least one of these three free linear algebra libraries:
-- Armadillo version 7.600.1
-- Blaze version 3.0
-- Eigen version 3.3.1
+- Armadillo version >= 7.600.1
+- Blaze version >= 3.0
+- Eigen version >= 3.3.1
 
 It is not necessary to install Intel MKL and/or OpenBLAS (both are now free) for BLAS/LAPACK routines as these three libraries have their own wrapper, however I recommend to use one of them as they will run a lot faster especially Armadillo and Blaze, for Eigen the difference is small. All these libraries will obviously need to be on your path.
  
