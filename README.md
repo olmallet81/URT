@@ -96,17 +96,17 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
    - *ndef* = number of degrees of freedom
    - *lags* = number of lags
     
-NB: *IC* and *lags* are for the case when OLS<T> is called by UnitRoot<T> for lag length optimization by information criterion minimization.
+NB: *IC* and *lags* are for the case when OLS is called by UnitRoot for lag length optimization by information criterion minimization.
     
 - ### Member functions (public)
-    - *get_stats()* taking same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics
+    - *get_stats()* taking same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics and detects the presence of an intercept term
     - *show()* outputs the results
     
-- ### Additionnal tools (not members of OLS<T>)
+- ### Additionnal tools (not members of OLS)
 URT provides 3 functions allowing to add quickly constant terms to a Matrix:
-    - *add_intercept()* to insert a column of ones into a Matrix as shown in the example above
-    - *add_constant_trend()* to insert a column (1,2,3,...)
-    - *add_quadratic_trend()* to insert a column (1,4,9,...)
+    - *add_intercept()* inserts a column of ones into a Matrix as shown in the example above
+    - *add_constant_trend()* inserts a column (1,2,3,...)
+    - *add_quadratic_trend()* inserts a column (1,4,9,...)
     
 Code example using Armadillo:
 
