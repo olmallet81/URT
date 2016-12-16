@@ -36,7 +36,10 @@ To use this package you will need at least one of these three free linear algebr
 It is not necessary to install Intel MKL and/or OpenBLAS (both are now free) for BLAS/LAPACK routines as these three libraries have their own wrapper, however I recommend to use one of them as they will run a lot faster especially Armadillo and Blaze, for Eigen the difference is small. All these libraries will obviously need to be on your path.
  
 # Compilation
-URT is not header only to provide an easy way to be exported in a shared library to Rcpp and Cython. Build the shared library using the provided makefile located in /URT/build. The makefile has been written for Linux, it can be easily adapted to run under Windows/OSX (it contain very few variations among platforms as *rm*). All linear algebra librairies now use vectorization, in general it should be enabled by default when compiled with -march=native.
+URT is not header only to provide an easy way to be exported in a shared library to Rcpp and Cython. Build the shared library using the provided makefile located in /URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily adapted to run under Windows/OSX and with another compiler. 
+
+All linear algebra librairies now use vectorization, in general it should be enabled by default when compiled with -march=native.
+
 The user can set the following variables to get the desired shared library:
 - USE_OPENMP = 1 to activate parallelism in URT
 - USE_BLAZE = 1 to use Blaze library
