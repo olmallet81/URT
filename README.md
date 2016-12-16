@@ -29,25 +29,27 @@ Unit-root tests use lags in order to reduce as much as possible auto-correlation
 
 # Requirement
 To use this package you will need at least one of these three free linear algebra libraries:
-- Armadillo
-- Blaze
-- Eigen
-It is not necessary to install Intel MKL and/or OpenBLAS (both ar now free) for BLAS/LAPACK routines at these three libraries have their own wrapper, however I recommend to use URT with one of them as they will run faster when compiled with one of them especially Armadillo and Blaze, for Eigen the difference is small. All these libraries will obviously need to be on your path.
-
+- Armadillo version 7.600.1
+- Blaze version 3.0
+- Eigen version 3.3.1
+It is not necessary to install Intel MKL and/or OpenBLAS (both are now free) for BLAS/LAPACK routines as these three libraries have their own wrapper, however I recommend to use one of them as they will run a lot faster especially Armadillo and Blaze, for Eigen the difference is small. All these libraries will obviously need to be on your path.
+ 
 # Compilation
-URT is not header only to provide an easy way for the classes it contains to be exported as a shared library to Rcpp and Cython. Build the shared library using the provided makefile located in /URT/build. The makefile has been written for Linux, it can be easily adapted to run under Windows/OSX. The user can set the following variables to get the desired shared library:
+URT is not header only to provide an easy way to be exported in a shared library to Rcpp and Cython. Build the shared library using the provided makefile located in /URT/build. The makefile has been written for Linux, it can be easily adapted to run under Windows/OSX (it contain very few variations among platforms as *rm*). All linear algebra librairies now use vectorization, in general it should be enabled by default when compiled with -march=native.
+The user can set the following variables to get the desired shared library:
 - USE_OPENMP = 1 to activate parallelism in URT
 - USE_BLAZE = 1 to use Blaze library
 - USE_EIGEN = 1 to use Eigen library
 - USE_MKL = 1 to use Intel MKL library
 - USE_BLAS = 1 to use OpenBLAS library
-NB: default configuration when running make is no parallelism and Armadillo with OpenBLAS
-example: make USE_OPENMP=1 USE_MKL=1 => the shared library libURT.so will be compiled using OpenMP, Armadillo with Intel MKL
+The default configuration when running *make* is no parallelism and Armadillo.
+Example: *make USE_OPENMP=1 USE_BLAZE USE_MKL=1* => the shared library libURT.so will be compiled using OpenMP and Blaze with Intel MK.
+NB: when compiling with Intel MKL or OpenBLAS, static version of these libraries have been chosen, the shared library obtained will be larger in size but URT will run faster under C++ and the difference will be more important when wrapped for R and Python. You will need to adjust the path of these static libraries in the makefile to your own paths.
 
 # Design
 
 ## Introduction
-All URT classes and functions are within the namespace *urt*. As URT allows the use of three different linear algebra libraries, I defined convienent typedefs for arrays as Vector and Matrix.
+All URT classes and functions are within the namespace *urt*. As URT allows the use of three different linear algebra libraries, I defined convienent typedefs for arrays: Vector and Matrix.
 
 - ### with Armadillo
    ```c++
