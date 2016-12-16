@@ -20,12 +20,29 @@ More generally, if anyone has an idea about any kind of modifications that could
 - Phillips-Perron test
 - Kwiatkowski–Phillips–Schmidt–Shin test
 - Lag dependent unit-root test p-values
-- Bootstrap to get unit-root test p-values 
+- Bootstrapped unit-root test p-values 
 - Wrapper to expose URT to R 
 - Wrapper to expose URT to Python
 
 # Innovation
 Unit-root tests use lags in order to reduce as much as possible auto-correlation in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags.  
+
+# Requirement
+To use this package you will need at least one of these three free linear algebra libraries:
+- Armadillo
+- Blaze
+- Eigen
+It is not necessary to install Intel MKL and/or OpenBLAS (both ar now free) for BLAS/LAPACK routines at these three libraries have their own wrapper, however I recommend to use URT with one of them as they will run faster when compiled with one of them especially Armadillo and Blaze, for Eigen the difference is small. All these libraries will obviously need to be on your path.
+
+# Compilation
+URT is not header only to provide an easy way for the classes it contains to be exported as a shared library to Rcpp and Cython. Build the shared library using the provided makefile located in /URT/build. The makefile has been written for Linux, it can be easily adapted to run under Windows/OSX. The user can set the following variables to get the desired shared library:
+- USE_OPENMP = 1 to activate parallelism in URT
+- USE_BLAZE = 1 to use Blaze library
+- USE_EIGEN = 1 to use Eigen library
+- USE_MKL = 1 to use Intel MKL library
+- USE_BLAS = 1 to use OpenBLAS library
+NB: default configuration when running make is no parallelism and Armadillo with OpenBLAS
+example: make USE_OPENMP=1 USE_MKL=1 => the shared library libURT.so will be compiled using OpenMP, Armadillo with Intel MKL
 
 # Design
 
