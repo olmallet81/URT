@@ -34,7 +34,9 @@ The methodology is simple, starting from a set of sample sizes and number of lag
 - step 3: sort the statistics sample obtained to get their distribution and record the critical value for each confidence level of your choice
 - repeat step 1 to 3 for all combinations (sample size, number of lags) and fit by OLS regression these critical values for each required confidence level to the equation proposed by Cheung and Lai:
 
-![screenshot from 2016-12-16 17-10-54](https://cloud.githubusercontent.com/assets/20603093/21269345/b6abd474-c3b2-11e6-8247-d43163a11b39.png)
+    ![screenshot from 2016-12-16 17-10-54](https://cloud.githubusercontent.com/assets/20603093/21269345/b6abd474-c3b2-11e6-8247-d43163a11b39.png)
+    
+    where CR(N,k) is the critical value for a sample of size N and a lags k, T = N - k is the effective number of observations
 
 In order to increase the precision of the method I added degrees in some cases to both terms while trying to get significant heteroskedasticity robust t-statistics for the regression coefficients obtained. Both sample sizes and number of lags sets proposed by Cheung and Kai have been expanded. For the most important critical values to decide whether a serie is (weakly) stationary or not, that is at the 1%, 5% and 10% confidence level for ADF, DF-GLS and Phillips-Perron tests and at the 99%, 95% and 90% confidence level for the KPSS test, I computed Monte-Carlo critical values using a high number of simulations and a panel of sizes and lags to compare and improve the estimated critical values precision by modifying the initial set of sample sizes and number of lags.
 
