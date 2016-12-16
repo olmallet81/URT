@@ -25,10 +25,14 @@ More generally, if anyone has an idea about any kind of modifications that could
 - Wrapper to expose URT to Python
 
 # Innovation
-Unit-root tests use lags in order to reduce as much as possible auto-correlation in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags. The method used in this project is the one explained by Cheung and Lai in "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (1995). This method has been pushed further and adapted to other unit-root tests. The methodology is simple, it consists in 
-- generate non-stationary samples for ADF, DF-GLS and PP tests and stationary samples for KPSS test for a panel different sizes
-- compute the corresponding test statistic for a panel of different lags
-- compute the 
+Unit-root tests use lags in order to reduce as much as possible auto-correlation in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags. The method used in this project is the one explained by Cheung and Lai in "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (1995). This method has been pushed further and adapted to other unit-root tests. 
+
+The methodology is simple, it consists in 
+- step 1: generate non-stationary samples for ADF, DF-GLS and PP tests and stationary samples for KPSS test for a panel different sizes
+- step 2: compute the corresponding test statistic for a panel of different lags
+- step 3: sort the statistics obtained to get their distribution and record the critical value for each confidence level of your choice
+- repeat step 1 to 3 many times to get enough data to fit these critical values to the equation proposed by Cheung and Lai.
+
 
 
 # Requirement
