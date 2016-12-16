@@ -152,7 +152,7 @@ NB: *IC* and *lags* are for the case when OLS is called by UnitRoot for lag leng
     - *show()* outputs the results
     
 - ### Additionnal tools (not members of OLS)
-URT provides 3 functions allowing to add quickly constant terms to a Matrix:
+URT provides 3 functions to add quickly constant terms to a Matrix:
     - *add_intercept()* inserts a column of ones into a Matrix as shown in the example above
     - *add_constant_trend()* inserts a column (1,2,3,...)
     - *add_quadratic_trend()* inserts a column (1,4,9,...)
