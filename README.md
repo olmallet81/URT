@@ -32,19 +32,19 @@ Unit-root tests use lags in order to reduce as much as possible auto-correlation
 ## Introduction
 All URT classes and functions are within the namespace *urt*. As URT allows the use of three different linear algebra libraries, I defined convienent typedefs for arrays as Vector and Matrix.
 
-### with Armadillo
-```c++
-namespace urt {
-   template <typename T>
-   using Matrix = arma::Mat<T>;
-   template <typename T>
-   using Vector = arma::Col<T>;
-}
-```
+- ### with Armadillo
+   ```c++
+   namespace urt {
+      template <typename T>
+      using Matrix = arma::Mat<T>;
+      template <typename T>
+      using Vector = arma::Col<T>;
+   }
+   ```
 
-### with Blaze
-```c++
-namespace urt {
+- ### with Blaze
+   ```c++
+   namespace urt {
    template <typename T>
    using Matrix = blaze::DynamicMatrix<T, blaze::columnMajor>;
    template <typename T>
@@ -53,18 +53,18 @@ namespace urt {
    using Vector = blaze::DynamicVector<T>;
    template <typename T>
    using CVector = blaze::CustomVector<T, blaze::unaligned, blaze::unpadded>;
-}
-```
+   }
+   ```
 
-### with Eigen
-```c++
-namespace urt {
-   template <typename T>
-   using Matrix = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>;
-   template <typename T>
-   using Vector = Eigen::Matrix<T, Eigen::Dynamic, 1>;
-}
-```
+- ### with Eigen
+   ```c++
+   namespace urt {
+      template <typename T>
+      using Matrix = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>;
+      template <typename T>
+      using Vector = Eigen::Matrix<T, Eigen::Dynamic, 1>;
+   }
+   ```
 
 ## C++ template class OLS: 
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
