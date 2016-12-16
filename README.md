@@ -32,7 +32,7 @@ Unit-root tests use lags in order to reduce as much as possible auto-correlation
 ## Introduction
 All URT classes and functions are within the namespace *urt*. As URT allows the use of three different linear algebra libraries, I defined convienent typedefs for arrays as Vector and Matrix.
 
-- # URT with Armadillo
+   - URT with Armadillo
 ```c++
 namespace urt {
    template <typename T>
@@ -42,7 +42,7 @@ namespace urt {
 }
 ```
 
-- # URT with Blaze
+   - URT with Blaze
 ```c++
 namespace urt {
    template <typename T>
@@ -56,7 +56,7 @@ namespace urt {
 }
 ```
 
-- # URT with Eigen
+   - URT with Eigen
 ```c++
 namespace urt {
    template <typename T>
