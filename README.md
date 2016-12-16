@@ -27,16 +27,16 @@ More generally, if anyone has an idea about any kind of modifications that could
 # Innovation
 Unit-root tests use lags in order to reduce as much as possible auto-correlation in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency. However very few unit-root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags. The method used in this project is the one explained by Cheung and Lai in "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (1995). This method has been pushed further and adapted to other unit-root tests. 
 
-The methodology is simple, it consists in 3 steps:
-- step 1: generate a random non-stationary sample of a given size (wiener process) for ADF, DF-GLS and Phillips-Perron tests and a random stationary sample of a given size (Gaussian noise) for KPSS test
+The methodology is simple, starting from a set of sample sizes and number of lags, it consists in 3 steps:
+- step 1: generate a random non-stationary sample of a given size (Wiener process) for ADF, DF-GLS and Phillips-Perron tests and a random stationary sample of a given size (Gaussian noise) for KPSS test
 - step 2: compute the corresponding test statistic for a given number of lags
 - repeat step 1 and 2 many times to get a sample of test statistics from a given couple (sample size, number of lags)
 - step 3: sort the statistics sample obtained to get their distribution and record the critical value for each confidence level of your choice
-- repeat step 1 to 3 for all combinations (sample size, number of lags) and fit by OLS these critical values for each confidence level to the equation proposed by Cheung and Lai:
+- repeat step 1 to 3 for all combinations (sample size, number of lags) and fit by OLS regression these critical values for each required confidence level to the equation proposed by Cheung and Lai:
 
 ![screenshot from 2016-12-16 17-10-54](https://cloud.githubusercontent.com/assets/20603093/21269345/b6abd474-c3b2-11e6-8247-d43163a11b39.png)
 
-In order to increase the precision of the method I added degrees in some cases to both terms while trying to get significant heteroskedasticity robust t-statistics for the regression coefficients obtained. Both sample sizes and number of lags sets proposed by Cheung and Kai have been expanded. For the most important cases that is the confidence levels or probabilities where the precision is the most important to decide whether a serie is (weakly) stationary or not, that is 1%, 5% and 10% for ADF, DF-GLS and Phillips-Perron tests and 99%, 95% and 90% for the KPSS test, I computed the Monte-Carlo critical values using a high number of simulations and a panel of sizes and lags to compare and improve the estimated critical values precision by modifying the initial set of sample sizes and number of lags.
+In order to increase the precision of the method I added degrees in some cases to both terms while trying to get significant heteroskedasticity robust t-statistics for the regression coefficients obtained. Both sample sizes and number of lags sets proposed by Cheung and Kai have been expanded. For the most important critical values to decide whether a serie is (weakly) stationary or not, that is at the 1%, 5% and 10% confidence level for ADF, DF-GLS and Phillips-Perron tests and at the 99%, 95% and 90% confidence level for the KPSS test, I computed Monte-Carlo critical values using a high number of simulations and a panel of sizes and lags to compare and improve the estimated critical values precision by modifying the initial set of sample sizes and number of lags.
 
 The coefficients obtained by OLS regression for each unit-root test and each confidence level are contained in the header files in ./URT/include:
 - Coeff_adf.hpp for ADF test
