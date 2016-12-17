@@ -48,7 +48,7 @@ The coefficients obtained by OLS regression for each unit-root test and each sig
 
 NB: each index 0 array contains the asymptotic estimate of the critical value for the corresponding significance level *Tau(0)* and the coefficients of the first term of the equation *Tau(i)*, each index 1 array contains contains the coefficients of the second term of the equation *Phi(j)*.
 
-# Requirement
+# Requirements
 To use this package you will need at least one of these 3 free linear algebra libraries:
 - Armadillo version >= 7.600.1
 - Blaze version >= 3.0
