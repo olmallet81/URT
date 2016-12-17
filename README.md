@@ -207,8 +207,8 @@ Abstract base class from which all unit-root tests will inherit, it contains all
         - *c* = constant (for all tests)
         - *ct* = constant trend (for all tests)
         - *ctt* = quadratic trend (for ADF test only)
-    - *level* = statistic (absolute) threshold for optimal number of lags, for T-STAT method only
-    - *lags* = number of lags
+    - *level* = statistic (absolute) threshold for optimal lag selection, for T-STAT method only
+    - *lags* = model number of lags
     - *max_lags* = maximum number of lags, for models with lag length optimization
     - *niter* = number of iterations when computing test p-value by bootstrap
     - *bootstrap* = if set to *true*, test p-value will be computed by bootstrap
