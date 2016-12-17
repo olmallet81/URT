@@ -2,7 +2,7 @@
 Fast Unit-Root Tests and OLS regression in C++ with wrappers for R and Python
 
 # Description
-URT is a unit-root tests library designed to procure speed while keeping a high level of flexibility for the user.
+URT is a library designed to procure speed while keeping a high level of flexibility for the user.
 
 The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another as he wishes and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates could improve their respective performances. They all offer great flexibility as they can be compiled using their own BLAS/LAPACK wrappers or by calling external libraries as for instance Intel MKL and OpenBLAS. 
 
