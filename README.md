@@ -115,7 +115,8 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
    }
    ```
 
-## C++ template class OLS: 
+## C++ template class OLS:
+Declared in ./URT/include/OLS.hpp, defined in ./URT/src/OLS.cpp.
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
 
 - ### Constructor
@@ -182,6 +183,7 @@ int main()
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
 
 ## C++ template class UnitRoot
+Declared in ./URT/include/UnitRoot.hpp, defined in ./URT/src/UnitRoot.cpp.
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
 
 - ### Member variables (public)
@@ -210,6 +212,7 @@ Abstract base class from which all unit-root tests will inherit, it contains all
  NB: UnitRoot template class is designed in a way that test statistic and test p-value will not be re-calculated if all parameters remain identical. For example, if user calls *pvalue()* method and after *show()*, *pvalue()* will not be run again unless the user has modified at least one parameter of the current test.  
 
 ## C++ template class ADF
+Declared in ./URT/include/ADF.hpp, defined in ./URT/src/ADF.cpp.
 Derived class from UnitRoot, this class has 2 constructors:
 
 Constructor for computing ADF test for a given number of lags
@@ -222,6 +225,7 @@ ADF(const Vector<T>& data, const std::string& method, const std::string& trend =
 ```
    
 ## C++ template class DFGLS
+Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 Derived class from UnitRoot, this class has 2 constructors:
 
 Constructor for computing DF-GLS test for a given number of lags
@@ -234,6 +238,7 @@ DFGLS(const Vector<T>& data, const std::string& method, const std::string& trend
 ```   
 
 ## C++ template class PP
+Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
 Derived class from UnitRoot, this class has 2 constructors:
 
 Constructor for computing Phillips-Perron test for a given number of lags
@@ -246,6 +251,7 @@ PP(const Vector<T>& data, const std::string& lags_type, const std::string& trend
 ```     
     
 ## C++ template class KPSS
+Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 Derived class from UnitRoot, this class has 2 constructors:
 
 Constructor for computing KPSS test for a given number of lags
