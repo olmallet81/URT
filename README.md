@@ -255,7 +255,7 @@ KPSS(const Vector<T>& data, int lags, const std::string& trend = "c")
 Constructor for computing KPSS test with a default number of lags (long or short)
 ```c++
 KPSS(const Vector<T>& data, const std::string lags_type, const std::string& trend = "c")
-    
+```
     
     
     
