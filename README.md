@@ -201,7 +201,9 @@ Abstract base class from which all unit-root tests will inherit, it contains all
         - *MBIC* = Modified Bayesian Information Criterion
         - *MHQC* = Modified Hannah-Quinn Criterion
         - *T-STAT* = optimal lag selection using threshold
-    - *test_type* = tau (t-statistic) or rho (normalized) for Phillips-Perron test only 
+    - *test_type* for Phillips-Perron test only, possibles choices are:
+        - *tau* = t-statistic test
+        - *rho* = normalized statistic test
     - *trend* = regression trend, possible choices are:
         - *nc* = no constant (for ADF and PP tests only)
         - *c* = constant (for all tests)
