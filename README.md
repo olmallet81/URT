@@ -194,15 +194,19 @@ Abstract base class from which all unit-root tests will inherit, it contains all
 - ### Member variables (public)
     - *lags_type* = default number of lags, long or short
     - *method* = method for lag length optimization, for ADF and DF-GLS tests only, possible choices are:
-        - AIC
-        - BIC
-        - HQC
-        - MAIC
-        - MBIC
-        - MHQC
-        - T-STAT
+        - *AIC* = Aikaike Information Criterion
+        - *BIC* = Bayesian Information Criterion
+        - *HQC* = Hannah-Quinn Criterion
+        - *MAIC* = Modified Aikaike Information Criterion
+        - *MBIC* = Modified Bayesian Information Criterion
+        - *MHQC* = Modified Hannah-Quinn Criterion
+        - *T-STAT* = optimal lag selection when comparing to threshold
     - *test_type* = tau (t-statistic) or rho (normalized) for Phillips-Perron test only 
-    - *trend* = regression trend, for ADF test possible choices are *nc* (no constant), *c* (constant), *ct* (constant trend), *ctt* (quadratic trend) for example
+    - *trend* = regression trend, for ADF test possible choices are:
+        - *nc* = no constant
+        - *c* = constant
+        - *ct* = constant trend 
+        - *ctt* = quadratic trend
     - *level* = statistic (absolute) threshold for optimal number of lags, for T-STAT method only
     - *lags* = number of lags
     - *max_lags* = maximum number of lags, for models with lag length optimization
