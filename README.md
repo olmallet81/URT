@@ -64,7 +64,7 @@ NB: if you decide to link to Intel MKL or OpenBLAS, please use their sequential 
 # Compilation
 URT is not header only to provide an easy way to be exported as a shared library to Rcpp and Cython. Build the shared library using the provided makefile located in ./URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily adapted to run under Windows/OSX and with another compiler, adapt this makefile to your own requirements. 
 
-All linear algebra librairies now use vectorization, in general it should be enabled by default for all of them when compiling with -march=native.
+All linear algebra librairies now use vectorization, in general it should be enabled by default for all of them when compiling with -march=native flag.
 
 In URT, the user can set the following variables to get the desired shared library:
 - USE_OPENMP = 1 to activate parallelism in URT
@@ -75,7 +75,7 @@ In URT, the user can set the following variables to get the desired shared libra
 
 The default configuration when running *make* is no parallelism and Armadillo without external BLAS/LAPACK libraries.
 
-Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1* => the shared library libURT.so will be compiled using OpenMP and Blaze with Intel MK.
+Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1* => the shared library libURT.so will be compiled using OpenMP and Blaze with Intel MKL.
 
 NB: when compiling with Intel MKL or OpenBLAS, static version of these libraries have been chosen, the shared library obtained will be larger in size but URT will run faster under C++ and the difference will be more important when wrapped for R and Python. You will need to adjust the path of these static libraries in the makefile to your own paths. You are free to rather link to their dynamic version.
 
