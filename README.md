@@ -220,12 +220,41 @@ Constructor for computing ADF test with lag length optimization
 ```c++
 ADF(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
 ```
+   
+## C++ template class DFGLS
+Derived class from UnitRoot, this class has 2 constructors:
+
+Constructor for computing DF-GLS test for a given number of lags
+```c++
+DFGLS(const Vector<T>& data, int lags, const std::string& trend = "c", bool regression = false)
+```
+Constructor for computing DF-GLS test with lag length optimization
+```c++
+DFGLS(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
+```   
+
+## C++ template class PP
+Derived class from UnitRoot, this class has 2 constructors:
+
+Constructor for computing Phillips-Perron test for a given number of lags
+```c++
+PP(const Vector<T>& data, int lags, const std::string& trend = "c", const std::string& test_type = "tau", bool regression = false)
+```
+Constructor for computing Phillips-Perron test with a default number of lags (long or short)
+```c++
+PP(const Vector<T>& data, const std::string& lags_type, const std::string& trend = "c", const std::string& test_type = "tau", bool regression = false)
+```     
     
-    
-    
-    
-    
-    
+## C++ template class KPSS
+Derived class from UnitRoot, this class has 2 constructors:
+
+Constructor for computing KPSS test for a given number of lags
+```c++
+KPSS(const Vector<T>& data, int lags, const std::string& trend = "c")
+```
+Constructor for computing KPSS test with a default number of lags (long or short)
+```c++
+KPSS(const Vector<T>& data, const std::string lags_type, const std::string& trend = "c")
     
     
     
