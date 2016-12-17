@@ -202,7 +202,7 @@ Abstract base class from which all unit-root tests will inherit, it contains all
     - *get_ols()* to return the OLS regression results
     - *get_trends()* to return possible trends for the current test
     
-This class has also 3 pure virtual functions:
+    This class has also 3 pure virtual functions:
     - *statistic()* computes the test statistic
     - *pvalue()* calls *statistic()* and computes the p-value
     - *show()* calls *pvalue()* and outputs the test results
