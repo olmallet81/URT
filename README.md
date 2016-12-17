@@ -201,19 +201,21 @@ Abstract base class from which all unit-root tests will inherit, it contains all
     - *get_pval()* to return the test p-value
     - *get_ols()* to return the OLS regression results
     - *get_trends()* to return possible trends for the current test
+    
 This class has also 3 pure virtual functions:
     - *statistic()* computes the test statistic
     - *pvalue()* calls *statistic()* and computes the p-value
     - *show()* calls *pvalue()* and outputs the test results
+    
+ NB: UnitRoot template class is designed in a way that test statistic and test p-value will not be re-calculated if all parameters remain identical. For example, if user calls *pvalue()* method and after *show()*, *pvalue()* will not be run again unless the user has modified at least one parameter of the current test.  
 
-    
-    
-    
 ## C++ template class ADF
 Derived class from UnitRoot, this class has 2 constructors:
 
-    - 1st constructor to compute the test for a given lag
-    - 2nd constructor to compute the test with lag length optimization
+```c++
+ADF(const Vector<T>& data, int lags, const std::string& trend = "c", bool regression = false)
+ADF(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
+```
     
 The constructors accept the following arguments:
     - Vector "data" containing the data on which the test will be processed
