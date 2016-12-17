@@ -212,20 +212,14 @@ This class has also 3 pure virtual functions:
 ## C++ template class ADF
 Derived class from UnitRoot, this class has 2 constructors:
 
+Constructor for computing ADF test for a given number of lags
 ```c++
 ADF(const Vector<T>& data, int lags, const std::string& trend = "c", bool regression = false)
+```
+Constructor for computing ADF test with lag length optimization
+```c++
 ADF(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
 ```
-    
-The constructors accept the following arguments:
-    - Vector "data" containing the data on which the test will be processed
-    - the number of "lags" (1st constructor only)
-    - the optimization "method" (2nd constructor only)
-    - the type of "trend" (optional, default to constant or intercept term)
-    - control "regression" (optional, default to false) to indicate if the additional statistics of the OLS regression must be computed
-    
-Once an object ADF declare, one of the overriden pure virtual functions from the base class must be called to get the test results. The user can switch from a test to another by simply modifying the arguments above.
-The user can switch from a test for a given lag to a test with lag length optimization by using "method"
     
     
     
