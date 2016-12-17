@@ -148,7 +148,7 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
 NB: *IC* and *lags* are for the case when OLS is called by UnitRoot for lag length optimization by information criterion minimization.
     
 - ### Member functions (public)
-    - *get_stats()* taking same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics and detects the presence of an intercept term
+    - *get_stats()* takes same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics and detects the presence of an intercept term
     - *show()* outputs the results
     
 - ### Additionnal tools (not members of OLS)
@@ -181,16 +181,35 @@ int main()
 ```
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
 
-## C++ template class UnitRoot: 
+## C++ template class UnitRoot
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
 
-  This class has 3 pure virtual functions:
-  
-    - "statistic()" computes the test statistic
-    - "pvalue()" calls "statistic()" and computes the p-value
-    - "show()" calls "pvalue()" and outputs the test results
+- ### Member variables (public)
+    - *lags_type* = default number of lags, long or short
+    - *method* = method for lag length optimization, for ADF and DF-GLS tests only, possible choices are: AIC,BIC,HQC,MAIC,MBIC,MHQC,T-STAT
+    - *test_type* = tau (t-statistic) or rho (normalized) for Phillips-Perron test only 
+    - *trend* = regression trend, for ADF test possible choices are nc,c,ct,ctt for example
+    - *level* = statistic (absolute) threshold for optimal lags, for T-STAT method only
+    - *lags* = number of lags
+    - *max_lags* = maximum number of lags, for models with lag length optimization
+    - *niter* = number of iterations when computing test p-value by bootstrap
+    - *bootstrap* = if set to *true*, test p-value will be computed by bootstrap
+    - *regression* = if set to *true*, OLS regression results will be outputted when running *show()* method 
     
-## C++ template class ADF: 
+- ### Member functions (public)
+    - *get_stat()* to return the test statistic
+    - *get_pval()* to return the test p-value
+    - *get_ols()* to return the OLS regression results
+    - *get_trends()* to return possible trends for the current test
+This class has also 3 pure virtual functions:
+    - *statistic()* computes the test statistic
+    - *pvalue()* calls *statistic()* and computes the p-value
+    - *show()* calls *pvalue()* and outputs the test results
+
+    
+    
+    
+## C++ template class ADF
 Derived class from UnitRoot, this class has 2 constructors:
 
     - 1st constructor to compute the test for a given lag
