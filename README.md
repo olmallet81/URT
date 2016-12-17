@@ -232,7 +232,7 @@ Abstract base class from which all unit-root tests will inherit, it contains all
 ## C++ template class ADF
 Declared in ./URT/include/ADF.hpp, defined in ./URT/src/ADF.cpp.
 
-Derived class from UnitRoot, this class has 2 constructors:
+Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing ADF test for a given number of lags
 
@@ -249,7 +249,7 @@ Derived class from UnitRoot, this class has 2 constructors:
 ## C++ template class DFGLS
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 
-Derived class from UnitRoot, this class has 2 constructors:
+Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing DF-GLS test for a given number of lags
 
@@ -266,7 +266,7 @@ Derived class from UnitRoot, this class has 2 constructors:
 ## C++ template class PP
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
 
-Derived class from UnitRoot, this class has 2 constructors:
+Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing Phillips-Perron test for a given number of lags
 
@@ -283,7 +283,7 @@ Derived class from UnitRoot, this class has 2 constructors:
 ## C++ template class KPSS
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 
-Derived class from UnitRoot, this class has 2 constructors:
+Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing KPSS test for a given number of lags
 
