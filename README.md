@@ -162,7 +162,7 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     - *add_constant_trend()* inserts a column (1,2,3,...)
     - *add_quadratic_trend()* inserts a column (1,4,9,...)
     
-Code example using Armadillo:
+- ### Code example using Armadillo:
 
 ```c++
 #include "./URT/include/URT.hpp"
@@ -192,7 +192,7 @@ Declared in ./URT/include/UnitRoot.hpp, defined in ./URT/src/UnitRoot.cpp.
 Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
 
 - ### Member variables (public)
-    - *lags_type* = default number of lags, long or short
+    - *lags_type* = default number of lags, long (Schwert l12-rule) or short (Schwert l4-rule)
     - *method* = method for lag length optimization, for ADF and DF-GLS tests only, possible choices are:
         - *AIC* = Aikaike Information Criterion
         - *BIC* = Bayesian Information Criterion
@@ -200,7 +200,7 @@ Abstract base class from which all unit-root tests will inherit, it contains all
         - *MAIC* = Modified Aikaike Information Criterion
         - *MBIC* = Modified Bayesian Information Criterion
         - *MHQC* = Modified Hannah-Quinn Criterion
-        - *T-STAT* = optimal lag selection using threshold
+        - *T-STAT* = optimal lag length selection using (absolute) threshold
     - *test_type* for Phillips-Perron test only, possibles choices are:
         - *tau* = t-statistic test
         - *rho* = normalized statistic test
@@ -209,7 +209,7 @@ Abstract base class from which all unit-root tests will inherit, it contains all
         - *c* = constant (for all tests)
         - *ct* = constant trend (for all tests)
         - *ctt* = quadratic trend (for ADF test only)
-    - *level* = statistic (absolute) threshold for optimal lag selection, for T-STAT method only
+    - *level* = statistic (absolute) threshold for optimal lag length selection, for T-STAT method only
     - *lags* = model number of lags
     - *max_lags* = maximum number of lags, for models with lag length optimization
     - *niter* = number of iterations when computing test p-value by bootstrap
