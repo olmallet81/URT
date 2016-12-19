@@ -169,18 +169,21 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
 
     int main()
     {
-        int nrows = 1000;
-        int ncols = 10;
+       int nrows = 1000;
+       int ncols = 10;
 
-        // generating random arrays
-        urt::Vector<double> y = arma::randn<urt::Vector<double>>(nrows);
-        urt::Matrix<double> x = arma::randn<urt::Matrix<double>>(nrows, ncols);
+       // generating random arrays
+       urt::Vector<double> y = arma::randn<urt::Vector<double>>(nrows);
+       urt::Matrix<double> x = arma::randn<urt::Matrix<double>>(nrows, ncols);
 
-        urt::add_intercept(x);
+       // adding intercept to matrix of independent variables
+       urt::add_intercept(x);
 
-        urt::OLS<double> fit(y, x, true);
+       // running OLS regression
+       urt::OLS<double> fit(y, x, true);
 
-        fit.show();
+       // outputting regression results
+       fit.show();
     }   
     ```
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
@@ -252,24 +255,24 @@ Derived template class from UnitRoot, this class has 2 constructors:
 
     int main()
     {
-        int nobs = 1000;
+       int nobs = 1000;
 
-        // generating non-stationary data
-        urt::Vector<double> data = arma::cumsum(arma::randn<urt::Vector<double>>(nobs));
+       // generating random non-stationary data
+       urt::Vector<double> data = arma::cumsum(arma::randn<urt::Vector<double>>(nobs));
 
-        // initializing ADF test with 10 lags and constant trend
-        urt::ADF<double> test(data, 10, "ct");
+       // initializing ADF test with 10 lags and constant trend
+       urt::ADF<double> test(data, 10, "ct");
 
-        // outputting test results
-        test.show();
+       // outputting test results
+       test.show();
     
-        // switching to test with lag length optimization and p-value computation by bootstrap with 10000 iterations
-        test.method = "AIC";
-        test.bootstrap = true;
-        test.niter = 10000;
+       // switching to test with lag length optimization and p-value computation by bootstrap with 10000 iterations
+       test.method = "AIC";
+       test.bootstrap = true;
+       test.niter = 10000;
     
-        // outputting test results
-        test.show();  
+       // outputting test results
+       test.show();  
     }
     ```
    
@@ -297,30 +300,30 @@ Derived template class from UnitRoot, this class has 2 constructors:
 
     int main()
     {
-        int nobs = 1000;
+       int nobs = 1000;
 
-        // generating non-stationary data
-        urt::Vector<double> data = arma::cumsum(arma::randn<urt::Vector<double>>(nobs));
+       // generating random non-stationary data
+       urt::Vector<double> data = arma::cumsum(arma::randn<urt::Vector<double>>(nobs));
 
-        // initializing DFGLS test with lag length optimization using BIC and constant term
-        urt::DFGLS<double> test(data, "AIC");
+       // initializing DFGLS test with lag length optimization using BIC and constant term
+       urt::DFGLS<double> test(data, "AIC");
 
-        // outputting test results
-        test.show();
+       // outputting test results
+       test.show();
     
-        // switching to test for 3 lags and no constant
-        test.lags = 3;
-        test.method = "nc";
+       // switching to test for 3 lags and no constant
+       test.lags = 3;
+       test.method = "nc";
     
-        // outputting test results
-        test.show();
+       // outputting test results
+       test.show();
     
-        // switching to test with optimal lag length selection and maximum lags of 10;
-        test.method = "T-STAT";
-        test.max_lags = 10;
+       // switching to test with optimal lag length selection and maximum lags of 10;
+       test.method = "T-STAT";
+       test.max_lags = 10;
     
-        // outputting test results
-        test.show();
+       // outputting test results
+       test.show();
     }
     ```
 
@@ -347,22 +350,22 @@ Derived template class from UnitRoot, this class has 2 constructors:
 
     int main()
     {
-        int nobs = 1000;
+       int nobs = 1000;
 
-        // generating non-stationary data
-        urt::Vector<float> data = ;
+       // generating random stationary data
+       urt::Vector<float> data = blaze::Rand<urt::Vector<float>>(nobs);
+       
+       // initializing Phillips-Perron normalized test with lags of type long and constant term
+       urt::PP<float> test(data, "long", "c", "rho");
 
-        // initializing Phillips-Perron normalized test with lags of type long and constant term
-        urt::PP<double> test(data, "long", "c", "rho");
-
-        // outputting test results
-        test.show();
+       // outputting test results
+       test.show();
     
-        // switching to t-statistic test with 
-        test.test_type = "tau";
+       // switching to t-statistic test with 
+       test.test_type = "tau";
     
-        // outputting test results
-        test.show();  
+       // outputting test results
+       test.show();  
     }
     ```
     
@@ -392,8 +395,8 @@ Derived template class from UnitRoot, this class has 2 constructors:
     {
        int nobs = 1000;
 
-       // generating stationary data
-       urt::Vector<float> data = ;
+       // generating random stationary data
+       urt::Vector<float> data = urt::Vector<float>::Random(nobs);
 
        // initializing KPSS test with lags of type short and constant trend
        urt::KPSS<double> test(data, "short", "ct");
