@@ -219,8 +219,8 @@ Abstract base class from which all unit-root tests will inherit, it contains all
 - ### Member functions (public)
     - *get_stat()* to return the test statistic
     - *get_pval()* to return the test p-value
-    - *get_ols()* to return the OLS regression results
-    - *get_trends()* to return possible trends for the current test
+    - *get_ols()* to return the OLS regression results (returns object of type urt::OLS)
+    - *get_trends()* to return possible trends for the current test (returns std::vector)
     
     This class has also 3 pure virtual functions:
     - *statistic()* computes the test statistic
