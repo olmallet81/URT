@@ -353,7 +353,8 @@ Derived template class from UnitRoot, this class has 2 constructors:
        int nobs = 1000;
 
        // generating random stationary data
-       urt::Vector<float> data = blaze::Rand<urt::Vector<float>>(nobs);
+       urt::Vector<float> data(nobs);
+       blaze::randomize(data);
        
        // initializing Phillips-Perron normalized test with lags of type long and constant term
        urt::PP<float> test(data, "long", "c", "rho");
@@ -361,7 +362,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
        // outputting test results
        test.show();
     
-       // switching to t-statistic test with 
+       // switching to t-statistic test 
        test.test_type = "tau";
     
        // outputting test results
