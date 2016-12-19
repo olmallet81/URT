@@ -164,26 +164,25 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     
 - ### Code example using Armadillo:
 
-```c++
-#include "./URT/include/URT.hpp"
+    ```c++
+    #include "./URT/include/URT.hpp"
 
-int main()
-{
-    int nrows = 1000;
-    int ncols = 10;
+    int main()
+    {
+        int nrows = 1000;
+        int ncols = 10;
 
-    // generating random arrays
-    urt::Vector<double> y = arma::randn<urt::Vector<double>>(nrows);
-    urt::Matrix<double> x = arma::randn<urt::Matrix<double>>(nrows, ncols);
+        // generating random arrays
+        urt::Vector<double> y = arma::randn<urt::Vector<double>>(nrows);
+        urt::Matrix<double> x = arma::randn<urt::Matrix<double>>(nrows, ncols);
 
-    urt::add_intercept(x);
+        urt::add_intercept(x);
 
-    urt::OLS<double> fit(y, x, true);
+        urt::OLS<double> fit(y, x, true);
 
-    fit.show();
-}
-    
-```
+        fit.show();
+    }   
+    ```
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
 
 ## C++ template class UnitRoot
@@ -202,19 +201,19 @@ Abstract base class from which all unit-root tests will inherit, it contains all
         - *MHQC* = Modified Hannah-Quinn Criterion
         - *T-STAT* = optimal lag length selection using (absolute) threshold
     - *test_type* for Phillips-Perron test only, possibles choices are:
-        - *tau* = t-statistic test
+        - *tau* = t-statistic test (default value)
         - *rho* = normalized statistic test
     - *trend* = regression trend, possible choices are:
         - *nc* = no constant (for ADF and PP tests only)
-        - *c* = constant (for all tests)
+        - *c* = constant (for all tests, default value)
         - *ct* = constant trend (for all tests)
         - *ctt* = quadratic trend (for ADF test only)
-    - *level* = statistic (absolute) threshold for optimal lag length selection, for T-STAT method only
+    - *level* = statistic (absolute) threshold for optimal lag length selection, for T-STAT method only, set to *1.64* by default
     - *lags* = model number of lags
-    - *max_lags* = maximum number of lags, for models with lag length optimization
-    - *niter* = number of iterations when computing test p-value by bootstrap
-    - *bootstrap* = if set to *true*, test p-value will be computed by bootstrap
-    - *regression* = if set to *true*, OLS regression results will be outputted when running *show()* method 
+    - *max_lags* = maximum number of lags, for models with lag length optimization, initialized to Schwert l12-rule by default
+    - *niter* = number of iterations when computing test p-value by bootstrap, initialized to 1000 by default
+    - *bootstrap* = if set to *true*, test p-value will be computed by bootstrap, set to *false* by default
+    - *regression* = if set to *true*, OLS regression results will be outputted when running *show()* method, set to *false* by default
     
 - ### Member functions (public)
     - *get_stat()* to return the test statistic
@@ -245,6 +244,34 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ```c++
     ADF(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
     ```
+    
+- ### Code example using Armadillo:
+
+    ```c++
+    #include "./URT/include/URT.hpp"
+
+    int main()
+    {
+        int nobs = 1000;
+
+        // generating non-stationary data
+        urt::Vector<double> data = arma::cumsum(arma::randn<urt::Vector<double>>(nobs));
+
+        // initializing ADF test with 10 lags and constant trend
+        urt::ADF<double> test(data, 10, "ct");
+
+        // outputting test results
+        test.show();
+    
+        // switching to test with lag length optimization and p-value computation by bootstrap with 10000 iterations
+        test.method = "AIC";
+        test.bootstrap = true;
+        test.niter = 10000;
+    
+        // outputting test results
+        test.show();  
+    }
+    ```
    
 ## C++ template class DFGLS
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
@@ -262,6 +289,40 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ```c++
     DFGLS(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
     ```   
+    
+- ### Code example using Armadillo:
+
+    ```c++
+    #include "./URT/include/URT.hpp"
+
+    int main()
+    {
+        int nobs = 1000;
+
+        // generating non-stationary data
+        urt::Vector<double> data = arma::cumsum(arma::randn<urt::Vector<double>>(nobs));
+
+        // initializing DFGLS test with lag length optimization using BIC and constant term
+        urt::DFGLS<double> test(data, "AIC");
+
+        // outputting test results
+        test.show();
+    
+        // switching to test for 3 lags and no constant
+        test.lags = 3;
+        test.method = "nc";
+    
+        // outputting test results
+        test.show();
+    
+        // switching to test with optimal lag length selection and maximum lags of 10;
+        test.method = "T-STAT";
+        test.max_lags = 10;
+    
+        // outputting test results
+        test.show();
+    }
+    ```
 
 ## C++ template class PP
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
@@ -278,7 +339,32 @@ Derived template class from UnitRoot, this class has 2 constructors:
 
     ```c++
     PP(const Vector<T>& data, const std::string& lags_type, const std::string& trend = "c", const std::string& test_type = "tau", bool regression = false)
-    ```     
+    ``` 
+- ### Code example using Blaze:
+
+    ```c++
+    #include "./URT/include/URT.hpp"
+
+    int main()
+    {
+        int nobs = 1000;
+
+        // generating non-stationary data
+        urt::Vector<float> data = ;
+
+        // initializing Phillips-Perron normalized test with lags of type long and constant term
+        urt::PP<double> test(data, "long", "c", "rho");
+
+        // outputting test results
+        test.show();
+    
+        // switching to t-statistic test with 
+        test.test_type = "tau";
+    
+        // outputting test results
+        test.show();  
+    }
+    ```
     
 ## C++ template class KPSS
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
@@ -297,6 +383,32 @@ Derived template class from UnitRoot, this class has 2 constructors:
     KPSS(const Vector<T>& data, const std::string lags_type, const std::string& trend = "c")
     ```
     
+- ### Code example using Eigen:
+
+    ```c++
+    #include "./URT/include/URT.hpp"
+
+    int main()
+    {
+       int nobs = 1000;
+
+       // generating stationary data
+       urt::Vector<float> data = ;
+
+       // initializing KPSS test with lags of type short and constant trend
+       urt::KPSS<double> test(data, "short", "ct");
+
+       // outputting test results
+       test.show();
+    
+       // switching to test with 5 lags and constant term
+       test.lags = 5;
+       test.trend = "c";
+    
+       // outputting test results
+       test.show();  
+    }
+    ```  
     
     
     
