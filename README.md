@@ -304,7 +304,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
 $ make USE_ARMA=1
 ```
 
-- Compile example5.cpp in ./URT/examples with:
+- Compile example2.cpp in ./URT/examples with:
 ```
 $ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example2.cpp -lURT -larmadillo
 ```
