@@ -416,6 +416,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
 - #### First step:
 
 Build libURT.so using makefile in ./URT/build with:
+
 ```
 $ make USE_EIGEN=1
 ```
@@ -423,6 +424,7 @@ $ make USE_EIGEN=1
 - #### Second step:
 
 Compile example5.cpp in ./URT/examples with:
+
 ```
 $ g++ -std=c++14 -O3 -march=native -DUSE_EIGEN -o run -L../lib example5.cpp -lURT
 ```
@@ -430,6 +432,7 @@ $ g++ -std=c++14 -O3 -march=native -DUSE_EIGEN -o run -L../lib example5.cpp -lUR
 - #### Third step:
 
 Export shared library location with:
+
 ```
 $ export LD_LIBRARY_PATH=/home/olivier/Z/GitHub/Cpp/URT/lib:$LD_LIBRARY_PATH
 ```
@@ -437,6 +440,7 @@ $ export LD_LIBRARY_PATH=/home/olivier/Z/GitHub/Cpp/URT/lib:$LD_LIBRARY_PATH
 - #### Last step:
 
 Run executable with: 
+
 ```
 $ ./run
 ```    
