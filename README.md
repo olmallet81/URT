@@ -412,7 +412,11 @@ Derived template class from UnitRoot, this class has 2 constructors:
        // outputting test results
        test.show();  
     }
-    ```  
+    ``` 
+    
+- #### Compiled with:
+g++ -std=c++14 -O3 -march=native -DUSE_EIGEN -o run -L./URT/lib example.cpp -lURT
+where libURT.so has been built with running: make USE_EIGEN=1 
     
     
     
