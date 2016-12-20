@@ -241,17 +241,16 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ```c++
     ADF(const Vector<T>& data, int lags, const std::string& trend = "c", bool regression = false)
     ```
-
 - ### Constructor for computing ADF test with lag length optimization
 
     ```c++
     ADF(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
     ```
-    
 - ### Code example using Armadillo:
 
     ```c++
-    #include "./URT/include/URT.hpp"
+    // ./URT/examples/example2.cpp
+    #include "../include/URT.hpp"
 
     int main()
     {
@@ -275,6 +274,25 @@ Derived template class from UnitRoot, this class has 2 constructors:
        test.show();  
     }
     ```
+- Build libURT.so using makefile in ./URT/build with:
+```
+$ make USE_ARMA=1
+```
+
+- Compile example5.cpp in ./URT/examples with:
+```
+$ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example2.cpp -lURT -larmadillo
+```
+
+- Export shared library location with:
+```
+$ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
+```
+
+- Run executable with: 
+```
+$ ./run
+```   
    
 ## C++ template class DFGLS
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
@@ -282,21 +300,17 @@ Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing DF-GLS test for a given number of lags
-
     ```c++
     DFGLS(const Vector<T>& data, int lags, const std::string& trend = "c", bool regression = false)
     ```
-
 - ### Constructor for computing DF-GLS test with lag length optimization
-
     ```c++
     DFGLS(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
     ```   
-    
 - ### Code example using Armadillo:
-
     ```c++
-    #include "./URT/include/URT.hpp"
+    // ./URT/examples/example3.cpp
+    #include "../include/URT.hpp"
 
     int main()
     {
@@ -326,6 +340,25 @@ Derived template class from UnitRoot, this class has 2 constructors:
        test.show();
     }
     ```
+- Build libURT.so using makefile in ./URT/build with:
+```
+$ make USE_ARMA=1
+```
+
+- Compile example5.cpp in ./URT/examples with:
+```
+$ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example3.cpp -lURT -larmadillo
+```
+
+- Export shared library location with:
+```
+$ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
+```
+
+- Run executable with: 
+```
+$ ./run
+```    
 
 ## C++ template class PP
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
@@ -333,19 +366,16 @@ Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
 Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing Phillips-Perron test for a given number of lags
-
     ```c++
     PP(const Vector<T>& data, int lags, const std::string& trend = "c", const std::string& test_type = "tau", bool regression = false)
     ```
-
 - ### Constructor for computing Phillips-Perron test with a default number of lags (long or short)
-
     ```c++
     PP(const Vector<T>& data, const std::string& lags_type, const std::string& trend = "c", const std::string& test_type = "tau", bool regression = false)
     ``` 
 - ### Code example using Blaze:
-
     ```c++
+    // ./URT/examples/example4.cpp
     #include "./URT/include/URT.hpp"
 
     int main()
@@ -369,6 +399,25 @@ Derived template class from UnitRoot, this class has 2 constructors:
        test.show();  
     }
     ```
+- Build libURT.so using makefile in ./URT/build with:
+```
+$ make USE_BLAZE=1
+```
+
+- Compile example5.cpp in ./URT/examples with:
+```
+$ g++ -std=c++14 -O3 -march=native -DUSE_BLAZE -o run -L./URT/lib ./URT/examples/example4.cpp -lURT
+```
+
+- Export shared library location with:
+```
+$ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
+```
+
+- Run executable with: 
+```
+$ ./run
+```    
     
 ## C++ template class KPSS
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
@@ -376,19 +425,14 @@ Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing KPSS test for a given number of lags
-
     ```c++
     KPSS(const Vector<T>& data, int lags, const std::string& trend = "c")
     ```
-
 - ### Constructor for computing KPSS test with a default number of lags (long or short)
-
     ```c++
     KPSS(const Vector<T>& data, const std::string lags_type, const std::string& trend = "c")
     ```
-    
 - ### Code example using Eigen:
-
     ```c++
     // ./URT/examples/example5.cpp
     #include "../include/URT.hpp"
@@ -414,13 +458,12 @@ Derived template class from UnitRoot, this class has 2 constructors:
        test.show();  
     }
     ``` 
-    
-- Build libURT.so using makefile within ./URT/build with:
+- Build libURT.so using makefile in ./URT/build with:
 ```
 $ make USE_EIGEN=1
 ```
 
-- Compile example5.cpp within ./URT/examples with:
+- Compile example5.cpp in ./URT/examples with:
 ```
 $ g++ -std=c++14 -O3 -march=native -DUSE_EIGEN -o run -L./URT/lib ./URT/examples/example5.cpp -lURT
 ```
