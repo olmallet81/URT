@@ -188,7 +188,7 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     }   
     ```
     
-- Build libURT.so using makefile in ./URT/build with:
+- Build libURT.so using makefile under ./URT/build with:
 ```
 $ make USE_ARMA=1
 ```
@@ -299,7 +299,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     }
     ```
     
-- Build libURT.so using makefile in ./URT/build with:
+- Build libURT.so using makefile under ./URT/build with:
 ```
 $ make USE_ARMA=1
 ```
@@ -368,7 +368,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     }
     ```
     
-- Build libURT.so using makefile in ./URT/build with:
+- Build libURT.so using makefile under ./URT/build with:
 ```
 $ make USE_ARMA=1
 ```
@@ -430,7 +430,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     }
     ```
     
-- Build libURT.so using makefile in ./URT/build with:
+- Build libURT.so using makefile under ./URT/build with:
 ```
 $ make USE_BLAZE=1
 ```
@@ -492,7 +492,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     }
     ``` 
     
-- Build libURT.so using makefile in ./URT/build with:
+- Build libURT.so using makefile under ./URT/build with:
 ```
 $ make USE_EIGEN=1
 ```
