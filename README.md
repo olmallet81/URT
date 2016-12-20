@@ -193,7 +193,7 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
 $ make USE_ARMA=1
 ```
 
-- Compile example5.cpp in ./URT/examples with:
+- Compile example1.cpp in ./URT/examples with:
 ```
 $ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example1.cpp -lURT -larmadillo
 ```
@@ -373,7 +373,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
 $ make USE_ARMA=1
 ```
 
-- Compile example5.cpp in ./URT/examples with:
+- Compile example3.cpp in ./URT/examples with:
 ```
 $ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example3.cpp -lURT -larmadillo
 ```
@@ -435,7 +435,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
 $ make USE_BLAZE=1
 ```
 
-- Compile example5.cpp in ./URT/examples with:
+- Compile example4.cpp in ./URT/examples with:
 ```
 $ g++ -std=c++14 -O3 -march=native -DUSE_BLAZE -o run -L./URT/lib ./URT/examples/example4.cpp -lURT
 ```
