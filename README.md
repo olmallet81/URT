@@ -165,7 +165,8 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
 - ### Code example using Armadillo:
 
     ```c++
-    #include "./URT/include/URT.hpp"
+    // ./URT/examples/example1.cpp
+    #include "../include/URT.hpp"
 
     int main()
     {
@@ -186,6 +187,27 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
        fit.show();
     }   
     ```
+    
+- Build libURT.so using makefile in ./URT/build with:
+```
+$ make USE_ARMA=1
+```
+
+- Compile example5.cpp in ./URT/examples with:
+```
+$ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example1.cpp -lURT -larmadillo
+```
+
+- Export shared library location with:
+```
+$ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
+```
+
+- Run executable with: 
+```
+$ ./run
+```   
+    
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
 
 ## C++ template class UnitRoot
