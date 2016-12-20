@@ -52,30 +52,30 @@ The coefficients obtained by OLS regression for each unit-root test and each sig
 NB: each index 0 array contains the asymptotic estimate of the critical value for the corresponding significance level *Tau(0)* and the coefficients of the first term of the equation *Tau(i)*, each index 1 array contains contains the coefficients of the second term of the equation *Phi(j)*.
 
 # Requirements
-To use this package you will need at least one of these 3 free linear algebra libraries:
+To use this package you will need at least one of these three free C++ linear algebra libraries:
 - Armadillo version >= 7.600.1
 - Blaze version >= 3.0
 - Eigen version >= 3.3.1
 
-It is not necessary to install Intel MKL and/or OpenBLAS (both are now free) for BLAS/LAPACK routines as these 3 libraries have their own wrapper, however I recommend to link to one of them as they will run a lot faster especially Armadillo and Blaze, for Eigen the difference is small. All these libraries will obviously need to be on your path.
+It is not necessary to install Intel MKL and/or OpenBLAS (both are now free) for BLAS/LAPACK routines as these 3 libraries have their own wrapper, however I recommend to link to one of them as the C++ linear algebra libraries will run a lot faster especially Armadillo and Blaze, for Eigen there is almost no difference in sequential and for relatively small arrays. All of these libraries will obviously need to be on your path.
 
 NB: if you decide to link to Intel MKL or OpenBLAS, please use their sequential and not parallel version. Intel MKL has the two versions already by default, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0. 
  
 # Compilation
-URT is not header only to provide an easy way to be exported as a shared library to Rcpp and Cython. Build the shared library using the provided makefile located in ./URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily adapted to run under Windows/OSX and with another compiler, adapt this makefile to your own requirements. 
+URT is not header only to provide a direct way to be exported as a shared library to Rcpp to be exposed to R and to Cython to be exposed to Python. Build the shared library using the provided makefile located in ./URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily adapted to run under Windows/OSX and with another compiler, adapt this makefile to your own requirements. 
 
-All linear algebra librairies now use vectorization, in general it should be enabled by default for all of them when compiling with -march=native flag.
+The three C++ linear algebra librairies now use vectorization, it will be enabled for all of them when compiling with -march=native flag.
 
-In URT, the user can set the following variables to get the desired shared library:
+To build the shared library, the user can set the following variables:
 - USE_OPENMP = 1 to activate parallelism in URT
 - USE_BLAZE = 1 to use Blaze library
 - USE_EIGEN = 1 to use Eigen library
 - USE_MKL = 1 to use Intel MKL library
 - USE_BLAS = 1 to use OpenBLAS library
 
-The default configuration when running *make* is no parallelism and Armadillo without external BLAS/LAPACK libraries.
+The default configuration when running *make* is no parallelism and Armadillo with internal BLAS/LAPACK wrapers.
 
-Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1* => the shared library libURT.so will be compiled using OpenMP and Blaze with Intel MKL.
+Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1* => the shared library libURT.so will be compiled using parallelism through OpenMP and with C++ linear algebra library Blaze using Intel MKL for BLAS/LAPACK routines.
 
 NB: when compiling with Intel MKL or OpenBLAS, static version of these libraries have been chosen, the shared library obtained will be larger in size but URT will run faster under C++ and the difference will be more important when wrapped for R and Python. You will need to adjust the path of these static libraries in the makefile to your own paths. You are free to rather link to their dynamic version.
 
