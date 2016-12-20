@@ -414,19 +414,19 @@ Derived template class from UnitRoot, this class has 2 constructors:
     }
     ``` 
     
-- Build libURT.so using makefile in ./URT/build with:
+- Build libURT.so using makefile within ./URT/build with:
 ```
 $ make USE_EIGEN=1
 ```
 
-- Compile example5.cpp in ./URT/examples with:
+- Compile example5.cpp within ./URT/examples with:
 ```
-$ g++ -std=c++14 -O3 -march=native -DUSE_EIGEN -o run -L../lib example5.cpp -lURT
+$ g++ -std=c++14 -O3 -march=native -DUSE_EIGEN -o run -L./URT/lib ./URT/examples/example5.cpp -lURT
 ```
 
 - Export shared library location with:
 ```
-$ export LD_LIBRARY_PATH=/home/olivier/Z/GitHub/Cpp/URT/lib:$LD_LIBRARY_PATH
+$ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
 ```
 
 - Run executable with: 
