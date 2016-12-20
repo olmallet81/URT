@@ -4,7 +4,7 @@ Fast Unit-Root Tests and OLS regression in C++ with wrappers for R and Python
 # Description
 URT is a library designed to procure speed while keeping a high level of flexibility for the user.
 
-The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another as he wishes and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates could improve their respective performances. They all offer great flexibility as they can be compiled using their own BLAS/LAPACK wrappers or by calling external libraries as for instance Intel MKL and OpenBLAS. 
+The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another as he wishes and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates could improve their respective performances. They can all be compiled by calling external libraries as for instance Intel MKL and OpenBLAS or by using their own BLAS/LAPACK wrappers as for Armadillo and Eigen.
 
 URT can also be used under R and Python. The R version is currenty using Armadillo and developped under Rcpp using the RcppArmadillo R package. The Python version is currently using Blaze and developped under Cython.
 URT contains an OLS regression and four of the most famous and most used unit-root tests: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic method. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
@@ -57,7 +57,7 @@ To use this package you will need at least one of these three free C++ linear al
 - Blaze version >= 3.0
 - Eigen version >= 3.3.1
 
-It is not necessary to install Intel MKL and/or OpenBLAS (both are now free) for BLAS/LAPACK routines as these 3 libraries have their own wrapper, however I recommend to link to one of them as the C++ linear algebra libraries will run a lot faster especially Armadillo and Blaze, for Eigen there is almost no difference in sequential and for relatively small arrays. All of these libraries will obviously need to be on your path.
+For better performance I recommend to link to Intel MKL or OpenBLAS for BLAS/LAPACK routines as these C++ linear algebra libraries will run a lot faster especially Armadillo and Blaze, for Eigen there is almost no difference in sequential and for relatively small size arrays. All of these libraries will obviously need to be on your path.
 
 NB: if you decide to link to Intel MKL or OpenBLAS, please use their sequential and not parallel version. Intel MKL has the two versions already by default, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0. 
  
