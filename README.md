@@ -162,7 +162,7 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     - *add_constant_trend()* inserts a column (1,2,3,...)
     - *add_quadratic_trend()* inserts a column (1,4,9,...)
     
-- ### Code example using Armadillo:
+- ### Code example:
 
     ```c++
     // ./URT/examples/example1.cpp
@@ -187,26 +187,6 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
        fit.show();
     }   
     ```
-    
-- Build libURT.so using makefile under ./URT/build with:
-```
-$ make USE_ARMA=1
-```
-
-- Compile example1.cpp in ./URT/examples with:
-```
-$ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example1.cpp -lURT
-```
-
-- Export shared library location with:
-```
-$ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
-```
-
-- Run executable with: 
-```
-$ ./run
-```   
     
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
 
@@ -270,7 +250,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ADF(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
     ```
     
-- ### Code example using Armadillo:
+- ### Code example:
 
     ```c++
     // ./URT/examples/example2.cpp
@@ -298,26 +278,6 @@ Derived template class from UnitRoot, this class has 2 constructors:
        test.show();  
     }
     ```
-    
-- Build libURT.so using makefile under ./URT/build with:
-```
-$ make USE_ARMA=1
-```
-
-- Compile example2.cpp in ./URT/examples with:
-```
-$ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example2.cpp -lURT -larmadillo
-```
-
-- Export shared library location with:
-```
-$ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
-```
-
-- Run executable with: 
-```
-$ ./run
-```   
    
 ## C++ template class DFGLS
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
@@ -334,7 +294,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     DFGLS(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
     ```   
     
-- ### Code example using Armadillo:
+- ### Code example:
     ```c++
     // ./URT/examples/example3.cpp
     #include "../include/URT.hpp"
@@ -366,27 +326,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
        // outputting test results
        test.show();
     }
-    ```
-    
-- Build libURT.so using makefile under ./URT/build with:
-```
-$ make USE_ARMA=1
-```
-
-- Compile example3.cpp in ./URT/examples with:
-```
-$ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example3.cpp -lURT -larmadillo
-```
-
-- Export shared library location with:
-```
-$ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
-```
-
-- Run executable with: 
-```
-$ ./run
-```    
+    ``` 
 
 ## C++ template class PP
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
@@ -403,7 +343,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     PP(const Vector<T>& data, const std::string& lags_type, const std::string& trend = "c", const std::string& test_type = "tau", bool regression = false)
     ``` 
     
-- ### Code example using Blaze:
+- ### Code example:
     ```c++
     // ./URT/examples/example4.cpp
     #include "./URT/include/URT.hpp"
@@ -427,28 +367,8 @@ Derived template class from UnitRoot, this class has 2 constructors:
        // outputting test results
        test.show();  
     }
-    ```
-    
-- Build libURT.so using makefile under ./URT/build with:
-```
-$ make USE_BLAZE=1
-```
+    ```  
 
-- Compile example4.cpp in ./URT/examples with:
-```
-$ g++ -std=c++14 -O3 -march=native -DUSE_BLAZE -o run -L./URT/lib ./URT/examples/example4.cpp -lURT
-```
-
-- Export shared library location with:
-```
-$ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
-```
-
-- Run executable with: 
-```
-$ ./run
-```    
-    
 ## C++ template class KPSS
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 
@@ -464,7 +384,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     KPSS(const Vector<T>& data, const std::string lags_type, const std::string& trend = "c")
     ```
     
-- ### Code example using Eigen:
+- ### Code example:
     ```c++
     // ./URT/examples/example5.cpp
     #include "../include/URT.hpp"
