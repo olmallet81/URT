@@ -352,8 +352,8 @@ Derived template class from UnitRoot, this class has 2 constructors:
     {
        int nobs = 1000;
 
-       // generating random stationary data
-       urt::Vector<float> data = urt::gaussian_noise<float>(nobs);
+       // generating random non-stationary data
+       urt::Vector<float> data = urt::wiener_process<float>(nobs);
        
        // initializing Phillips-Perron normalized test with lags of type long and constant term
        urt::PP<float> test(data, "long", "c", "rho");
