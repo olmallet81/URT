@@ -4,7 +4,7 @@ Fast Unit-Root Tests and OLS regression in C++ with wrappers for R and Python
 # Description
 URT is a library designed to procure speed while keeping a high level of flexibility for the user.
 
-The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another as he wishes and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates could improve their respective performances. They can all be compiled by calling external libraries as for instance Intel MKL and OpenBLAS or by using their own BLAS/LAPACK wrappers as for Armadillo and Eigen.
+The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another as he wishes and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. They can all be compiled by calling external libraries as for instance Intel MKL and OpenBLAS or by using their own BLAS/LAPACK wrappers.
 
 URT can also be used under R and Python. The R version is currenty using Armadillo and developped under Rcpp using the RcppArmadillo R package. The Python version is currently using Blaze and developped under Cython.
 URT contains an OLS regression and four of the most famous and most used unit-root tests: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic method. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
@@ -62,9 +62,9 @@ For better performance I recommend to link to Intel MKL or OpenBLAS for BLAS/LAP
 NB: if you decide to link to Intel MKL or OpenBLAS, please use their sequential and not parallel version. Intel MKL has the two versions already by default, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0. 
  
 # Compilation
-URT is not header only to provide a direct way to be exported as a shared library to Rcpp to be exposed to R and to Cython to be exposed to Python. Build the shared library using the provided makefile located in ./URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily adapted to run under Windows/OSX and with another compiler, adapt this makefile to your own requirements. 
+URT is not header only to provide a direct way to be exported as a shared library to Rcpp to be exposed to R and to Cython to be exposed to Python. Build the shared library using the provided makefile located in ./URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily adapted to run under Windows or OSX and with another compiler, adapt this makefile to your own requirements. 
 
-The three C++ linear algebra librairies now use vectorization, it will be enabled for all of them when compiling with -march=native flag.
+The three C++ linear algebra librairies use vectorization, it will be enabled for all of them when compiling with -march=native flag.
 
 To build the shared library, the user can set the following variables:
 - USE_OPENMP = 1 to activate parallelism in URT
@@ -77,7 +77,7 @@ The default configuration when running *make* is no parallelism and Armadillo wi
 
 Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1* => the shared library libURT.so will be compiled using parallelism through OpenMP and with C++ linear algebra library Blaze using Intel MKL for BLAS/LAPACK routines.
 
-NB: when compiling with Intel MKL or OpenBLAS, static version of these libraries have been chosen, the shared library obtained will be larger in size but URT will run faster under C++ and the difference will be more important when wrapped for R and Python. You will need to adjust the path of these static libraries in the makefile to your own paths. You are free to rather link to their dynamic version.
+NB: Armadillo does not need any external library for BLAS/LAPACK routines, however it needs to be linked to its shared library. Blaze can run with internal BLAS wrappers but needs to be linked to an external LAPACK library. Eigen can run without calling any external library.  
 
 # Design
 
@@ -174,8 +174,8 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
        int ncols = 10;
 
        // generating random arrays
-       urt::Vector<double> y = arma::randn<urt::Vector<double>>(nrows);
-       urt::Matrix<double> x = arma::randn<urt::Matrix<double>>(nrows, ncols);
+       urt::Vector<double> y = urt::wiener_process<double>(nrows);
+       urt::Matrix<double> x = urt::wiener_process<double>(nrows, ncols);
 
        // adding intercept to matrix of independent variables
        urt::add_intercept(x);
@@ -195,7 +195,7 @@ $ make USE_ARMA=1
 
 - Compile example1.cpp in ./URT/examples with:
 ```
-$ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example1.cpp -lURT -larmadillo
+$ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example1.cpp -lURT
 ```
 
 - Export shared library location with:
@@ -281,7 +281,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
        int nobs = 1000;
 
        // generating random non-stationary data
-       urt::Vector<double> data = arma::cumsum(arma::randn<urt::Vector<double>>(nobs));
+       urt::Vector<double> data = urt::wiener_process<double>(nobs);
 
        // initializing ADF test with 10 lags and constant trend
        urt::ADF<double> test(data, 10, "ct");
@@ -344,7 +344,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
        int nobs = 1000;
 
        // generating random non-stationary data
-       urt::Vector<double> data = arma::cumsum(arma::randn<urt::Vector<double>>(nobs));
+       urt::Vector<double> data = urt::wiener_process<double>(nobs);
 
        // initializing DFGLS test with lag length optimization using BIC and constant term
        urt::DFGLS<double> test(data, "AIC");
@@ -413,8 +413,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
        int nobs = 1000;
 
        // generating random stationary data
-       urt::Vector<float> data(nobs);
-       blaze::randomize(data);
+       urt::Vector<float> data = urt::gaussian_noise<float>(nobs);
        
        // initializing Phillips-Perron normalized test with lags of type long and constant term
        urt::PP<float> test(data, "long", "c", "rho");
@@ -475,7 +474,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
        int nobs = 1000;
 
        // generating random stationary data
-       urt::Vector<float> data = urt::Vector<float>::Random(nobs);
+       urt::Vector<float> data = urt::gaussian_noise<float>(nobs);
 
        // initializing KPSS test with lags of type short and constant trend
        urt::KPSS<double> test(data, "short", "ct");
