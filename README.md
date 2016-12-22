@@ -57,7 +57,9 @@ To use this package you will need at least one of these three free C++ linear al
 - Blaze version >= 3.0
 - Eigen version >= 3.3.1
 
-For better performance I recommend to link to Intel MKL or OpenBLAS for BLAS/LAPACK routines as these C++ linear algebra libraries will run a lot faster especially Armadillo and Blaze, for Eigen there is almost no difference in sequential and for relatively small size arrays. All of these libraries will obviously need to be on your path.
+You will also need to have Boost C++ libraries already installed.
+
+For better performance I recommend to link (dynamically or statistically) to Intel MKL or OpenBLAS for BLAS/LAPACK routines as these C++ linear algebra libraries will run a lot faster especially Armadillo and Blaze, for Eigen there is almost no difference in sequential and for relatively small size arrays. All of these libraries will obviously need to be on your path.
 
 NB: if you decide to link to Intel MKL or OpenBLAS, please use their sequential and not parallel version. Intel MKL has the two versions already by default, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0. 
  
