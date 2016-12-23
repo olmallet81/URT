@@ -290,7 +290,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     {
        int nobs = 1000;
 
-       // generating random non-stationary data
+       // generating non-stationary random data
        urt::Vector<double> data = urt::wiener_process<double>(nobs);
 
        // initializing ADF test with 10 lags and constant trend
@@ -308,6 +308,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
        test.show();  
     }
     ```
+    Using Armadillo it will output:
    
 ## C++ template class DFGLS
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
@@ -333,30 +334,24 @@ Derived template class from UnitRoot, this class has 2 constructors:
     {
        int nobs = 1000;
 
-       // generating random non-stationary data
+       // generating non-stationary random data
        urt::Vector<double> data = urt::wiener_process<double>(nobs);
 
        // initializing DFGLS test with lag length optimization using BIC and constant term
-       urt::DFGLS<double> test(data, "AIC");
+       urt::DFGLS<double> test(data, "BIC");
 
        // outputting test results
        test.show();
     
-       // switching to test for 3 lags and no constant
-       test.lags = 3;
-       test.method = "nc";
-    
-       // outputting test results
-       test.show();
-    
-       // switching to test with optimal lag length selection and maximum lags of 10;
-       test.method = "T-STAT";
-       test.max_lags = 10;
+       // switching to test with 10 lags and constant trend
+       test.trend = "ct";
+       test.lags = 10;
     
        // outputting test results
        test.show();
     }
     ``` 
+    Using Armadillo it will output:
 
 ## C++ template class PP
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
@@ -382,7 +377,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     {
        int nobs = 1000;
 
-       // generating random non-stationary data
+       // generating non-stationary random data
        urt::Vector<float> data = urt::wiener_process<float>(nobs);
        
        // initializing Phillips-Perron normalized test with lags of type long and constant term
@@ -397,7 +392,8 @@ Derived template class from UnitRoot, this class has 2 constructors:
        // outputting test results
        test.show();  
     }
-    ```  
+    ```
+    Using Armadillo it will output:
 
 ## C++ template class KPSS
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
@@ -423,7 +419,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     {
        int nobs = 1000;
 
-       // generating random stationary data
+       // generating stationary random data
        urt::Vector<float> data = urt::gaussian_noise<float>(nobs);
 
        // initializing KPSS test with lags of type short and constant trend
@@ -440,6 +436,8 @@ Derived template class from UnitRoot, this class has 2 constructors:
        test.show();  
     }
     ``` 
+    Using Armadillo it will output:
+    
     
     
     
