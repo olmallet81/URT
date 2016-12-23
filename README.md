@@ -448,6 +448,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
        test.show();  
     }
     ``` 
+    
 - ### Ouput:
     
 ![example51](https://cloud.githubusercontent.com/assets/20603093/21457066/adc5ebe0-c92c-11e6-8027-e0072c1242ea.png)
