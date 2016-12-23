@@ -83,25 +83,27 @@ NB: Armadillo does not need any external library for BLAS/LAPACK routines, howev
 
 ## Example with Armadillo
 
-- Step 1: build libURT.so using the makefile under ./URT/build with:
+- step 1: build libURT.so using the makefile under ./URT/build with:
 ```
 $ make USE_ARMA=1
 ```
 
-- Step2: compile example1.cpp in ./URT/examples with:
+- step 2: compile example1.cpp in ./URT/examples with:
 ```
 $ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example1.cpp -lURT
 ```
 
-- Step 3: export shared library location with:
+- step 3: export shared library location with:
 ```
 $ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
 ```
 
-- Step 4: run executable with: 
+- step 4: run executable with: 
 ```
 $ ./run
-```    
+``` 
+
+You can repeat step 2 and 4 for all other source files in ./URT/examples.
 
 # Design
 
