@@ -215,7 +215,45 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     ```
     
 - ### Ouput:
+    ```
+    OLS Regression Results
+    ======================
 
+    Coefficients
+    --------------------------------------------------
+                Estimate  Std Error   t value  P(>|t|)
+    Intercept    0.01322     0.0316     0.418    0.676
+           x1   -0.04135     0.0322    -1.283    0.200
+           x2    0.01651     0.0320     0.515    0.607
+           x3   -0.05223     0.0321    -1.625    0.105
+           x4   -0.06446     0.0320    -2.016    0.044
+           x5   -0.00125     0.0324    -0.039    0.969
+           x6   -0.06874     0.0329    -2.091    0.037
+           x7   -0.03714     0.0316    -1.175    0.240
+           x8   -0.00860     0.0339    -0.254    0.800
+           x9   -0.02318     0.0306    -0.756    0.450
+          x10    0.00901     0.0322     0.280    0.780
+
+    Residuals
+    ----------------------------------------
+         Min      1Q  Median      3Q     Max
+      -3.156  -0.667  -0.056   0.661   3.046
+
+    Dimensions
+    ----------------------------------------
+    Number of observations              1000
+    Number of degrees of freedom         989
+    Number of variables                   10
+
+    Analysis
+    ----------------------------------------
+    Residual mean                   -2.7e-17
+    Residual standard error            0.996
+    Multiple R-squared               0.01473
+    Adjusted R-squared               0.00477
+    F-statistic (p-value)               1.48 (0.14)
+    Durbin-Watson statistic            2.035
+    ```
     
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to *true* the function *get_stats()* will not be called and the intercept will not be detected in the output.
 
@@ -309,9 +347,61 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ```
     
 - ### Ouput:
-    
 
-   
+    - First ADF test:
+    ```
+        Augmented Dickey-Fuller Test Results
+    ====================================
+    Statistic                     -2.949
+    P-value                        0.152
+    Lags                              10
+    Trend                 constant trend
+    ------------------------------------
+
+    Test Hypothesis
+    ------------------------------------
+    H0: The process contains a unit root
+    H1: The process is weakly stationary
+
+    Critical Values
+    ---------------
+     1%      -3.956
+     5%      -3.405
+    10%      -3.121
+
+    Test Conclusion
+    ---------------
+    We cannot reject H0
+    ```
+    - Second ADF test:
+    ```
+    Augmented Dickey-Fuller Test Results
+    ====================================
+    Statistic                     -2.761
+    P-value                        0.215 (*)
+    Optimal Lags                       0
+    Criterion                        AIC
+    Trend                 constant trend
+    ------------------------------------
+
+    Test Hypothesis
+    ------------------------------------
+    H0: The process contains a unit root
+    H1: The process is weakly stationary
+
+    Critical Values (*)
+    ---------------
+     1%      -4.013
+     5%      -3.402
+    10%      -3.116
+
+    (*) computed by bootstrap
+
+    Test Conclusion
+    ---------------
+    We cannot reject H0
+    ```
+    
 ## C++ template class DFGLS
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 
@@ -355,8 +445,59 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ``` 
     
 - ### Ouput:
-    
 
+    - First DF-GLS test:
+    ```
+        Dickey-Fuller GLS Test Results
+    ====================================
+    Statistic                     -1.655
+    P-value                        0.098
+    Optimal Lags                       0
+    Criterion                        BIC
+    Trend                       constant
+    ------------------------------------
+
+    Test Hypothesis
+    ------------------------------------
+    H0: The process contains a unit root
+    H1: The process is weakly stationary
+
+    Critical Values
+    ---------------
+     1%      -2.586
+     5%      -1.963
+    10%      -1.642
+
+    Test Conclusion
+    ---------------
+    We can reject H0 at the 10% significance level
+    ```
+    
+    - Second DF-GLS test:
+    ``` 
+    Dickey-Fuller GLS Test Results
+    ====================================
+    Statistic                     -1.914
+    P-value                        0.360
+    Lags                              10
+    Trend                 constant trend
+    ------------------------------------
+
+    Test Hypothesis
+    ------------------------------------
+    H0: The process contains a unit root
+    H1: The process is weakly stationary
+
+    Critical Values
+    ---------------
+     1%      -3.409
+     5%      -2.851
+    10%      -2.565
+
+    Test Conclusion
+    ---------------
+    We cannot reject H0
+    ```
 
 ## C++ template class PP
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
