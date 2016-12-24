@@ -350,7 +350,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
 
     - First ADF test:
     ```
-        Augmented Dickey-Fuller Test Results
+    Augmented Dickey-Fuller Test Results
     ====================================
     Statistic                     -2.949
     P-value                        0.152
