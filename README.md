@@ -407,12 +407,12 @@ Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 
 Derived template class from UnitRoot, this class has 2 constructors:
 
-- ### Constructor for computing DF-GLS test for a given number of lags
+- ### Constructor for computing Dickey-Fuller GLS test for a given number of lags
     ```c++
     DFGLS(const Vector<T>& data, int lags, const std::string& trend = "c", bool regression = false)
     ```
     
-- ### Constructor for computing DF-GLS test with lag length optimization
+- ### Constructor for computing Dickey-Fuller GLS test with lag length optimization
     ```c++
     DFGLS(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
     ```   
@@ -446,7 +446,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     
 - ### Ouput:
 
-    - First DF-GLS test:
+    - First Dickey-Fuller GLS test:
     ```
         Dickey-Fuller GLS Test Results
     ====================================
@@ -473,7 +473,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     We can reject H0 at the 10% significance level
     ```
     
-    - Second DF-GLS test:
+    - Second Dickey-Fuller GLS test:
     ``` 
     Dickey-Fuller GLS Test Results
     ====================================
