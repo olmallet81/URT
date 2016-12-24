@@ -216,7 +216,7 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     
 - ### Ouput:
     
-    ![screenshot from 2016-12-23 16-05-23](https://cloud.githubusercontent.com/assets/20603093/21456606/ac07dc30-c929-11e6-9ad8-e189e25cf379.png)
+    ![example1](https://cloud.githubusercontent.com/assets/20603093/21468014/5af0c00e-ca01-11e6-9af6-92b755100906.png)
     
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to "true" the function "get_stats()" will not be called and the intercept will not be detected in the output.
 
