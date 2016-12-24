@@ -77,25 +77,25 @@ To build the shared library, the user can set the following variables:
 
 The default configuration when running *make* is no parallelism and Armadillo with internal BLAS/LAPACK wrapers.
 
-Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1* => the shared library libURT.so will be compiled using parallelism through OpenMP and with C++ linear algebra library Blaze using Intel MKL for BLAS/LAPACK routines.
+Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1* => the shared library libURT.so will be built using parallelism through OpenMP and with C++ linear algebra library Blaze using Intel MKL for BLAS/LAPACK routines.
 
 NB: Armadillo does not need any external library for BLAS/LAPACK routines, however it needs to be linked to its shared library. Blaze can run with internal BLAS wrappers but needs to be linked to an external LAPACK library. Eigen can run without calling any external library.
 
-## Example with Armadillo
+## Example
 
 - step 1: build libURT.so using the makefile under ./URT/build with:
 ```
-$ make USE_ARMA=1
+$ make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1
 ```
 
-- step 2: compile example1.cpp in ./URT/examples with:
-```
-$ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example1.cpp -lURT
-```
-
-- step 3: export shared library location with:
+- step 2: export shared library location with:
 ```
 $ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
+```
+
+- step 3: compile example1.cpp in ./URT/examples with:
+```
+$ g++ -std=c++14 -O3 -march=native -DUSE_ARMA -o run -L./URT/lib ./URT/examples/example1.cpp -lURT
 ```
 
 - step 4: run executable with: 
@@ -103,7 +103,7 @@ $ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
 $ ./run
 ``` 
 
-You can repeat step 2 and 4 for all other source files in ./URT/examples.
+You can repeat step 3 and 4 to compile other examples in ./URT/examples.
 
 # Design
 
