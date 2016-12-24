@@ -215,8 +215,7 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     ```
     
 - ### Ouput:
-    
-    ![example1](https://cloud.githubusercontent.com/assets/20603093/21468014/5af0c00e-ca01-11e6-9af6-92b755100906.png)
+
     
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to *true* the function *get_stats()* will not be called and the intercept will not be detected in the output.
 
@@ -311,9 +310,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     
 - ### Ouput:
     
-    ![example21](https://cloud.githubusercontent.com/assets/20603093/21457035/8b1a4884-c92c-11e6-9d63-c4e333fb0202.png)
-    
-    ![example22](https://cloud.githubusercontent.com/assets/20603093/21457044/9016b728-c92c-11e6-8b9e-2b7928c67661.png)
+
    
 ## C++ template class DFGLS
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
@@ -359,9 +356,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     
 - ### Ouput:
     
-    ![example31](https://cloud.githubusercontent.com/assets/20603093/21457050/942a55e0-c92c-11e6-8381-25f17f5d85a2.png)
-   
-    ![example32](https://cloud.githubusercontent.com/assets/20603093/21457053/98020154-c92c-11e6-9045-9f4aeaf4b752.png)
+
 
 ## C++ template class PP
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
@@ -502,7 +497,58 @@ Derived template class from UnitRoot, this class has 2 constructors:
     
 - ### Ouput:
 
+    - First KPSS test:
+    ```
+        KPSS Test Results
+    ====================================
+    Statistic                      0.046
+    P-value                        0.662
+    Lags                               7
+    Trend                 constant trend
+    ------------------------------------
+
+    Test Hypothesis
+    ------------------------------------
+    H0: The process is weakly stationary
+    H1: The process contains a unit root
+
+    Critical Values
+    ---------------
+     1%       0.213
+     5%       0.147
+    10%       0.119
+
+    Test Conclusion
+    ---------------
+    We cannot reject H0
+    ```
     
+    - Second KPSS test:
+    ```
+    KPSS Test Results
+    ====================================
+    Statistic                      0.045
+    P-value                        0.910
+    Lags                               5
+    Trend                       constant
+    ------------------------------------
+
+    Test Hypothesis
+    ------------------------------------
+    H0: The process is weakly stationary
+    H1: The process contains a unit root
+
+    Critical Values
+    ---------------
+     1%       0.732
+     5%       0.459
+    10%       0.347
+
+    Test Conclusion
+    ---------------
+    We cannot reject H0
+    ```
+
     
     
     
