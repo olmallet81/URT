@@ -406,6 +406,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     
 - ### Ouput:
 
+    - First Phillips-Perron test:
     ```
     Phillips-Perron Test Results (Z-rho)
     ====================================
@@ -429,7 +430,10 @@ Derived template class from UnitRoot, this class has 2 constructors:
     Test Conclusion
     ---------------
     We cannot reject H0
-
+    ```
+    
+    - Second Phillips-Perron test:
+    ```
     Phillips-Perron Test Results (Z-tau)
     ====================================
     Statistic                     -1.875
@@ -497,10 +501,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ``` 
     
 - ### Ouput:
-    
-    ![example51](https://cloud.githubusercontent.com/assets/20603093/21457066/adc5ebe0-c92c-11e6-8027-e0072c1242ea.png)
-    
-    ![example52](https://cloud.githubusercontent.com/assets/20603093/21457068/afc36cce-c92c-11e6-8dae-70697d2c10b4.png)
+
     
     
     
