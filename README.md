@@ -406,10 +406,54 @@ Derived template class from UnitRoot, this class has 2 constructors:
     
 - ### Ouput:
 
-    ![example41](https://cloud.githubusercontent.com/assets/20603093/21457058/9bd13a0c-c92c-11e6-9598-8f08678a7b9e.png)
-    
-    ![example42](https://cloud.githubusercontent.com/assets/20603093/21457061/a1b79498-c92c-11e6-808b-eec38602be0b.png)
+    ```
+    Phillips-Perron Test Results (Z-rho)
+    ====================================
+    Statistic                     -6.886
+    P-value                        0.310
+    Lags                              21
+    Trend                       constant
+    ------------------------------------
 
+    Test Hypothesis
+    ------------------------------------
+    H0: The process contains a unit root
+    H1: The process is weakly stationary
+
+    Critical Values
+    ---------------
+     1%     -20.548
+     5%     -14.058
+    10%     -11.225
+
+    Test Conclusion
+    ---------------
+    We cannot reject H0
+
+    Phillips-Perron Test Results (Z-tau)
+    ====================================
+    Statistic                     -1.875
+    P-value                        0.358
+    Lags                              21
+    Trend                       constant
+    ------------------------------------
+
+    Test Hypothesis
+    ------------------------------------
+    H0: The process contains a unit root
+    H1: The process is weakly stationary
+
+    Critical Values
+    ---------------
+     1%      -3.440
+     5%      -2.867
+    10%      -2.570
+
+    Test Conclusion
+    ---------------
+    We cannot reject H0
+    ```
+   
 ## C++ template class KPSS
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 
