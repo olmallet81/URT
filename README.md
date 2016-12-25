@@ -694,7 +694,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     We cannot reject H0
     ```
 
-- ### CSV files manager
+## CSV files manager
 The header ./URT/include/CsvManager.hpp contains functions for CSV files management:
     - *WriteToCSV()* will write a *Matrix* object to a CSV file
     - *ReadFromCSV()* will read a CSV file and store the data into a *Matrix* object
