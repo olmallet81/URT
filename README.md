@@ -695,10 +695,9 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ```
 
 ## CSV files manager
-
 The header ./URT/include/CsvManager.hpp contains functions for CSV files management:
-    - *WriteToCSV()* will write a *Matrix* object to a CSV file
-    - *ReadFromCSV()* will read a CSV file and store the data into a *Matrix* object
+- *WriteToCSV()* will write a *Matrix* object to a CSV file
+- *ReadFromCSV()* will read a CSV file and store the data into a *Matrix* object
 
 Data can then be exported from C++ to R or Python to validate the results returned by URT wrappers.
 
