@@ -226,22 +226,22 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     Coefficients
     --------------------------------------------------
                 Estimate  Std Error   t value  P(>|t|)
-    Intercept    0.01332     0.0316     0.421    0.674
-           x1   -0.02525     0.0324    -0.780    0.436
-           x2   -0.01350     0.0313    -0.432    0.666
-           x3   -0.03643     0.0315    -1.158    0.247
-           x4    0.01679     0.0327     0.513    0.608
-           x5    0.00184     0.0319     0.058    0.954
-           x6   -0.03147     0.0316    -0.995    0.320
-           x7   -0.05822     0.0326    -1.784    0.075
-           x8   -0.00816     0.0335    -0.244    0.807
-           x9    0.02998     0.0328     0.915    0.361
-          x10   -0.01128     0.0333    -0.339    0.735
+    Intercept    4.51898     0.4968     9.097    0.000
+           x1    0.10240     0.0304     3.366    0.001
+           x2   -0.14263     0.0205    -6.959    0.000
+           x3   -0.04654     0.0232    -2.003    0.046
+           x4    0.00560     0.0367     0.153    0.879
+           x5   -0.27260     0.0306    -8.895    0.000
+           x6    0.41597     0.0270     15.42    0.000
+           x7   -0.02540     0.0247    -1.027    0.305
+           x8    0.18289     0.0217     8.433    0.000
+           x9    0.07821     0.0303     2.581    0.010
+          x10    0.15704     0.0243     6.466    0.000
 
     Residuals
     ----------------------------------------
          Min      1Q  Median      3Q     Max
-      -3.229  -0.676  -0.051   0.657   2.897
+      -12.04   -2.19   -0.06    2.40    9.45
 
     Dimensions
     ----------------------------------------
@@ -251,12 +251,12 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
 
     Analysis
     ----------------------------------------
-    Residual mean                   -3.6e-18
-    Residual standard error            0.999
-    Multiple R-squared               0.00766
-    Adjusted R-squared              -0.00237
-    F-statistic (p-value)               0.76 (0.66)
-    Durbin-Watson statistic            2.040
+    Residual mean                    1.3e-14
+    Residual standard error            3.594
+    Multiple R-squared               0.79603
+    Adjusted R-squared               0.79397
+    F-statistic (p-value)             385.98 (0.00)
+    Durbin-Watson statistic            0.106
     ```
     
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to *true* the function *get_stats()* will not be called and the intercept will not be detected in the output.
