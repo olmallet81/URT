@@ -189,6 +189,7 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     - *add_quadratic_trend()* inserts a quadratic trend at the end of a *Matrix* object (1,4,9,...)
     
 In the same header are defined some functions generating random data for testing URT classes:
+
     - *gaussian_noise()* will generate a *Vector* or *Matrix* object of normally distributed random data (stationary process)
     - *wiener_process()* will generate a a *Vector* or *Matrix* object of Wiener processes (non-stationary process)
     
