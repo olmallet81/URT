@@ -111,38 +111,38 @@ You can repeat step 3 and 4 to compile other examples in ./URT/examples.
 All URT classes and functions are within the namespace *urt*. As URT allows the use of three different linear algebra libraries, convienent typedefs Vector and Matrix have been defined for manipulating arrays:
 
 - ### with Armadillo
-   ```c++
-   namespace urt {
-      template <typename T>
-      using Matrix = arma::Mat<T>;
-      template <typename T>
-      using Vector = arma::Col<T>;
-   }
-   ```
+    ```C++
+    namespace urt {
+       template <typename T>
+       using Matrix = arma::Mat<T>;
+       template <typename T>
+       using Vector = arma::Col<T>;
+    }
+    ```
 
 - ### with Blaze
-   ```c++
-   namespace urt {
-      template <typename T>
-      using Matrix = blaze::DynamicMatrix<T, blaze::columnMajor>;
-      template <typename T>
-      using CMatrix = blaze::CustomMatrix<T, blaze::unaligned, blaze::unpadded, blaze::columnMajor>;
-      template <typename T>
-      using Vector = blaze::DynamicVector<T>;
-      template <typename T>
-      using CVector = blaze::CustomVector<T, blaze::unaligned, blaze::unpadded>;
-   }
-   ```
+    ```C++
+    namespace urt {
+       template <typename T>
+       using Matrix = blaze::DynamicMatrix<T, blaze::columnMajor>;
+       template <typename T>
+       using CMatrix = blaze::CustomMatrix<T, blaze::unaligned, blaze::unpadded, blaze::columnMajor>;
+       template <typename T>
+       using Vector = blaze::DynamicVector<T>;
+       template <typename T>
+       using CVector = blaze::CustomVector<T, blaze::unaligned, blaze::unpadded>;
+    }
+    ```
 
 - ### with Eigen
-   ```c++
-   namespace urt {
-      template <typename T>
-      using Matrix = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>;
-      template <typename T>
-      using Vector = Eigen::Matrix<T, Eigen::Dynamic, 1>;
-   }
-   ```
+    ```C++
+    namespace urt {
+       template <typename T>
+       using Matrix = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>;
+       template <typename T>
+       using Vector = Eigen::Matrix<T, Eigen::Dynamic, 1>;
+    }
+    ```
 
 ## C++ template class OLS:
 Declared in ./URT/include/OLS.hpp, defined in ./URT/src/OLS.cpp.
@@ -151,7 +151,7 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
 
 - ### Constructor
     The OLS regression is run by declaring an OLS object using the following constructor:
-    ```c++
+    ```C++
     OLS<T>::OLS(const Vector<T>& y, const Matrix<T>& x, bool stats = false)
     ```
     with:
@@ -190,7 +190,7 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     
 - ### Code example:
 
-    ```c++
+    ```C++
     // ./URT/examples/example1.cpp
     #include "../include/URT.hpp"
 
@@ -307,19 +307,19 @@ Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing ADF test for a given number of lags
 
-    ```c++
+    ```C++
     ADF(const Vector<T>& data, int lags, const std::string& trend = "c", bool regression = false)
     ```
     
 - ### Constructor for computing ADF test with lag length optimization
 
-    ```c++
+    ```C++
     ADF(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
     ```
     
 - ### Code example:
 
-    ```c++
+    ```C++
     // ./URT/examples/example2.cpp
     #include "../include/URT.hpp"
 
@@ -408,17 +408,17 @@ Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing Dickey-Fuller GLS test for a given number of lags
-    ```c++
+    ```C++
     DFGLS(const Vector<T>& data, int lags, const std::string& trend = "c", bool regression = false)
     ```
     
 - ### Constructor for computing Dickey-Fuller GLS test with lag length optimization
-    ```c++
+    ```C++
     DFGLS(const Vector<T>& data, const std::string& method, const std::string& trend = "c", bool regression = false)
     ```   
     
 - ### Code example:
-    ```c++
+    ```C++
     // ./URT/examples/example3.cpp
     #include "../include/URT.hpp"
 
@@ -505,17 +505,17 @@ Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
 Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing Phillips-Perron test for a given number of lags
-    ```c++
+    ```C++
     PP(const Vector<T>& data, int lags, const std::string& trend = "c", const std::string& test_type = "tau", bool regression = false)
     ```
     
 - ### Constructor for computing Phillips-Perron test with a default number of lags (long or short)
-    ```c++
+    ```C++
     PP(const Vector<T>& data, const std::string& lags_type, const std::string& trend = "c", const std::string& test_type = "tau", bool regression = false)
     ``` 
     
 - ### Code example:
-    ```c++
+    ```C++
     // ./URT/examples/example4.cpp
     #include "./URT/include/URT.hpp"
 
@@ -600,17 +600,17 @@ Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 Derived template class from UnitRoot, this class has 2 constructors:
 
 - ### Constructor for computing KPSS test for a given number of lags
-    ```c++
+    ```C++
     KPSS(const Vector<T>& data, int lags, const std::string& trend = "c")
     ```
    
 - ### Constructor for computing KPSS test with a default number of lags (long or short)
-    ```c++
+    ```C++
     KPSS(const Vector<T>& data, const std::string lags_type, const std::string& trend = "c")
     ```
     
 - ### Code example:
-    ```c++
+    ```C++
     // ./URT/examples/example5.cpp
     #include "../include/URT.hpp"
 
