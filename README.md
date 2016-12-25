@@ -184,9 +184,13 @@ NB: *IC* and *lags* are for the case when OLS is called by UnitRoot for lag leng
     
 - ### Additionnal tools (not members of OLS)
 URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly constant terms to a Matrix object:
-    - *add_intercept()* inserts a column of ones into a Matrix as shown in the example above
-    - *add_constant_trend()* inserts a column (1,2,3,...)
-    - *add_quadratic_trend()* inserts a column (1,4,9,...)
+    - *add_intercept()* inserts a column of ones at the end of a *Matrix* object as shown in the example below
+    - *add_constant_trend()* inserts a constant trend at the end of a *Matrix* object (1,2,3,...)
+    - *add_quadratic_trend()* inserts a quadratic trend at the end of a *Matrix* object (1,4,9,...)
+    
+In the same header are defined some functions generating random data for testing URT classes.
+    - *gaussian_noise()* will generate a *Vector* or *Matrix* object of normally distributed random data (stationary process)
+    - *wiener_process()* will generate a a *Vector* or *Matrix* object of Wiener processes (non-stationary process)
     
 - ### Code example:
 
