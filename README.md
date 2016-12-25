@@ -226,22 +226,22 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     Coefficients
     --------------------------------------------------
                 Estimate  Std Error   t value  P(>|t|)
-    Intercept    0.01322     0.0316     0.418    0.676
-           x1   -0.04135     0.0322    -1.283    0.200
-           x2    0.01651     0.0320     0.515    0.607
-           x3   -0.05223     0.0321    -1.625    0.105
-           x4   -0.06446     0.0320    -2.016    0.044
-           x5   -0.00125     0.0324    -0.039    0.969
-           x6   -0.06874     0.0329    -2.091    0.037
-           x7   -0.03714     0.0316    -1.175    0.240
-           x8   -0.00860     0.0339    -0.254    0.800
-           x9   -0.02318     0.0306    -0.756    0.450
-          x10    0.00901     0.0322     0.280    0.780
+    Intercept    0.01332     0.0316     0.421    0.674
+           x1   -0.02525     0.0324    -0.780    0.436
+           x2   -0.01350     0.0313    -0.432    0.666
+           x3   -0.03643     0.0315    -1.158    0.247
+           x4    0.01679     0.0327     0.513    0.608
+           x5    0.00184     0.0319     0.058    0.954
+           x6   -0.03147     0.0316    -0.995    0.320
+           x7   -0.05822     0.0326    -1.784    0.075
+           x8   -0.00816     0.0335    -0.244    0.807
+           x9    0.02998     0.0328     0.915    0.361
+          x10   -0.01128     0.0333    -0.339    0.735
 
     Residuals
     ----------------------------------------
          Min      1Q  Median      3Q     Max
-      -3.156  -0.667  -0.056   0.661   3.046
+      -3.229  -0.676  -0.051   0.657   2.897
 
     Dimensions
     ----------------------------------------
@@ -251,12 +251,12 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
 
     Analysis
     ----------------------------------------
-    Residual mean                   -2.7e-17
-    Residual standard error            0.996
-    Multiple R-squared               0.01473
-    Adjusted R-squared               0.00477
-    F-statistic (p-value)               1.48 (0.14)
-    Durbin-Watson statistic            2.035
+    Residual mean                   -3.6e-18
+    Residual standard error            0.999
+    Multiple R-squared               0.00766
+    Adjusted R-squared              -0.00237
+    F-statistic (p-value)               0.76 (0.66)
+    Durbin-Watson statistic            2.040
     ```
     
 NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to *true* the function *get_stats()* will not be called and the intercept will not be detected in the output.
@@ -550,8 +550,8 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ```
     Phillips-Perron Test Results (Z-rho)
     ====================================
-    Statistic                     -6.886
-    P-value                        0.310
+    Statistic                     -6.077
+    P-value                        0.371
     Lags                              21
     Trend                       constant
     ------------------------------------
@@ -576,8 +576,8 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ```
     Phillips-Perron Test Results (Z-tau)
     ====================================
-    Statistic                     -1.875
-    P-value                        0.358
+    Statistic                     -1.573
+    P-value                        0.497
     Lags                              21
     Trend                       constant
     ------------------------------------
@@ -646,8 +646,8 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ```
         KPSS Test Results
     ====================================
-    Statistic                      0.046
-    P-value                        0.662
+    Statistic                      0.029
+    P-value                        0.900
     Lags                               7
     Trend                 constant trend
     ------------------------------------
@@ -672,8 +672,8 @@ Derived template class from UnitRoot, this class has 2 constructors:
     ```
     KPSS Test Results
     ====================================
-    Statistic                      0.045
-    P-value                        0.910
+    Statistic                      0.092
+    P-value                        0.648
     Lags                               5
     Trend                       constant
     ------------------------------------
