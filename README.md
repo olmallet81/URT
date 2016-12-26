@@ -716,7 +716,7 @@ To compile the Cython code and build the shared library that will be imported fr
 Before running python export the URT C++ library path with the following command (under Linux):
 *export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH*.
 
-You are now ready to run the following example:
+You are now ready to run ./URT/python/example.py:
 
 ```Python
 import numpy as np
