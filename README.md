@@ -709,7 +709,7 @@ URT can be called from Python. The Cython wrapper has been written with the C++ 
 
 Before testing URT under Python make sure to have built URT shared library with Blaze
 
-To compile the Cython code and build the shared library that will be imported from Python, under ./URT/python run setup.py with the following command: *python setup.py build_ext --inplace*.
+To compile the Cython code and build the shared library that will be imported from Python, run setup.py under ./URT/python with the following command: *python setup.py build_ext --inplace*.
 
 Before running Python code export the URT C++ library path with the following command (under Linux):
 *export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH*.
