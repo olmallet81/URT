@@ -704,10 +704,50 @@ Derived template class from UnitRoot, this class has 2 constructors:
     We cannot reject H0
     ```
 
-## URT under Python
-URT is exposed to Cython to be imported from Python. URT will call the C++ linear algebra library Blaze, you need first to have built URT shared library using Blaze, to compile the Cython code and build the shared library that will be imported from python, use ./URT/python/setup.py
+## URT in Python
+URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze.
 
-    
+Before trying URT under python make sure:
+- to have built URT shared library with Blaze
+- to have run ./URT/examples/example1.cpp (to get random data in CSV files)
+
+To compile the Cython code and build the shared library that will be imported from python, run ./URT/python/setup.py with the following command: *python setup.py build_ext --inplace*.
+
+Before running python export the URT C++ library path with the following command (under Linux):
+*export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH*.
+
+You are now ready to run the following example:
+
+    ```python
+    import numpy as np
+    import pandas as pd
+
+    import URT as urt
+ 
+    if __name__ == "__main__":
+
+        y = pd.read_csv('../data/y.csv', sep=',', header=None)
+        x = pd.read_csv('../data/x.csv', sep=',', header=None)
+
+        yd = np.asarray(y).reshape(y.size)
+        yf = yd.astype(np.float32)
+        xd = np.asarray(x, order='F')
+        xf = xd.astype(np.float32)
+
+        # running OLS regression as in ./examples/example1.cpp using double precision type
+        fit = urt.OLS_d(yd, xd, True)
+        fit.show()
+
+        # running first ADF test as in ./examples/example2.cpp using double precision type
+        test = urt.ADF_d(yd, lags=10, trend='ct')
+        test.show()
+
+        # running second ADF test as in ./examples/example2.cpp using double precision type
+        test.method = 'AIC'
+        test.bootstrap = True
+        test.niter = 10000;
+        test.show()
+    ```
     
     
     
