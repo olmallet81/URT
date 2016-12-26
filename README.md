@@ -711,7 +711,7 @@ Before trying URT under python make sure:
 - to have built URT shared library with Blaze
 - to have run ./URT/examples/example1.cpp (to write random data to CSV files)
 
-To compile the Cython code and build the shared library that will be imported from python, run ./URT/python/setup.py with the following command: *python setup.py build_ext --inplace*.
+To compile the Cython code and build the shared library that will be imported from Python, under ./URT/python run setup.py with the following command: *python setup.py build_ext --inplace*.
 
 Before running python export the URT C++ library path with the following command (under Linux):
 *export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH*.
@@ -749,9 +749,9 @@ if __name__ == "__main__":
     test.show()
 ```
 
-This wrapper behaves the same way as under C++, the only difference is when the user wants single precision instead of double precision, he wil have to convert python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and URT class name followed by *_f*.
+The Python wrapper behaves the same way than under C++, the only difference being when the user wants single precision instead of double precision, he will have to convert Python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and URT class name followed by *_f* (*OLS_f* instead of *OLS_d*).
 
-Important: all URT classes accept only numpy arrays as arguments, OLS needs a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
+Important: all URT classes accept only numpy arrays as arguments, OLS needs a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes need a 1-dimension array for unit-root tests. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
     
     
     
