@@ -704,7 +704,7 @@ Derived template class from UnitRoot, this class has 2 constructors:
     We cannot reject H0
     ```
 
-## URT in Python
+## URT for Python
 URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze.
 
 Before trying URT under python make sure:
@@ -718,7 +718,7 @@ Before running python export the URT C++ library path with the following command
 
 You are now ready to run the following example:
 
-    ```Python
+```Python
     
     import numpy as np
     import pandas as pd
@@ -749,7 +749,7 @@ You are now ready to run the following example:
         test.niter = 10000;
         test.show()
 
-    ```
+```
     
     
     
