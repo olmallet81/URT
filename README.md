@@ -192,6 +192,12 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     - *gaussian_noise()* will generate a *Vector* or *Matrix* object of normally distributed random data (stationary process)
     - *wiener_process()* will generate a a *Vector* or *Matrix* object of Wiener processes (non-stationary process)
     
+    The header ./URT/include/CsvManager.hpp contains functions for CSV files management:
+    - *WriteToCSV()* will write a *Matrix* or *Vector* object to a CSV file
+    - *ReadFromCSV()* will read a CSV file and store the data into a *Matrix* or *Vector* object
+
+    Data can then be exported from C++ to R or Python to validate the results returned by URT wrappers.
+    
 - ### Code example:
 
     ```C++
@@ -209,6 +215,10 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
 
        // adding intercept to matrix of independent variables
        urt::add_intercept(x);
+       
+       // writting data to CSV files
+       urt::WriteToCSV("./URT/data/y.csv", y);
+       urt::WriteToCSV("./URT/data/x.csv", x);
 
        // running OLS regression
        urt::OLS<double> fit(y, x, true);
@@ -694,14 +704,9 @@ Derived template class from UnitRoot, this class has 2 constructors:
     We cannot reject H0
     ```
 
-## CSV files manager
-The header ./URT/include/CsvManager.hpp contains functions for CSV files management:
-- *WriteToCSV()* will write a *Matrix* or *Vector* object to a CSV file
-- *ReadFromCSV()* will read a CSV file and store the data into a *Matrix* or *Vector* object
+## URT under Python
+URT is exposed to Cython to be imported from Python. URT will call the C++ linear algebra library Blaze, you need first to have built URT shared library using Blaze, to compile the Cython code and build the shared library that will be imported from python, use ./URT/python/setup.py
 
-Data can then be exported from C++ to R or Python to validate the results returned by URT wrappers.
-
-    
     
     
     
