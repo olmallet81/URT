@@ -709,7 +709,7 @@ URT can be called from Python. The Cython wrapper has been written with the C++ 
 
 Before trying URT under python make sure:
 - to have built URT shared library with Blaze
-- to have run ./URT/examples/example1.cpp (to get random data in CSV files)
+- to have run ./URT/examples/example1.cpp (to write random data to CSV files)
 
 To compile the Cython code and build the shared library that will be imported from python, run ./URT/python/setup.py with the following command: *python setup.py build_ext --inplace*.
 
