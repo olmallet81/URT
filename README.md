@@ -707,14 +707,14 @@ Derived template class from UnitRoot, this class has 2 constructors:
 ## URT for Python
 URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze.
 
-Before trying URT under python make sure:
-- to have built URT shared library with Blaze
-- to have run ./URT/examples/example1.cpp (to write random data to CSV files)
+Before testing URT under Python make sure to have built URT shared library with Blaze
 
 To compile the Cython code and build the shared library that will be imported from Python, under ./URT/python run setup.py with the following command: *python setup.py build_ext --inplace*.
 
 Before running Python code export the URT C++ library path with the following command (under Linux):
 *export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH*.
+
+Before running the example below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for C++ examples).
 
 You are now ready to run ./URT/python/example.py:
 
