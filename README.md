@@ -719,38 +719,39 @@ Before running python export the URT C++ library path with the following command
 You are now ready to run the following example:
 
 ```Python
-    
-    import numpy as np
-    import pandas as pd
+import numpy as np
+import pandas as pd
 
-    import URT as urt
+import URT as urt
  
-    if __name__ == "__main__":
+if __name__ == "__main__":
 
-        y = pd.read_csv('../data/y.csv', sep=',', header=None)
-        x = pd.read_csv('../data/x.csv', sep=',', header=None)
+    y = pd.read_csv('../data/y.csv', sep=',', header=None)
+    x = pd.read_csv('../data/x.csv', sep=',', header=None)
 
-        yd = np.asarray(y).reshape(y.size)
-        yf = yd.astype(np.float32)
-        xd = np.asarray(x, order='F')
-        xf = xd.astype(np.float32)
+    yd = np.asarray(y).reshape(y.size)
+    yf = yd.astype(np.float32)
+    xd = np.asarray(x, order='F')
+    xf = xd.astype(np.float32)
 
-        # running OLS regression as in ./examples/example1.cpp using double precision type
-        fit = urt.OLS_d(yd, xd, True)
-        fit.show()
+    # running OLS regression as in ./examples/example1.cpp using double precision type
+    fit = urt.OLS_d(yd, xd, True)
+    fit.show()
 
-        # running first ADF test as in ./examples/example2.cpp using double precision type
-        test = urt.ADF_d(yd, lags=10, trend='ct')
-        test.show()
+    # running first ADF test as in ./examples/example2.cpp using double precision type
+    test = urt.ADF_d(yd, lags=10, trend='ct')
+    test.show()
 
-        # running second ADF test as in ./examples/example2.cpp using double precision type
-        test.method = 'AIC'
-        test.bootstrap = True
-        test.niter = 10000;
-        test.show()
-
+    # running second ADF test as in ./examples/example2.cpp using double precision type
+    test.method = 'AIC'
+    test.bootstrap = True
+    test.niter = 10000;
+    test.show()
 ```
-    
+
+This wrapper behaves the same way as under C++, the only difference is when the user wants single precision instead of double precision, he wil have to convert python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and URT class name followed by *_f*.
+
+Important: all URT classes accept only numpy arrays as arguments, OLS needs a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
     
     
     
