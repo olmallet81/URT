@@ -707,9 +707,9 @@ Derived template class from UnitRoot, this class has 2 constructors:
 ## URT for Python
 URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze.
 
-Before testing URT under Python make sure to have built URT shared library with Blaze
+Before testing URT under Python make sure to have built URT shared library under ./URT/build with Blaze with for example the command *make USE_BLAZE=1*.
 
-To compile the Cython code and build the shared library that will be imported from Python, run setup.py under ./URT/python with the following command: *python setup.py build_ext --inplace*.
+To compile the Cython code and build the shared library CyURT.so that will be imported from Python, run setup.py under ./URT/python with the following command: *python setup.py build_ext --inplace*.
 
 Before running Python code export the URT C++ library path with the following command (under Linux):
 *export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH*.
@@ -722,7 +722,7 @@ You are now ready to run ./URT/python/example.py:
 import numpy as np
 import pandas as pd
 
-import URT as urt
+import CyURT as urt
  
 if __name__ == "__main__":
 
@@ -736,6 +736,10 @@ if __name__ == "__main__":
 
     # running OLS regression as in ./examples/example1.cpp using double precision type
     fit = urt.OLS_d(yd, xd, True)
+    fit.show()
+    
+    # running OLS regression as in ./examples/example1.cpp using single precision type
+    fit = urt.OLS_f(yf, xf, True)
     fit.show()
 
     # running first ADF test as in ./examples/example2.cpp using double precision type
@@ -753,10 +757,10 @@ The Python wrapper behaves the same way than under C++, the only difference bein
 
 Important: all URT classes accept only numpy arrays as arguments, OLS needs a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes need a 1-dimension array for unit-root tests. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
     
+## URT for R  
+URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo using the R package RcppArmadillo.     
     
-    
-    
-    
+To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R/RcppURT. All URT headers have been placed into the include directory and C++ source files in to the src directory.
     
     
     
