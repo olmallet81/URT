@@ -763,6 +763,8 @@ URT can be called from R. The Rcpp wrapper has been written with the C++ linear 
 To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R/RcppURT. All URT headers have been placed into the include directory and C++ source files in to the src directory. Adjust the Makevars file in the src directory whether you want to compile Armadillo with Intel MKL or OpenBLAS. Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
 
 To build the RcppURT package run under ./URT/R the following command: *R CMD build RcppURT*.
+
+Once the package is built, install it with root rights with the following command: *R CMD INSTALL --no-lock RcppURT_1.0.tar.gz*.
     
     
     
