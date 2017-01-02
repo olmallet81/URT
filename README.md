@@ -77,7 +77,7 @@ To build the shared library, the user can set the following variables:
 
 The default configuration when running *make* is no parallelism and Armadillo with internal BLAS/LAPACK wrapers.
 
-Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1* => the shared library libURT.so will be built using parallelism through OpenMP and with C++ linear algebra library Blaze using Intel MKL for BLAS/LAPACK routines.
+Example: *make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1* => the shared library libURT.so will be built using parallelism through OpenMP and with C++ linear algebra library Armadillo using Intel MKL for BLAS/LAPACK routines.
 
 NB: Armadillo does not need any external library for BLAS/LAPACK routines, however it needs to be linked to its shared library. Blaze can run with internal BLAS wrappers but needs to be linked to an external LAPACK library. Eigen can run without calling any external library.
 
@@ -85,7 +85,7 @@ NB: Armadillo does not need any external library for BLAS/LAPACK routines, howev
 
 - step 1: build libURT.so using the makefile under ./URT/build with:
 ```
-$ make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1
+$ make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1
 ```
 
 - step 2: export shared library location with:
@@ -150,7 +150,7 @@ Declared in ./URT/include/OLS.hpp, defined in ./URT/src/OLS.cpp.
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
 
 - ### Constructor
-    The OLS regression is run by declaring an OLS object using the following constructor:
+    The OLS regression is run by instantiating an *OLS* object using the following constructor:
     ```C++
     OLS<T>::OLS(const Vector<T>& y, const Matrix<T>& x, bool stats = false)
     ```
@@ -707,16 +707,24 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
 ## URT for Python
 URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze.
 
-Before testing URT under Python make sure to have built URT shared library under ./URT/build with Blaze with for example the command *make USE_BLAZE=1*.
-
-To compile the Cython code and build the shared library CyURT.so that will be imported from Python, run setup.py under ./URT/python with the following command: *python setup.py build_ext --inplace*.
-
-Before running Python code export the URT C++ library path with the following command (under Linux):
-*export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH*.
-
+Before testing URT under Python make sure to have built the URT shared library under ./URT/build with Blaze using for example the command (URT will be compiled without parallelism and with Blaze without external BLAS routines):
+```
+$ make USE_BLAZE=1
+```
+To compile the Cython code and build the shared library CyURT.so that will be imported from Python, run setup.py under ./URT/python with the following command: 
+```
+$ python setup.py build_ext --inplace
+```
+Before running Python code export the URT C++ shared library path with the following command (under Linux):
+```
+$ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
+```
 Before running the example below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for C++ examples).
 
-You are now ready to run ./URT/python/example.py:
+You are now ready to run the example below in ./URT/python/example.py with:
+```
+$ python example.py
+```
 
 ```Python
 import numpy as np
@@ -755,7 +763,7 @@ if __name__ == "__main__":
 
 The Python wrapper behaves the same way than under C++, the only difference being when the user wants single precision instead of double precision, he will have to convert Python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and URT class name followed by *_f* (*OLS_f* instead of *OLS_d*).
 
-Important: all URT classes accept only numpy arrays as arguments, OLS needs a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes need a 1-dimension array for unit-root tests. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
+Important: all URT classes accept numpy arrays only as arguments, *OLS_d*/*OLS_f* classes need a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit-root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
     
 ## URT for R  
 URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo using the R package RcppArmadillo. 
@@ -774,9 +782,15 @@ RcppURT contains 2 different wrappers for URT C++ classes:
 
 To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R/RcppURT. All URT headers have been placed into the include directory and all C++ source files in to the src directory. Adjust the Makevars file in the src directory if you want to compile Armadillo with link to Intel MKL or with link to OpenBLAS. Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
 
-To build the RcppURT package run under ./URT/R the following command: *R CMD build RcppURT*.
+To build the RcppURT package run under ./URT/R the following command: 
+```
+$ R CMD build RcppURT
+```
 
-Once the package is built, install it with root rights with the following command: *R CMD INSTALL --no-lock RcppURT_1.0.tar.gz*.
+Once the package is built, install it with root rights with the following command: 
+```
+$ R CMD INSTALL --no-lock RcppURT_1.0.tar.gz
+```
     
 Before running the examples below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for C++ examples).
 
