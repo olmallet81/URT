@@ -760,26 +760,9 @@ Important: all URT classes accept only numpy arrays as arguments, OLS needs a 1-
 ## URT for R  
 URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo using the R package RcppArmadillo.     
     
-To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R/RcppURT. All URT headers have been placed into the include directory and all C++ source files in to the src directory. Adjust the Makevars file in the src directory if you want to compile Armadillo with link to Intel MKL or with link to OpenBLAS. Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
+The first wrapper as shown in ./URT/R/example1.R has been written using R6 classes, and behaves the same way as under C++. As for the Python wrapper, URT C++ classes name followed by *_d* are for double precision and followed by *_f* are for single precision (example: *OLS_d* and *OLS_f* for C++ class *OLS*). However, as R real variables are double precision by default the difference in term of performance between double precision classes and single precision classes will be smaller than under C++ or under Python.
 
-To build the RcppURT package run under ./URT/R the following command: *R CMD build RcppURT*.
-
-Once the package is built, install it with root rights with the following command: *R CMD INSTALL --no-lock RcppURT_1.0.tar.gz*.
-    
-Before running the examples below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for C++ examples).
-
-
-
-You are now ready to run ./URT/R/example1.R:
-    
-    
-    
-    
-RcppURT contains 2 different wrappers for URT C++ classes. 
-
-The first wrapper has been written using R6 classes, and behaves the same way as under C++. As for the Python wrapper, URT C++ classes name followed by *_d* are for double precision and followed by *_f* are for single precision (example: *OLS_d* and *OLS_f* for C++ class *OLS*). However, as R real variables are double precision by default the difference in term of performance between double precision classes and single precision classes will be smaller than under C++ or under Python.
-
-The second wrapper has been written as Rcpp functions of the C++ classes as the performance of the first one is pretty poor because of wrapping with R6 classes. These functions offer better performance but less flexibility. These function's names are:
+The second wrapper as shown ./URT/R/example2.R has been written as Rcpp functions of the C++ classes as the performance of the first one is pretty poor because of wrapping with R6 classes. These functions offer better performance but less flexibility. These function's names are:
 
 - *OLSreg_d()* and *OLSreg_f()* for OLS regression
 - *ADFtest_d()* and *ADFtest_f()* for the Augmented Dickey-Fuller test
@@ -787,6 +770,65 @@ The second wrapper has been written as Rcpp functions of the C++ classes as the 
 - *PPtest_d()* and *PPtest_f()* for the Phillips-Perron test
 - *KPSStest_d()* and *KPSStest_f()* for the Kwiatkowski–Phillips–Schmidt–Shin test
 
+To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R/RcppURT. All URT headers have been placed into the include directory and all C++ source files in to the src directory. Adjust the Makevars file in the src directory if you want to compile Armadillo with link to Intel MKL or with link to OpenBLAS. Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
 
+To build the RcppURT package run under ./URT/R the following command: *R CMD build RcppURT*.
+
+Once the package is built, install it with root rights with the following command: *R CMD INSTALL --no-lock RcppURT_1.0.tar.gz*.
     
+Before running the examples below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for C++ examples).
+ 
+RcppURT contains 2 different wrappers for URT C++ classes. 
+
+You are now ready to run ./URT/R/example1.R:
+
+```R
+suppressMessages(library(RcppURT))
+
+run <- function()
+{
+  x = as.matrix(read.table("../data/x.csv", sep=","))
+  y = as.matrix(read.table("../data/y.csv", sep=","))
+
+  # running OLS regression as in ./examples/example1.cpp using double precision type
+  fit = OLS_d$new(y, x, stats=TRUE)
+  fit$show()
+
+  # running OLS regression as in ./examples/example1.cpp using single precision type
+  fit = OLS_f$new(y, x, stats=TRUE)
+  fit$show()
+
+  # running first ADF test as in ./examples/example2.cpp using double precision type
+  test = ADF_d$new(y, lags=10, trend='ct')
+  test$show()
+
+  # running second ADF test as in ./examples/example2.cpp using double precision type
+  test$method = 'AIC'
+  test$bootstrap = TRUE
+  test$niter = 10000
+  test$show()
+}
+```
+and ./URT/R/example2.R:
     
+```R
+suppressMessages(library(RcppURT))
+
+run <- function()
+{
+  x = as.matrix(read.table("../data/x.csv", sep=","))
+  y = as.matrix(read.table("../data/y.csv", sep=","))
+
+  # running OLS regression as in ./examples/example1.cpp using double precision type
+  fit = OLSreg_d(y, x, stats=TRUE, output=TRUE)
+
+  # running OLS regression as in ./examples/example1.cpp using single precision type
+  fit = OLSreg_f(y, x, stats=TRUE, output=TRUE)
+
+  # running first ADF test as in ./examples/example2.cpp using double precision type
+  test = ADFtest_d(y, lags=10, trend='ct', output=TRUE)
+
+  # running second ADF test as in ./examples/example2.cpp using double precision type
+  test = ADFtest_d(y, method='AIC', trend='ct', output=TRUE, bootstrap=TRUE, niter=10000)
+}
+```
