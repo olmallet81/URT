@@ -760,17 +760,33 @@ Important: all URT classes accept only numpy arrays as arguments, OLS needs a 1-
 ## URT for R  
 URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo using the R package RcppArmadillo.     
     
-To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R/RcppURT. All URT headers have been placed into the include directory and C++ source files in to the src directory. Adjust the Makevars file in the src directory whether you want to compile Armadillo with Intel MKL or OpenBLAS. Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
+To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R/RcppURT. All URT headers have been placed into the include directory and all C++ source files in to the src directory. Adjust the Makevars file in the src directory if you want to compile Armadillo with link to Intel MKL or with link to OpenBLAS. Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
 
 To build the RcppURT package run under ./URT/R the following command: *R CMD build RcppURT*.
 
 Once the package is built, install it with root rights with the following command: *R CMD INSTALL --no-lock RcppURT_1.0.tar.gz*.
     
+Before running the examples below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for C++ examples).
+
+
+
+You are now ready to run ./URT/R/example1.R:
     
     
     
     
-    
-    
+RcppURT contains 2 different wrappers for URT C++ classes. 
+
+The first wrapper has been written using R6 classes, and behaves the same way as under C++. As for the Python wrapper, URT C++ classes name followed by *_d* are for double precision and followed by *_f* are for single precision (example: *OLS_d* and *OLS_f* for C++ class *OLS*). However, as R real variables are double precision by default the difference in term of performance between double precision classes and single precision classes will be smaller than under C++ or under Python.
+
+The second wrapper has been written as Rcpp functions of the C++ classes as the performance of the first one is pretty poor because of wrapping with R6 classes. These functions offer better performance but less flexibility. These function's names are:
+
+- *OLSreg_d()* and *OLSreg_f()* for OLS regression
+- *ADFtest_d()* and *ADFtest_f()* for the Augmented Dickey-Fuller test
+- *DFGLStest_d()* and *DFGLStest_f()* for the Dickey-Fuller test with GLS detrending
+- *PPtest_d()* and *PPtest_f()* for the Phillips-Perron test
+- *KPSStest_d()* and *KPSStest_f()* for the Kwiatkowski–Phillips–Schmidt–Shin test
+
+
     
     
