@@ -721,7 +721,7 @@ $ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
 ```
 Before running the example below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for C++ examples).
 
-You are now ready to run the example below in ./URT/python/example.py with:
+You are now ready to run the example below under ./URT/python with:
 ```
 $ python example.py
 ```
