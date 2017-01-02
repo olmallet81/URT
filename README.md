@@ -763,7 +763,7 @@ The Python wrapper behaves the same way than under C++, the only difference bein
 Important: all URT classes accept numpy arrays only as arguments, *OLS_d* and *OLS_f* classes need a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit-root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
     
 ## URT for R  
-URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo using the R package RcppArmadillo. 
+URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo and the R package RcppArmadillo. 
 
 RcppURT contains 2 different wrappers for URT C++ classes:
     
@@ -777,7 +777,7 @@ RcppURT contains 2 different wrappers for URT C++ classes:
     - *PPtest_d()* and *PPtest_f()* for the Phillips-Perron test
     - *KPSStest_d()* and *KPSStest_f()* for the Kwiatkowski–Phillips–Schmidt–Shin test
 
-To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R/RcppURT. All URT headers have been placed into the include directory and all C++ source files in to the src directory. Adjust the Makevars file in the src directory if you want to compile Armadillo with link to Intel MKL or with link to OpenBLAS. Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
+To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R. All URT headers have been placed into the include directory and all C++ source files into the src directory. Adjust the Makevars file in the src directory whether you want to compile Armadillo with link to Intel MKL or with link to OpenBLAS. Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
 
 To build the RcppURT package run under ./URT/R the following command: 
 ```
