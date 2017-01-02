@@ -749,7 +749,7 @@ if __name__ == "__main__":
     # running second ADF test as in ./examples/example2.cpp using double precision type
     test.method = 'AIC'
     test.bootstrap = True
-    test.niter = 10000;
+    test.niter = 10000
     test.show()
 ```
 
@@ -764,7 +764,7 @@ RcppURT contains 2 different wrappers for URT C++ classes:
     
 - The first wrapper as shown in ./URT/R/example1.R has been written using R6 classes, and behaves the same way as under C++. As for the Python wrapper, URT C++ classes name followed by *_d* are for double precision and followed by *_f* are for single precision (example: *OLS_d* and *OLS_f* for C++ class *OLS*). However, as R real variables are double precision by default the difference in term of performance between double precision classes and single precision classes will be smaller than under C++ or under Python.
 
-- The second wrapper as shown ./URT/R/example2.R has been written as Rcpp functions of the C++ classes as the performance of the first one is pretty poor because of wrapping with R6 classes. These functions offer better performance but less flexibility. These function's names are:
+- The second wrapper as shown ./URT/R/example2.R has been written as Rcpp functions of the C++ classes as the performance of the first wrapper is pretty poor because of the use of R6 classes. These functions offer better performance but less flexibility. These function's names are:
 
     - *OLSreg_d()* and *OLSreg_f()* for OLS regression
     - *ADFtest_d()* and *ADFtest_f()* for the Augmented Dickey-Fuller test
@@ -832,3 +832,5 @@ run <- function()
   test = ADFtest_d(y, method='AIC', trend='ct', output=TRUE, bootstrap=TRUE, niter=10000)
 }
 ```
+
+NB: the choice as been made not to use Rcpp modules to wrap URT C++ classes as the performance was very poor, we could also have created a base R6 class wrapping C++ *UnitRoot* class from which all unit-root test R6 classes would have inherited but the performance would have been worse. 
