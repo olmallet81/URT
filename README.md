@@ -763,7 +763,7 @@ if __name__ == "__main__":
 
 The Python wrapper behaves the same way than under C++, the only difference being when the user wants single precision instead of double precision, he will have to convert Python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and URT class name followed by *_f* (*OLS_f* instead of *OLS_d*).
 
-Important: all URT classes accept numpy arrays only as arguments, *OLS_d*/*OLS_f* classes need a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit-root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
+Important: all URT classes accept numpy arrays only as arguments, *OLS_d* and *OLS_f* classes need a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit-root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
     
 ## URT for R  
 URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo using the R package RcppArmadillo. 
