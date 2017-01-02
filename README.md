@@ -182,7 +182,7 @@ NB: *IC* and *lags* are for the case when OLS is called by UnitRoot for lag leng
     - *get_stats()* takes same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics and detects the presence of an intercept term
     - *show()* outputs the results
     
-- ### Additionnal tools (not members of OLS)
+- ### Additionnal tools (not members of *OLS*)
 URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly constant terms to a Matrix object:
     - *add_intercept()* inserts a column of ones at the end of a *Matrix* object as shown in the example below
     - *add_constant_trend()* inserts a constant trend at the end of a *Matrix* object (1,2,3,...)
