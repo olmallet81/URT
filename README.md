@@ -144,7 +144,7 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
     }
     ```
 
-## C++ template class OLS:
+## C++ template class *OLS*:
 Declared in ./URT/include/OLS.hpp, defined in ./URT/src/OLS.cpp.
 
 To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
@@ -269,12 +269,12 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     Durbin-Watson statistic            0.106
     ```
     
-NB: the choice has been made not to copy Vector and Matrix, arguments of OLS constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to *true* the function *get_stats()* will not be called and the intercept will not be detected in the output.
+NB: the choice has been made not to copy Vector and Matrix, arguments of *OLS* class constructor for performance reasons. Indeed, when the Matrix becomes large it can quickly lead to a significative difference in term of performance. Also, if *stats* has not been set to *true* the function *get_stats()* will not be called and the intercept will not be detected in the output.
 
-## C++ template class UnitRoot
+## C++ template class *UnitRoot*
 Declared in ./URT/include/UnitRoot.hpp, defined in ./URT/src/UnitRoot.cpp.
 
-Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes ADF, DFGLS, PP and KPSS will need.
+Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes *ADF*, *DFGLS*, *PP* and *KPSS* will need.
 
 - ### Member variables (public)
     - *lags_type* = default number of lags, long (Schwert l12-rule) or short (Schwert l4-rule)
@@ -314,10 +314,10 @@ Abstract base class from which all unit-root tests will inherit, it contains all
     
  NB: UnitRoot template class is designed in a way that test statistic and test p-value will not be re-calculated if all parameters remain identical. For example, if user calls *pvalue()* method and after *show()*, *pvalue()* will not be run again unless the user has modified at least one parameter of the current test.  
 
-## C++ template class ADF
+## C++ template class *ADF*
 Declared in ./URT/include/ADF.hpp, defined in ./URT/src/ADF.cpp.
 
-Derived template class from UnitRoot, this class has 2 constructors:
+Derived template class from *UnitRoot*, this class has 2 constructors:
 
 - ### Constructor for computing ADF test for a given number of lags
 
@@ -416,10 +416,10 @@ Derived template class from UnitRoot, this class has 2 constructors:
     We cannot reject H0
     ```
     
-## C++ template class DFGLS
+## C++ template class *DFGLS*
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 
-Derived template class from UnitRoot, this class has 2 constructors:
+Derived template class from *UnitRoot*, this class has 2 constructors:
 
 - ### Constructor for computing Dickey-Fuller GLS test for a given number of lags
     ```C++
@@ -513,10 +513,10 @@ Derived template class from UnitRoot, this class has 2 constructors:
     We cannot reject H0
     ```
 
-## C++ template class PP
+## C++ template class *PP*
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
 
-Derived template class from UnitRoot, this class has 2 constructors:
+Derived template class from *UnitRoot*, this class has 2 constructors:
 
 - ### Constructor for computing Phillips-Perron test for a given number of lags
     ```C++
@@ -608,10 +608,10 @@ Derived template class from UnitRoot, this class has 2 constructors:
     We cannot reject H0
     ```
    
-## C++ template class KPSS
+## C++ template class *KPSS*
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 
-Derived template class from UnitRoot, this class has 2 constructors:
+Derived template class from *UnitRoot*, this class has 2 constructors:
 
 - ### Constructor for computing KPSS test for a given number of lags
     ```C++
