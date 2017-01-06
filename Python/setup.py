@@ -8,8 +8,6 @@
 # before running python program you need to export the library path:
 # export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
 
-# export LD_LIBRARY_PATH=/home/olivier/Z/GitHub/Cpp/URT/lib:$LD_LIBRARY_PATH
-
 from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Distutils import build_ext
