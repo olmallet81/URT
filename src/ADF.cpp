@@ -66,7 +66,7 @@ inline const T& ADF<T>::pvalue()
 
 // output test results
 template <class T>
-void ADF<T>::show()
+inline void ADF<T>::show()
 {
    // in case user modified test type, for ADF it should always be empty
    ur::test_type = std::string();  
