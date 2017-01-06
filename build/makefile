@@ -34,9 +34,9 @@ else
 endif
 
 # setting up MKL libs path
-MKLPATH = /opt/intel/mkl/lib/intel64/
+MKLPATH = /path/to/mkl/lib/intel64/
 # setting up OpenBLAS lib path
-BLASPATH = /usr/local/lib/
+BLASPATH = /path/to/openblas/lib/
 
 # linker flags
 ifeq ($(USE_MKL), 1)
