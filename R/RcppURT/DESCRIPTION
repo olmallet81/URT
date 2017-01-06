@@ -1,0 +1,11 @@
+Package: RcppURT
+Type: Package
+Title: Fast Unit-Root Tests and OLS regression
+Version: 1.0
+Date: 2016-11-16
+Author: Olivier Mallet
+Maintainer: Who to complain to <olmallet81@gmail.com>
+Description: Fast Unit-Root Tests, Lag Dependent and P-values by Bootstrap
+License: No license
+Depends: Rcpp (>= 0.12.6) 
+LinkingTo: Rcpp, RcppArmadillo
