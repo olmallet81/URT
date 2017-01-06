@@ -1,1 +1,0 @@
-This folder will contain csv files obtained by running ./URT/examples/example1.cpp, they will be used for testing R and Python wrappers.
