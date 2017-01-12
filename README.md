@@ -942,7 +942,7 @@ if __name__ == "__main__":
 
         print '{:8d}'.format(sizes[i]), '{:8.1f}'.format(end - start)
 ```
-### Results
+### Results on small and large sample sizes
 ![graphs3](https://cloud.githubusercontent.com/assets/20603093/21899906/e30908ba-d8e9-11e6-8f3c-13e2dac64272.png)
 
 ### Observations
@@ -992,7 +992,7 @@ run <- function()
 }
 ```
 
-### Results
+### Results on small and large sample sizes
 ![graphs4](https://cloud.githubusercontent.com/assets/20603093/21899911/e52af612-d8e9-11e6-9760-88e16cac48a6.png)
 
 ### Observations
