@@ -848,8 +848,8 @@ NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as 
 
 # Benchmark
 
-In this section we are going to compare the performance of the URT compiled with Armadillo, Blaze and Eigen, each one of these linear algebra librairies using alternatively Intel MKL, OpenBLAS and their internal BLAS/LAPACK wrapper (at the exception of Blaze which must be linked at least to an external LAPACK library).
-Once the nine possible URT shared libraries have been built we are ready to run the following code: ./URT/benchmark/benchmark.cpp:
+In this section we are going to compare the performance of URT using with Armadillo, Blaze and Eigen, each one of these linear algebra librairies using alternatively Intel MKL, OpenBLAS and their internal BLAS/LAPACK wrapper (at the exception of Blaze which must be linked at least to an external LAPACK library).
+Once the nine URT shared libraries have been built we are ready to proceed by running for each one of them ./URT/benchmark/benchmark.cpp:
 
 ```C++
 #include "../include/URT.hpp"
