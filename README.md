@@ -144,7 +144,7 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
     }
     ```
     
-NB: It is important to note the different behaviour of these libraries when assigning a matrix to a vector: Armadillo will convert this vector into a matrix, Blaze will return a compilation error and Eigen will assign to this vector the first column of the matrix. 
+NB: It is important to mention the differences of behaviour between these libraries when assigning a matrix to a vector: Armadillo will convert this vector into a matrix, Blaze will return a compilation error and Eigen will assign to this vector the first column of the matrix. 
 
 ## C++ template class *OLS*:
 Declared in ./URT/include/OLS.hpp, defined in ./URT/src/OLS.cpp.
@@ -317,7 +317,7 @@ Abstract base class from which all unit-root tests will inherit, it contains all
     - *pvalue()* calls *statistic()* and computes the p-value
     - *show()* calls *pvalue()* and outputs the test results
     
- NB: UnitRoot template class is designed in a way that test statistic and test p-value will not be re-calculated if all parameters remain identical. For example, if user calls *pvalue()* method and after *show()*, *pvalue()* will not be run again unless the user has modified at least one parameter of the current test.
+NB: UnitRoot template class is designed in a way that test statistic and test p-value will not be re-calculated if all parameters remain identical. For example, if user calls *pvalue()* method and after *show()*, *pvalue()* will not be run again unless the user has modified at least one parameter of the current test.
  
 - ### Exceptions
 For ADF and DF-GLS tests an exception will be thrown if the serie being tested does not have enough elements for the required number of lags. The number of additional elements to be added will be returned. 
