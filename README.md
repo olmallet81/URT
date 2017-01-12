@@ -786,11 +786,11 @@ Important: all URT classes accept numpy arrays only as arguments, *OLS_d* and *O
 ## URT for R  
 URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo and the R package RcppArmadillo. 
 
-RcppURT contains 2 different wrappers for URT C++ classes:
+RcppURT contains two different wrappers for URT C++ classes:
     
 - The first wrapper as shown in ./URT/R/example1.R has been written using R6 classes, and behaves the same way as under C++. As for the Python wrapper, URT C++ classes name followed by *_d* are for double precision type and followed by *_f* are for single precision type (example: *OLS_d* and *OLS_f* for C++ class *OLS*). However, as R real variable's type are double precision by default the difference in term of performance between double precision classes and single precision classes will be almost the same because of an additional copy made for converting R array into Armadillo floating type vector or matrices.
 
-- The second wrapper as shown ./URT/R/example2.R has been written as Rcpp functions of the C++ classes as the performance of the first wrapper is pretty poor because of the use of R6 classes. These functions offer better performance but less flexibility as the user will have to run another function when modifying one parameter. These function's names are:
+- The second wrapper as shown ./URT/R/example2.R has been written as Rcpp functions of the C++ classes as the performance of the first wrapper is pretty poor because of the use of R6 classes adding a great deal of interpreted code. These functions offer better performance but less flexibility as the user will have to run another function when modifying even only one parameter. These functions names are:
 
     - *OLSreg_d()* and *OLSreg_f()* for OLS regression
     - *ADFtest_d()* and *ADFtest_f()* for the Augmented Dickey-Fuller test
