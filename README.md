@@ -848,6 +848,52 @@ NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as 
 
 # Benchmark
 
+In this section we are going to compare the performance of the URT compiled with Armadillo, Blaze and Eigen, each one of these linear algebra librairies using alternatively Intel MKL, OpenBLAS and their internal BLAS/LAPACK wrapper (at the exception of Blaze which must be linked at least to an external LAPACK library).
+Once the nine possible URT shared libraries have been built we are ready to run the following code: ./URT/benchmark/benchmark.cpp:
+
+```C++
+#include "../include/URT.hpp"
+
+#ifndef USE_ARMA
+  #include <armadillo>
+#endif
+
+#ifdef USE_FLOAT
+  using T = float;
+#else
+  using T = double;
+#endif
+
+int main()
+{
+   int niter = 0;
+
+   arma::wall_clock timer;
+
+   std::vector<int> sizes = {100,150,200,250,300,350,400,450,500,1000,1500,2000,2500,3000,3500,4000,4500,5000};
+
+   std::cout << std::fixed << std::setprecision(1);
+
+   for (int i = 0; i < sizes.size(); ++i) {
+      urt::Vector<T> data = urt::wiener_process<T>(sizes[i]);
+
+      (sizes[i] < 1000) ? niter = 10000 : niter = 1000;
+
+      timer.tic();
+      for (int k = 0; k < niter; ++k) {
+         urt::ADF<T> test(data, "AIC");
+         test.statistic();
+      }
+
+      auto duration = timer.toc();
+
+      std::cout << std::setw(8) << sizes[i];
+      std::cout << std::setw(8) << duration << "\n";
+   }
+}
+```
+
+## 
 ![graph1](https://cloud.githubusercontent.com/assets/20603093/21886665/b99ad826-d8b4-11e6-807b-af01d17460ce.png)
 
 ![graph2](https://cloud.githubusercontent.com/assets/20603093/21886579/5c0aca90-d8b4-11e6-9004-169e0da6d97c.png)
