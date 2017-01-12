@@ -901,27 +901,93 @@ NB: The URT libraries have been built single-threaded, the research for the opti
 
 The following graphs show the results obtained.
 
-### benchmark on small sample sizes
+### Results on small sample sizes
 ![graphs1](https://cloud.githubusercontent.com/assets/20603093/21899692/10af315a-d8e9-11e6-85aa-c9df2df4c2a7.png)
 
-### benchmark on large sample sizes
+### Results on large sample sizes
 ![graphs2](https://cloud.githubusercontent.com/assets/20603093/21899694/15542800-d8e9-11e6-801b-009ef5279135.png)
 
 ### Observations
 
 ## Python wrapper
-In this sections we are going to compare the performance of the Python wrapper with the original C++ code using the linear algebra library Blaze. 
+In this sections we are going to compare the performance of the Python wrapper with the original C++ code using the linear algebra library Blaze using ./URT/Python/benchmark.py:
 
-### benchmark
+```Python
+import numpy as np
+import CyURT as urt
+from timeit import default_timer as timer 
+
+if __name__ == "__main__":
+
+    sizes = [100,150,200,250,300,350,400,450,500,1000,1500,2000,2500,3000,3500,4000,4500,5000]
+
+    for i in range(len(sizes)):
+
+        # generating Wiener process
+        data = np.cumsum(np.random.normal(size=sizes[i]))
+        #data = np.cumsum(np.random.normal(size=sizes[i])).astype(np.float32)
+
+        if sizes[i] < 1000: niter = 10000
+        else: niter = 1000
+        
+        start = timer()
+        for k in range(niter):
+            test = urt.ADF_d(data, method='AIC')
+            #test = urt.ADF_f(data, method='AIC')
+            test.statistic()
+        end = timer()
+
+        print '{:8d}'.format(sizes[i]), '{:8.1f}'.format(end - start)
+```
+### Results
 ![graphs3](https://cloud.githubusercontent.com/assets/20603093/21899906/e30908ba-d8e9-11e6-8f3c-13e2dac64272.png)
 
 ### Observations
 Although slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase. 
 
 ## R wrapper
-In this sections we are going to compare the performance of the R wrappers, R6 classes and Rcpp functions with the original C++ code using the linear algebra library Armadillo. 
+In this sections we are going to compare the performance of the R wrappers, R6 classes and Rcpp functions with the original C++ code using the linear algebra library Armadillo using ./URT/R/benchmark.R:
 
-### benchmark
+```R
+suppressMessages(library(RcppURT))
+
+run <- function()
+{
+  sizes = c(100,150,200,250,300,350,400,450,500,1000,1500,2000,2500,3000,3500,4000,4500,5000)
+
+  for (i in 1:length(sizes)) {
+
+    # generating Wiener process
+    data = cumsum(rnorm(n=sizes[i]))
+
+    if (sizes[i] < 1000) niter = 10000
+    else niter = 1000
+        
+    # with R6 classes
+    start1 = Sys.time()
+    for (k in 1:niter) {
+        test = ADF_d$new(data, method='AIC')
+        #test = ADF_f$new(data, method='AIC')
+        test$statistic()
+    }
+    end1 = Sys.time()
+
+    # with Rcpp functions
+    start2 = Sys.time()
+    for (k in 1:niter) {
+        test = ADFtest_d(data, method='AIC')
+        #test = ADFtest_f(data, method='AIC')
+    }
+    end2 = Sys.time()
+
+    cat(sprintf("%8d", sizes[i]))
+    cat(sprintf("%8.1f", end1 - start1))
+    cat(sprintf("%8.1f\n", end2 - start2))
+  }
+}
+```
+
+### Results
 ![graphs4](https://cloud.githubusercontent.com/assets/20603093/21899911/e52af612-d8e9-11e6-9760-88e16cac48a6.png)
 
 ### Observations
