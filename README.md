@@ -52,16 +52,28 @@ The coefficients obtained by OLS regression for each unit-root test and each sig
 NB: arrays indexed by 0 contain the asymptotic estimate of the critical value for the corresponding significance level *Tau(0)* and the coefficients of the first term of the equation *Tau(i)*, arrays indexed by 1 contain the coefficients of the second term of the equation *Phi(j)*.
 
 # Requirements
-To use this package you will need at least one of these three free C++ linear algebra libraries:
-- Armadillo version >= 7.600.1
+To use URT you will need at least one of these three free C++ linear algebra libraries:
+- Armadillo version >= 7.300.1
 - Blaze version >= 3.0
 - Eigen version >= 3.3.1
+NB: Blaze will require at least LAPACK to run.
+
+To use Python wrapper you will need the C++ linear algebra library Blaze and:
+- Python version >= 2.7
+- Numpy version >= 1.11.1
+- Pandas version >= 0.18.1
+- Cython version >= 0.24.1
+
+To use R wrapper you will need the C++ linear algebra library Armadillo and:
+- R version >= 3.3.1
+- Rcpp version >= 0.12.8
+- RcppArmadillo version >= 0.7.200.2.0
 
 You will also need to have Boost C++ libraries already installed.
 
-For better performance I recommend to link (dynamically or statistically) to Intel MKL or OpenBLAS for BLAS/LAPACK routines as the C++ linear algebra libraries will run faster especially Armadillo and Blaze, for Eigen there is almost no difference. All of these libraries will obviously need to be on the compiler path.
+Some of these tools might work with older version, I reported the version I used to build this library. For better performance I recommend to install and to link (dynamically or statistically) to Intel MKL or OpenBLAS for BLAS/LAPACK routines as the C++ linear algebra libraries will run faster especially Armadillo, for Blaze Eigen there will not be much difference. All of these libraries will obviously need to be on the compiler path.
 
-NB: if you decide to link to Intel MKL or OpenBLAS, please use their sequential and not parallel version. Intel MKL let you the choice one intalled between the two versions, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0. 
+NB: If you decide to link to Intel MKL or OpenBLAS, please use their sequential and not parallel version. Intel MKL let you the choice one intalled between the two versions, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0. 
  
 # Compilation
 URT is not header only to provide a direct way to be exported as a shared library to Rcpp to be exposed to R and to Cython to be exposed to Python. Build the shared library using the provided makefile located in ./URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily adapted to run under Windows or OSX and with another compiler, adapt this makefile to your own requirements. 
