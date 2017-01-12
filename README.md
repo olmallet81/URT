@@ -901,14 +901,6 @@ NB: The URT libraries have been built single-threaded, the research for the opti
 
 The following graphs show the results obtained.
 
-### Benchmark on small sample sizes and double precision
-![graph1](https://cloud.githubusercontent.com/assets/20603093/21886665/b99ad826-d8b4-11e6-807b-af01d17460ce.png)
+### Benchmark on small sample sizes
+![graphs1](https://cloud.githubusercontent.com/assets/20603093/21899201/5aac477c-d8e7-11e6-9677-afe3bcfaf00a.png)
 
-### Benchmark on small sample sizes and single precision
-![graph3](https://cloud.githubusercontent.com/assets/20603093/21886582/5dd19548-d8b4-11e6-9911-38b81b1dce03.png)
-
-### Benchmark on large sizes and double precision
-![graph2](https://cloud.githubusercontent.com/assets/20603093/21886579/5c0aca90-d8b4-11e6-9004-169e0da6d97c.png)
-
-### Benchmark on large sizes and single precision
-![graph4](https://cloud.githubusercontent.com/assets/20603093/21886585/5fd6d9b6-d8b4-11e6-9dc3-fd490f137de3.png)
