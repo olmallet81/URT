@@ -162,23 +162,23 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
     - *stats* if turned to *true*, additional statistics will be computed as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
      
 - ### Member variables (public)
-   - *param* = regressors coefficients
-   - *t_stat* = regressors t-statistics
-   - *resid* = regression residuals
-   - *var* = regressors variances
-   - *MSE* = mean of squares for error
-   - *SSR* = sum of squares residuals
-   - *R2* = R-squared
-   - *adj_R2* = adjusted R-squared
-   - *F_stat* = F-statistic
-   - *DW_stat* = Durbin-Watson test statistic
-   - *IC* = information criterion
-   - *nobs* = number of observations
-   - *nreg* = number of regressors
-   - *ndef* = number of degrees of freedom
-   - *lags* = number of lags
+    - *param* = regressors coefficients
+    - *t_stat* = regressors t-statistics
+    - *resid* = regression residuals
+    - *var* = regressors variances
+    - *MSE* = mean of squares for error
+    - *SSR* = sum of squares residuals
+    - *R2* = R-squared
+    - *adj_R2* = adjusted R-squared
+    - *F_stat* = F-statistic
+    - *DW_stat* = Durbin-Watson test statistic
+    - *IC* = information criterion
+    - *nobs* = number of observations
+    - *nreg* = number of regressors
+    - *ndef* = number of degrees of freedom
+    - *lags* = number of lags
     
-NB: *IC* and *lags* are for the case when OLS is called by UnitRoot for lag length optimization by information criterion minimization.
+    NB: *IC* and *lags* are for the case when OLS is called by UnitRoot for lag length optimization by information criterion minimization.
     
 - ### Member functions (public)
     - *get_stats()* takes same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics and detects the presence of an intercept term
