@@ -925,6 +925,7 @@ if __name__ == "__main__":
 
         # generating Wiener process
         data = np.cumsum(np.random.normal(size=sizes[i]))
+        # uncomment this line and comment the one above to switch to single precision
         #data = np.cumsum(np.random.normal(size=sizes[i])).astype(np.float32)
 
         if sizes[i] < 1000: niter = 10000
@@ -933,6 +934,7 @@ if __name__ == "__main__":
         start = timer()
         for k in range(niter):
             test = urt.ADF_d(data, method='AIC')
+            # uncomment this line and comment the one above to switch to single precision
             #test = urt.ADF_f(data, method='AIC')
             test.statistic()
         end = timer()
@@ -967,6 +969,7 @@ run <- function()
     start1 = Sys.time()
     for (k in 1:niter) {
         test = ADF_d$new(data, method='AIC')
+        # uncomment this line and comment the one above to switch to single precision
         #test = ADF_f$new(data, method='AIC')
         test$statistic()
     }
@@ -976,6 +979,7 @@ run <- function()
     start2 = Sys.time()
     for (k in 1:niter) {
         test = ADFtest_d(data, method='AIC')
+        # uncomment this line and comment the one above to switch to single precision
         #test = ADFtest_f(data, method='AIC')
     }
     end2 = Sys.time()
