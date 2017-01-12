@@ -875,6 +875,7 @@ int main()
    std::cout << std::fixed << std::setprecision(1);
 
    for (int i = 0; i < sizes.size(); ++i) {
+   
       urt::Vector<T> data = urt::wiener_process<T>(sizes[i]);
 
       (sizes[i] < 1000) ? niter = 10000 : niter = 1000;
@@ -892,12 +893,16 @@ int main()
    }
 }
 ```
+The benchmark is run on small sample sizes from 100 to 500 and large sample sizes from 1000 to 5000 for double and single precision types. The following graphs show the results obtained: 
 
-## 
+## Benchmark on small sample size and double precision
 ![graph1](https://cloud.githubusercontent.com/assets/20603093/21886665/b99ad826-d8b4-11e6-807b-af01d17460ce.png)
 
+## Benchmark on small sample size and single precision
 ![graph2](https://cloud.githubusercontent.com/assets/20603093/21886579/5c0aca90-d8b4-11e6-9004-169e0da6d97c.png)
 
+## Benchmark on large size and double precision
 ![graph3](https://cloud.githubusercontent.com/assets/20603093/21886582/5dd19548-d8b4-11e6-9911-38b81b1dce03.png)
 
+## Benchmark on large size and single precision
 ![graph4](https://cloud.githubusercontent.com/assets/20603093/21886585/5fd6d9b6-d8b4-11e6-9dc3-fd490f137de3.png)
