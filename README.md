@@ -860,6 +860,7 @@ Once the nine URT shared libraries have been built we are ready to proceed by ru
   #include <armadillo>
 #endif
 
+// define USE_FLOAT when compiling to switch to single precision
 #ifdef USE_FLOAT
   using T = float;
 #else
