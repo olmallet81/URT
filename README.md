@@ -66,7 +66,7 @@ NB: if you decide to link to Intel MKL or OpenBLAS, please use their sequential 
 # Compilation
 URT is not header only to provide a direct way to be exported as a shared library to Rcpp to be exposed to R and to Cython to be exposed to Python. Build the shared library using the provided makefile located in ./URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily adapted to run under Windows or OSX and with another compiler, adapt this makefile to your own requirements. 
 
-The three C++ linear algebra librairies use vectorization, it will be enabled for all of them when compiling with -march=native flag.
+The three C++ linear algebra librairies use vectorization, it will be enabled for all of them when compiling with -march=native flag. Parallelism is used to speed up ADF and DF-GLS tests only when searching for an optimal lag length by information criterion minimization. Although these linear algebra libraries can use parallelism for matrix and vector operations by calling the multi-threaded version of Intel MKL or OpenBLAS for example, I decided to stick with their single threaded versions as the usual sample sizes used in unit-root tests are relatively small, they are indeed rarely larger than a few thousand. It would not bring any speed improvement, on the contrary it could slow down the code. Moreover, it would induce nested parallism when running ADF test or DF-GLS test with lag length optimization.
 
 To build the shared library, the user can set the following variables:
 - USE_OPENMP = 1 to activate parallelism in URT
@@ -75,9 +75,9 @@ To build the shared library, the user can set the following variables:
 - USE_MKL = 1 to use Intel MKL library
 - USE_BLAS = 1 to use OpenBLAS library
 
-The default configuration when running *make* is no parallelism and Armadillo with internal BLAS/LAPACK wrapers.
+The default configuration when running *make* is no parallelism and Armadillo with internal BLAS/LAPACK wrappers. 
 
-Example: *make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1* => the shared library libURT.so will be built using parallelism through OpenMP and with C++ linear algebra library Armadillo using Intel MKL for BLAS/LAPACK routines.
+Example: *make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1* => the shared library libURT.so will be built using parallelism with OpenMP and with C++ linear algebra library Armadillo using Intel MKL for BLAS/LAPACK routines.
 
 NB: Armadillo does not need any external library for BLAS/LAPACK routines, however it needs to be linked to its shared library. Blaze can run with internal BLAS wrappers but needs to be linked to an external LAPACK library. Eigen can run without calling any external library.
 
@@ -143,6 +143,7 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
        using Vector = Eigen::Matrix<T, Eigen::Dynamic, 1>;
     }
     ```
+NB: It is important to note the different behaviour of these libraries when assigning a matrix to a vector: Armadillo will convert this vector into a matrix, Blaze will return a compilation error and Eigen will assign to this vector the first column of the matrix. 
 
 ## C++ template class *OLS*:
 Declared in ./URT/include/OLS.hpp, defined in ./URT/src/OLS.cpp.
@@ -197,6 +198,9 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     - *ReadFromCSV()* will read a CSV file and store the data into a *Matrix* or *Vector* object
 
     Data can then be exported from C++ to R or Python to validate the results returned by URT wrappers.
+    
+- ### Exceptions
+*OLS* constructor will throw an exception if *x* and *y* do not have the same number of rows or if at least one of them is empty.
     
 - ### Code example:
 
@@ -312,7 +316,10 @@ Abstract base class from which all unit-root tests will inherit, it contains all
     - *pvalue()* calls *statistic()* and computes the p-value
     - *show()* calls *pvalue()* and outputs the test results
     
- NB: UnitRoot template class is designed in a way that test statistic and test p-value will not be re-calculated if all parameters remain identical. For example, if user calls *pvalue()* method and after *show()*, *pvalue()* will not be run again unless the user has modified at least one parameter of the current test.  
+ NB: UnitRoot template class is designed in a way that test statistic and test p-value will not be re-calculated if all parameters remain identical. For example, if user calls *pvalue()* method and after *show()*, *pvalue()* will not be run again unless the user has modified at least one parameter of the current test.
+ 
+- ### Exceptions
+For ADF and DF-GLS tests an exception will be thrown if the serie being tested does not have enough elements for the required number of lags. The number of additional elements to be added will be returned. 
 
 ## C++ template class *ADF*
 Declared in ./URT/include/ADF.hpp, defined in ./URT/src/ADF.cpp.
