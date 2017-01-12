@@ -201,7 +201,7 @@ URT provides 3 functions located in ./URT/include/Tools.hpp, to add quickly cons
     Data can then be exported from C++ to R or Python to validate the results returned by URT wrappers.
     
 - ### Exceptions
-*OLS* constructor will throw an exception if *x* and *y* do not have the same number of rows or if at least one of them is empty.
+*OLS* class constructor will throw an exception if *x* and *y* do not have the same number of rows or if at least one of them is empty.
     
 - ### Code example:
 
