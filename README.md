@@ -901,6 +901,15 @@ NB: The URT libraries have been built single-threaded, the research for the opti
 
 The following graphs show the results obtained.
 
-### Benchmark on small sample sizes
-![graphs1](https://cloud.githubusercontent.com/assets/20603093/21899201/5aac477c-d8e7-11e6-9677-afe3bcfaf00a.png)
+### C++ benchmark on small sample sizes
+![graphs1](https://cloud.githubusercontent.com/assets/20603093/21899692/10af315a-d8e9-11e6-85aa-c9df2df4c2a7.png)
+
+### C++ benchmark on large sample sizes
+![graphs2](https://cloud.githubusercontent.com/assets/20603093/21899694/15542800-d8e9-11e6-801b-009ef5279135.png)
+
+### Python wrapper benchmark
+![graphs3](https://cloud.githubusercontent.com/assets/20603093/21899725/345f85d2-d8e9-11e6-82b8-584340c3a543.png)
+
+### R wrappers benchmark
+![graphs4](https://cloud.githubusercontent.com/assets/20603093/21899734/39214808-d8e9-11e6-89d1-4842c86061a0.png)
 
