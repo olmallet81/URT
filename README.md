@@ -916,6 +916,7 @@ In this sections we are going to compare the performance of the Python wrapper w
 ![graphs3](https://cloud.githubusercontent.com/assets/20603093/21899906/e30908ba-d8e9-11e6-8f3c-13e2dac64272.png)
 
 ### Observations
+Although slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase. 
 
 ## R wrapper
 In this sections we are going to compare the performance of the R wrappers, R6 classes and Rcpp functions with the original C++ code using the linear algebra library Armadillo. 
@@ -924,4 +925,4 @@ In this sections we are going to compare the performance of the R wrappers, R6 c
 ![graphs4](https://cloud.githubusercontent.com/assets/20603093/21899911/e52af612-d8e9-11e6-9760-88e16cac48a6.png)
 
 ### Observations
-We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference in term of performance tends to disappear and become very similar.
+We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference in term of performance tends to disappear.
