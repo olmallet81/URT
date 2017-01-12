@@ -846,6 +846,12 @@ run <- function()
 
 NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as the performance was very poor. For unit-root test classes we could also have created a base R6 class wrapping C++ *UnitRoot* base class from which all unit-root test R6 classes would have inherited but the performance would have been worse than directly including all C++ *UnitRoot* base class variables and methods required into the R6 class wrappers.
 
-## Benchmark
+# Benchmark
 
 ![graph1](https://cloud.githubusercontent.com/assets/20603093/21886665/b99ad826-d8b4-11e6-807b-af01d17460ce.png)
+
+![graph2](https://cloud.githubusercontent.com/assets/20603093/21886579/5c0aca90-d8b4-11e6-9004-169e0da6d97c.png)
+
+![graph3](https://cloud.githubusercontent.com/assets/20603093/21886582/5dd19548-d8b4-11e6-9911-38b81b1dce03.png)
+
+![graph4](https://cloud.githubusercontent.com/assets/20603093/21886585/5fd6d9b6-d8b4-11e6-9dc3-fd490f137de3.png)
