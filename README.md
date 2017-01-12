@@ -143,6 +143,7 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
        using Vector = Eigen::Matrix<T, Eigen::Dynamic, 1>;
     }
     ```
+    
 NB: It is important to note the different behaviour of these libraries when assigning a matrix to a vector: Armadillo will convert this vector into a matrix, Blaze will return a compilation error and Eigen will assign to this vector the first column of the matrix. 
 
 ## C++ template class *OLS*:
