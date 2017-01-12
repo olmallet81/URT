@@ -848,7 +848,7 @@ NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as 
 
 # Benchmarks
 
-## C++ benchmarks
+## C++
 
 In this section we are going to compare URT performance using alternatively Armadillo, Blaze and Eigen, each one of these linear algebra librairies using alternatively Intel MKL, OpenBLAS and their internal BLAS/LAPACK wrapper (at the exception of Blaze which must be linked at least to an external LAPACK library).
 Once the nine URT shared libraries have been built we are ready to proceed by running for each one of them ./URT/benchmark/benchmark.cpp:
@@ -901,15 +901,27 @@ NB: The URT libraries have been built single-threaded, the research for the opti
 
 The following graphs show the results obtained.
 
-### C++ benchmark on small sample sizes
+### benchmark on small sample sizes
 ![graphs1](https://cloud.githubusercontent.com/assets/20603093/21899692/10af315a-d8e9-11e6-85aa-c9df2df4c2a7.png)
 
-### C++ benchmark on large sample sizes
+### benchmark on large sample sizes
 ![graphs2](https://cloud.githubusercontent.com/assets/20603093/21899694/15542800-d8e9-11e6-801b-009ef5279135.png)
 
-### Python wrapper benchmark
+### Observations
+
+## Python wrapper
+In this sections we are going to compare the performance of the Python wrapper with the original C++ code using the linear algebra library Blaze. 
+
+### benchmark
 ![graphs3](https://cloud.githubusercontent.com/assets/20603093/21899906/e30908ba-d8e9-11e6-8f3c-13e2dac64272.png)
 
-### R wrappers benchmark
+### Observations
+
+## R wrapper
+In this sections we are going to compare the performance of the R wrappers, R6 classes and Rcpp functions with the original C++ code using the linear algebra library Armadillo. 
+
+### benchmark
 ![graphs4](https://cloud.githubusercontent.com/assets/20603093/21899911/e52af612-d8e9-11e6-9760-88e16cac48a6.png)
 
+### Observations
+We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference in term of performance tends to disappear and become very similar.
