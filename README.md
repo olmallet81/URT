@@ -850,7 +850,7 @@ NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as 
 
 ## C++
 
-In this section we are going to compare URT performance using alternatively Armadillo, Blaze and Eigen, each one of these linear algebra librairies using alternatively Intel MKL, OpenBLAS and their internal BLAS/LAPACK wrapper (at the exception of Blaze which must be linked at least to an external LAPACK library).
+In this section we are going to compare URT performance using alternatively Armadillo, Blaze and Eigen, each one of these linear algebra libraries using alternatively Intel MKL, OpenBLAS and their internal BLAS/LAPACK wrapper (at the exception of Blaze which must be linked at least to an external LAPACK library).
 Once the nine URT shared libraries have been built we are ready to proceed by running for each one of them ./URT/benchmark/benchmark.cpp:
 
 ```C++
@@ -896,9 +896,9 @@ int main()
    }
 }
 ```
-The benchmark is run on small sample sizes from 100 to 500 (10000 iterations) and large sample sizes from 1000 to 5000 (1000 iterations) for double and single precision types. We choose to compare the linear algebra libraries performances on a complex unit-root test as ADF with lag length optimization by AIC criterion minimization. 
+The benchmark is run on small sample sizes from 100 to 500 (10000 iterations) and large sample sizes from 1000 to 5000 (1000 iterations) for double and single precision types. We choose to compare the linear algebra libraries performances on a time consuming unit-root test such as ADF with constant and lag length optimization by AIC criterion minimization. 
 
-NB: The URT libraries have been built single-threaded, the research for the optimal lag in the ADF test selected will be done using one thread only. The machine on which this benchmark has been run is equipped with Intel Core i5-3210M @ 2.50GHz and 6GB of RAM. The Intel Turbo Boost has been turned off to keep the processor running at a constant frequency through the different simulations.
+NB: The URT libraries have been built single-threaded meaning that the research for the optimal lag in the ADF test will be done using one thread only. The machine on which this benchmark has been run is equipped with a processor Intel Core i5-3210M @ 2.50GHz and 6GB of RAM. The Intel Turbo Boost has been turned off to keep the processor running at a constant frequency through the different simulations.
 
 The following graphs show the results obtained.
 
@@ -909,7 +909,7 @@ The following graphs show the results obtained.
 ![graphs2](https://cloud.githubusercontent.com/assets/20603093/21899694/15542800-d8e9-11e6-801b-009ef5279135.png)
 
 ### Observations
-As expected Armadillo alone performance is pretty poor. For small sample sizes Blaze appears to be the fastest for both double and single precision types and more precisely when using Intel MKL. For large sample sizes the performances are quite similar excepted for Armadillo alone that tends to be much slower. We can note the good performance of Eigen in that case with or without external BLAS/LAPACK wrappers.
+As expected Armadillo with internal BLAS/LAPACK wrappers performance is pretty poor. For small sample sizes Blaze appears to be the fastest for both double and single precision types and more precisely when using Intel MKL. For large sample sizes the performances of the three libraries are quite similar excepted for Armadillo alone that tends to be much slower. We can note the good performance of Eigen in that case with or without external BLAS/LAPACK wrappers.
 
 ## Python wrapper
 In this sections we are going to compare the performance of the Python wrapper with the original C++ code using the linear algebra library Blaze by running ./URT/Python/benchmark.py:
@@ -997,4 +997,4 @@ run <- function()
 ![graphs4](https://cloud.githubusercontent.com/assets/20603093/21899911/e52af612-d8e9-11e6-9760-88e16cac48a6.png)
 
 ### Observations
-We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference in term of performance tends to disappear.
+We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference tends to disappear as performances are converging.
