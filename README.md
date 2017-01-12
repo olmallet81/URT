@@ -908,9 +908,10 @@ The following graphs show the results obtained.
 ![graphs2](https://cloud.githubusercontent.com/assets/20603093/21899694/15542800-d8e9-11e6-801b-009ef5279135.png)
 
 ### Observations
+As expected Armadillo alone performance is pretty poor. For small sample sizes Blaze appears to be the fastest for both double and single precision types and more precisely when using Intel MKL. For large sample sizes the performances are quite similar excepted for Armadillo alone that tends to be much slower. We can note the good performance of Eigen in that case with or without external BLAS/LAPACK wrappers.
 
 ## Python wrapper
-In this sections we are going to compare the performance of the Python wrapper with the original C++ code using the linear algebra library Blaze using ./URT/Python/benchmark.py:
+In this sections we are going to compare the performance of the Python wrapper with the original C++ code using the linear algebra library Blaze by running ./URT/Python/benchmark.py:
 
 ```Python
 import numpy as np
@@ -948,7 +949,7 @@ if __name__ == "__main__":
 Although slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase. 
 
 ## R wrapper
-In this sections we are going to compare the performance of the R wrappers, R6 classes and Rcpp functions with the original C++ code using the linear algebra library Armadillo using ./URT/R/benchmark.R:
+In this sections we are going to compare the performance of the R wrappers, R6 classes and Rcpp functions with the original C++ code using the linear algebra library Armadillo by running ./URT/R/benchmark.R:
 
 ```R
 suppressMessages(library(RcppURT))
