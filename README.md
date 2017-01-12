@@ -16,7 +16,7 @@ In algorithmic trading we have to find the right sample size to test for station
 
 During my experimentations I have tried to find the correct set up for each C++ linear algebra library (Armadillo, Blaze and Eigen compiled with Intel MKL or OpenBLAS) in order to get the fastest results on a sample size of 1000. If anyone can find a faster configuration for one of them, or more generally, if anyone has anything to propose that could make the C++ code or the Cython and Rcpp wrappers faster, he is more than welcome to bring his contribution to this project.
 
-# What is inside this package ?
+# What is inside this repository ?
 - Ordinary Least Squares regression
 - Augmented Dickey-Fuller test
 - Dickey-Fuller Generalized Least Squares test
