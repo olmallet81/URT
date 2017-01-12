@@ -846,7 +846,9 @@ run <- function()
 
 NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as the performance was very poor. For unit-root test classes we could also have created a base R6 class wrapping C++ *UnitRoot* base class from which all unit-root test R6 classes would have inherited but the performance would have been worse than directly including all C++ *UnitRoot* base class variables and methods required into the R6 class wrappers.
 
-# Benchmark
+# Benchmarks
+
+## C++ benchmarks
 
 In this section we are going to compare URT performance using alternatively Armadillo, Blaze and Eigen, each one of these linear algebra librairies using alternatively Intel MKL, OpenBLAS and their internal BLAS/LAPACK wrapper (at the exception of Blaze which must be linked at least to an external LAPACK library).
 Once the nine URT shared libraries have been built we are ready to proceed by running for each one of them ./URT/benchmark/benchmark.cpp:
@@ -899,14 +901,14 @@ NB: The URT libraries have been built single-threaded, the research for the opti
 
 The following graphs show the results obtained.
 
-## Benchmark on small sample sizes and double precision
+### Benchmark on small sample sizes and double precision
 ![graph1](https://cloud.githubusercontent.com/assets/20603093/21886665/b99ad826-d8b4-11e6-807b-af01d17460ce.png)
 
-## Benchmark on small sample sizes and single precision
+### Benchmark on small sample sizes and single precision
 ![graph3](https://cloud.githubusercontent.com/assets/20603093/21886582/5dd19548-d8b4-11e6-9911-38b81b1dce03.png)
 
-## Benchmark on large sizes and double precision
+### Benchmark on large sizes and double precision
 ![graph2](https://cloud.githubusercontent.com/assets/20603093/21886579/5c0aca90-d8b4-11e6-9004-169e0da6d97c.png)
 
-## Benchmark on large sizes and single precision
+### Benchmark on large sizes and single precision
 ![graph4](https://cloud.githubusercontent.com/assets/20603093/21886585/5fd6d9b6-d8b4-11e6-9dc3-fd490f137de3.png)
