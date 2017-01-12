@@ -895,7 +895,7 @@ int main()
 ```
 The benchmark is run on small sample sizes from 100 to 500 (10000 iterations) and large sample sizes from 1000 to 5000 (1000 iterations) for double and single precision types. We choose to compare the linear algebra libraries performances on a complex unit-root test as ADF with lag length optimization by AIC criterion minimization. 
 
-NB: The URT libraries have been built single-threaded (meaning that the research for the optimal lag in the ADF test selected will be done using one thread only) and the Intel Turbo Boost has been turned off. The machine on which this benchmark has been run is equipped with Intel Core i5-3210M @ 2.50GHz and 6GB of RAM. 
+NB: The URT libraries have been built single-threaded, the research for the optimal lag in the ADF test selected will be done using one thread only. The machine on which this benchmark has been run is equipped with Intel Core i5-3210M @ 2.50GHz and 6GB of RAM. The Intel Turbo Boost has been turned off to keep the processor running at a constant frequency through the different simulations.
 
 The following graphs show the results obtained.
 
