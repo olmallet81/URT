@@ -908,8 +908,8 @@ The following graphs show the results obtained.
 ![graphs2](https://cloud.githubusercontent.com/assets/20603093/21899694/15542800-d8e9-11e6-801b-009ef5279135.png)
 
 ### Python wrapper benchmark
-![graphs3](https://cloud.githubusercontent.com/assets/20603093/21899725/345f85d2-d8e9-11e6-82b8-584340c3a543.png)
+![graphs3](https://cloud.githubusercontent.com/assets/20603093/21899906/e30908ba-d8e9-11e6-8f3c-13e2dac64272.png)
 
 ### R wrappers benchmark
-![graphs4](https://cloud.githubusercontent.com/assets/20603093/21899734/39214808-d8e9-11e6-89d1-4842c86061a0.png)
+![graphs4](https://cloud.githubusercontent.com/assets/20603093/21899911/e52af612-d8e9-11e6-9760-88e16cac48a6.png)
 
