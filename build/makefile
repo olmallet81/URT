@@ -2,8 +2,7 @@
 # example:
 # $ make USE_OPENMP=1 USE_BLAZE=1 USE_BLAS=1
 # will build URT with parallelism active and with Blaze C++ linear algebra library using OpenBLAS for BLAS/LAPACK routines
-
-# NB: when using Intel MKL, MKL environment for bash has to be set up to allow the compiler to find the path to MKL include and lib directories by adding: . /opt/intel/mkl/bin/mklvars.sh intel64 mod lp64
+# Important: when using Intel MKL, MKL environment for bash has to be set up to allow the compiler to find the path to MKL include and lib directories by adding: . /opt/intel/mkl/bin/mklvars.sh intel64 mod lp64
 
 # compiler
 CXX = g++
