@@ -16,6 +16,8 @@ In algorithmic trading we have to find the right sample size to test for station
 
 During my experimentations I have tried to find the correct set up for each C++ linear algebra library (Armadillo, Blaze and Eigen compiled with Intel MKL or OpenBLAS) in order to get the fastest results on a standard sample size of 1000. If anyone can find a faster configuration for one of them, or more generally, if anyone has anything to propose that could make the C++ code or the Cython and Rcpp wrappers faster, he is more than welcome to bring his contribution to this project.
 
+When testing for a unit root in a time serie, the test p-value will help to conclude whether or not there is evidence of stationarity. However these p-values are computed using critical values which are obtained through Monte-Carlo simulations from a process whose first difference are normally distributed. This is unfortunately very rarely the case for financial time series. Hence, relying on the p-value to conclude would be a mistake. As the real distribution of a financial time serie first difference is in most cases unknown, we can approximate the real p-value by bootstrapping the unit root test 
+
 # What is inside this repository ?
 - Ordinary Least Squares regression
 - Augmented Dickey-Fuller test
@@ -94,7 +96,7 @@ To build the shared library, the user can set the following variables:
 
 The default configuration when running *make* is no parallelism and Armadillo using its internal BLAS/LAPACK wrappers. 
 
-Example: *make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1* => the shared library libURT.so will be built using parallelism with OpenMP and with C++ linear algebra library Armadillo using Intel MKL for BLAS/LAPACK routines.
+Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_BLAS=1* => the shared library libURT.so will be built using parallelism with OpenMP and with the C++ linear algebra library Blaze using OpenBLAS for BLAS/LAPACK routines.
 
 NB: Armadillo does not need any external library for BLAS/LAPACK routines, however it needs to be linked to its shared library. Blaze can run with internal BLAS wrappers but needs to be linked to an external LAPACK library. Eigen can run without calling any external library.
 
