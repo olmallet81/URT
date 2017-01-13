@@ -75,17 +75,21 @@ void ReadFromCSV(const std::string& filename, Vector<T>& x)
       return;
    }
 
-   std::string cell;
+   std::string line;
 
    int nrows = 0;
 
    // reading data
-   while (std::getline(myfile, cell)) {
+   while (std::getline(myfile, line)) {
       #if defined(USE_ARMA) || defined(USE_BLAZE)
       x.resize(nrows + 1);
       #elif USE_EIGEN
       x.conservativeResize(nrows + 1, 1);
       #endif
+
+      std::stringstream lineStream(line);
+      std::string cell;
+      std::getline(lineStream, cell, ',');
 
       x[nrows] = std::stod(cell);
       ++nrows;
