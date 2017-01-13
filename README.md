@@ -62,7 +62,7 @@ Blaze library will requires at least LAPACK to run whereas Armadillo and Eigen h
 - Intel MKL version >= 2017.0.098
 - OpenBLAS version >= 0.2.19
 
-Other BLAS/LAPACK libraries will do as for instance ATLAS. If you decide to link to Intel MKL or OpenBLAS, please use their sequential and not their multi-threaded version. When installing Intel MKL you will get the two versions, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0.
+These libraries will need to be on your C++ compiler path. If you decide to link to Intel MKL or OpenBLAS, please use their sequential and not their multi-threaded version. When installing Intel MKL you will get the two versions, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0.
 
 To use the Python wrapper you will need to install the C++ linear algebra library Blaze and:
 - Python version >= 2.7
@@ -77,8 +77,8 @@ To use the R wrapper you will need to install the C++ linear algebra library Arm
 - Rcpp version >= 0.12.8
 - RcppArmadillo version >= 0.7.200.2.0
 
-NB: Some of these tools might work with older versions, I only reported the versions I used to build this project. All these libraries will obviously need to be on your compiler path. 
- 
+NB: Some of these tools might work with older versions, I only reported the versions I used to build this project. 
+
 # Compilation
 URT is not header only to provide a direct way to be exported as a shared library to Rcpp to be exposed to R and to Cython to be exposed to Python. Build the shared library using the provided makefile located in ./URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily modified to run under Windows or OSX and with another compiler, you are free to adapt this makefile to your own requirements. 
 
