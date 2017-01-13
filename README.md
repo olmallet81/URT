@@ -1027,15 +1027,15 @@ We can see that for small sample sizes R6 classes wrapper performance is pretty 
 
 This project has been realised using the following articles:
 
-Denis Kwiatkowski, Peter C.B. Phillips, Peter Schmidt and Yongcheol Shin, "Testing the null hypothesis of stationarity against the alternative of a unit root" (October 1991)
-Yin-Wong Cheun and Kon S. Lai and Tuan Tran, "Finite-Sample Critical Values of the KPSS test" (December 1994)
-Yin-Wong Cheun and Kon S. Lai, "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (Journal of Business & Economic Statistics, July 1995, Vol. 13, No. 3)
-Graham Elliott, Thomas J. Rothenberg and James H. Stock, "Efficient Tests for an Autoregressive Unit Root" (Econometrica, Vol. 64, No. 4 (July 1996), 813-836)
-Serena Ng and Pierre Perron, "Useful Modifications to some Unit Root Tests with Dependent Errors and their Local Asymptotic Properties" (Review of Economic Studies (1996) 63, 435-463)
-Steven Cook, "Finite-sample critical values of the Augmented Dickey-Fuller statistic: a note on lag order" (Economic Issues, Vol.6, Part 2. September 2001)
-Serena Ng and Pierre Perron, "Lag Length Selection and the Construction of Unit Root Tests with Good Size and Power" (Econometrica, Vol. 69, No. 6 (Nov., 2001), pp. 1519-1554)
-Joon Y. Park, "Bootstrap Unit Root Tests" (October 2002)
-Andrew F. Hayes and Li Cai, "Using heteroskedasticity-consistent stanard error estimators in OLS regression: An introduction and software implementation" (Behavior Research Methods 2007, 39 (4), 709-722)
-Franz C. Palm, Stephan Smeekes, Jean-Pierre Urbain, "Bootstrap Unit Root Tests: Comparison and Extensions" (Journal of Time Series Analysis 29 (2), 371–401 (2008))
-Stephan Smeekes, "Detrending Bootstrap Unit Root Tests" (Econometric Reviews 32 (8), 869-891 (2013))
+- Denis Kwiatkowski, Peter C.B. Phillips, Peter Schmidt and Yongcheol Shin, "Testing the null hypothesis of stationarity against the alternative of a unit root" (October 1991)
+- Yin-Wong Cheun and Kon S. Lai and Tuan Tran, "Finite-Sample Critical Values of the KPSS test" (December 1994)
+- Yin-Wong Cheun and Kon S. Lai, "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (Journal of Business & Economic Statistics, July 1995, Vol. 13, No. 3)
+- Graham Elliott, Thomas J. Rothenberg and James H. Stock, "Efficient Tests for an Autoregressive Unit Root" (Econometrica, Vol. 64, No. 4 (July 1996), 813-836)
+- Serena Ng and Pierre Perron, "Useful Modifications to some Unit Root Tests with Dependent Errors and their Local Asymptotic Properties" (Review of Economic Studies (1996) 63, 435-463)
+- Steven Cook, "Finite-sample critical values of the Augmented Dickey-Fuller statistic: a note on lag order" (Economic Issues, Vol.6, Part 2. September 2001)
+- Serena Ng and Pierre Perron, "Lag Length Selection and the Construction of Unit Root Tests with Good Size and Power" (Econometrica, Vol. 69, No. 6 (Nov., 2001), pp. 1519-1554)
+- Joon Y. Park, "Bootstrap Unit Root Tests" (October 2002)
+- Andrew F. Hayes and Li Cai, "Using heteroskedasticity-consistent stanard error estimators in OLS regression: An introduction and software implementation" (Behavior Research Methods 2007, 39 (4), 709-722)
+- Franz C. Palm, Stephan Smeekes, Jean-Pierre Urbain, "Bootstrap Unit Root Tests: Comparison and Extensions" (Journal of Time Series Analysis 29 (2), 371–401 (2008))
+- Stephan Smeekes, "Detrending Bootstrap Unit Root Tests" (Econometric Reviews 32 (8), 869-891 (2013))
 
