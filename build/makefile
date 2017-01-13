@@ -34,16 +34,18 @@ else
 endif
 
 # setting up MKL libs path
-MKLPATH = /path/to/mkl/lib
+MKLPATH = /opt/intel/mkl/lib/intel64/
 # setting up OpenBLAS lib path
-BLASPATH = /path/to/openblas/lib/
+BLASPATH = /usr/local/lib/
 
 # linker flags
 ifeq ($(USE_MKL), 1)
   CXXFLAGS += -DUSE_MKL
-  LIBFLAGS = -Wl,--start-group ${MKLPATH}libmkl_gf_lp64.a ${MKLPATH}libmkl_core.a ${MKLPATH}libmkl_sequential.a -Wl,--end-group -ldl
+  #LIBFLAGS = -L${MKLPATH} -Wl,--no-as-needed -lmkl_gf_lp64 -lmkl_sequential -lmkl_core -ldl
+  LIBFLAGS = -Wl,--start-group ${MKLPATH}libmkl_gf_lp64.a ${MKLPATH}libmkl_core.a ${MKLPATH}libmkl_sequential.a -Wl,--end-group -lpthread -ldl
 else ifeq ($(USE_BLAS), 1) 
   CXXFLAGS += -DUSE_BLAS
+  #LIBFLAGS = -L$(BLASPATH) -lopenblas
   LIBFLAGS = $(BLASPATH)libopenblas.a
 else
   ifeq ($(USE_ARMA), 1)
