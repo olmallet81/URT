@@ -2,16 +2,15 @@
 Fast Unit-Root Tests and OLS regression in C++ with wrappers for R and Python
 
 # Description
-URT is a library designed to procure speed while keeping a high level of flexibility for the user.
+URT is a library designed to procure speed while keeping a high level of flexibility for the user for unit-root testing.
 
-The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. They can all be compiled by calling external libraries as for instance Intel MKL and OpenBLAS or by using their own BLAS/LAPACK wrappers.
+The core code is in C++ and is based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. They can all be compiled by calling external libraries as for instance Intel MKL and OpenBLAS or by using their own BLAS/LAPACK wrappers.
 
 URT can also be used under R and Python. The R version is currenty using Armadillo and developped under Rcpp using the RcppArmadillo R package. The Python version is currently using Blaze and developped under Cython.
-URT contains an OLS regression and four of the most famous and most used unit-root tests: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic method. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
+URT contains an OLS regression and four of the most used unit-root tests: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic method. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
 
 # Why such a project and how can you contribute ?
-I have been developping tools for algorithmic trading for a while and it is no secret that unit-root tests are widely used in this domain to decide whether a time serie is (weakly) stationary or not and construct on this idea a profitable mean-reversion strategy. Nowadays you often have to look at smaller and smaller time frames to find such trading opportunities and that means on the back-testing side using more and more historical data to test whether the strategy can be profitable on the long term or not. I found frustrating that the available libraries under R and Python, which are commonly used in the first steps when building a trading algorithm, were too slow or did not offer enough flexibility. To that extent I wanted to develop a library that could be used under higher level languages to get a first idea on the profitability of a strategy and also when developping a more serious back-tester on a larger amount of historical data under a lower level language as C++. 
-
+I have been developping algorithmic trading tools for a while and it is no secret that unit-root tests are widely used in this domain to decide whether a time serie is (weakly) stationary or not and construct on this idea a profitable mean-reversion strategy. Nowadays you often have to look at smaller and smaller time frames to find such trading opportunities and that means on the back-testing side using more and more historical data to test whether the strategy can be profitable on the long term or not. I found frustrating that the available libraries under R and Python, which are commonly used in the first steps when building a trading algorithm, were too slow or did not offer enough flexibility. To that extent I wanted to develop a library that could be used under higher level languages to get a first idea on the profitability of a strategy and also when developping a more serious back-tester on a larger amount of historical data under a lower level language as C++. 
 In algorithmic trading we have to find the right sample size to test for stationarity. If we use a too short sample of historica data on a rolling window the back-testing will be faster but the test precision will be smaller and the results will be less reliable, on the contrary if we use a too large sample the back-testing will be slower but the test precision will be greater and the results will be more reliable. Hence, when testing for stationarity we have to always keep this tradeoff in mind. Optimal sample size are in general between 100 to 2000, leading to relatively small size arrays. I have then decided not to use parallelism when calling Matrix/Vector operations as it would not bring any speed improvement and on the contrary would slow down the code when applied on such small dimensions. Although Armadillo does not allow for parallelism yet, Blaze and Eigen do, I made sure to turn off this ability. However, parallelism is used to speed up the lag length optimization by information criterion minimization in ADF and DF-GLS tests by using OpenMP. All of these libraries are now using vectorization (from SSE to AVX), activating this feature can improve greatly the general performance.
 
 During my experimentations I have tried to find the correct set up for each C++ linear algebra library (Armadillo, Blaze and Eigen compiled with Intel MKL or OpenBLAS) in order to get the fastest results on a sample size of 1000. If anyone can find a faster configuration for one of them, or more generally, if anyone has anything to propose that could make the C++ code or the Cython and Rcpp wrappers faster, he is more than welcome to bring his contribution to this project.
@@ -52,29 +51,31 @@ The coefficients obtained by OLS regression for each unit-root test and each sig
 NB: arrays indexed by 0 contain the asymptotic estimate of the critical value for the corresponding significance level *Tau(0)* and the coefficients of the first term of the equation *Tau(i)*, arrays indexed by 1 contain the coefficients of the second term of the equation *Phi(j)*.
 
 # Requirements
-To use the C++ version of URT you will need at least one of these three free C++ linear algebra libraries:
+To use the C++ version of URT you will need to install at least one of these three free C++ linear algebra libraries:
 - Armadillo version >= 7.300.1
 - Blaze version >= 3.0
 - Eigen version >= 3.3.1
-NB: Blaze will require at least LAPACK to run.
 
-To use the Python wrapper you will need the C++ linear algebra library Blaze and:
+You will also need to have the C++ libraries Boost (version >= 1.61.0) already installed.
+
+Blaze library will requires at least LAPACK to run whereas Armadillo and Eigen have their own internal wrapper for BLAS/LAPACK routines, however for better performance I recommend installing one of the following BLAS/LAPACK libraries:
+- Intel MKL version 2017
+- OpenBLAS version >= 0.2.19
+Other BLAS/LAPACK libraries will do as for instance ATLAS. If you decide to link to Intel MKL or OpenBLAS, please use their sequential and not their multi-threaded version. When installing Intel MKL you will get the two versions, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0.
+
+To use the Python wrapper you will need to install the C++ linear algebra library Blaze and:
 - Python version >= 2.7
 - Numpy version >= 1.11.1
 - Pandas version >= 0.18.1
 - Cython version >= 0.24.1
-NB: Pandas is not essential, it will be used in the example only.
+NB: Pandas is not essential, it will be used in the Python example only.
 
-To use the R wrapper you will need the C++ linear algebra library Armadillo and:
+To use the R wrapper you will need to install the C++ linear algebra library Armadillo and:
 - R version >= 3.3.1
 - Rcpp version >= 0.12.8
 - RcppArmadillo version >= 0.7.200.2.0
 
-You will also need to have the C++ libraries Boost already installed.
-
-Some of these tools might work with older versions, I only reported the versions I used to build this project. For better performance I recommend to install and to link (dynamically or statistically) to Intel MKL or OpenBLAS (both free) for BLAS/LAPACK routines as the C++ linear algebra libraries will run faster especially Armadillo and Blaze, for Eigen there will not be much difference. All of these libraries will obviously need to be on the compiler path.
-
-NB: If you decide to link to Intel MKL or OpenBLAS, please use their sequential and not parallel version. When installing Intel MKL you will get the two versions, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0. 
+NB: Some of these tools might work with older versions, I only reported the versions I used to build this project. All these libraries will obviously need to be on your compiler path. 
  
 # Compilation
 URT is not header only to provide a direct way to be exported as a shared library to Rcpp to be exposed to R and to Cython to be exposed to Python. Build the shared library using the provided makefile located in ./URT/build. The makefile has been written for Linux and GNU/gcc, it can be easily modified to run under Windows or OSX and with another compiler, you are free to adapt this makefile to your own requirements. 
