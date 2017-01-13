@@ -1,16 +1,16 @@
 # URT
-Fast Unit-Root Tests and OLS regression in C++ with wrappers for R and Python
+Fast Unit Root Tests and OLS regression in C++ with wrappers for R and Python
 
 # Description
-URT is a library designed to procure speed while keeping a high level of flexibility for the user for unit-root testing.
+URT is a library designed to procure speed while keeping a high level of flexibility for the user for unit root testing.
 
 The core code is in C++ and is based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. They can all be compiled by calling external libraries as for instance Intel MKL and OpenBLAS or by using their own BLAS/LAPACK wrappers.
 
 URT can also be used under R and Python. The R version is currenty using Armadillo and developped under Rcpp using the RcppArmadillo R package. The Python version is currently using Blaze and developped under Cython.
-URT contains an OLS regression and four of the most used unit-root tests: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic method. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
+URT contains an OLS regression and four of the most used unit root tests: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic method. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
 
 # Why such a project and how can you contribute ?
-I have been developping algorithmic trading tools for a while and it is no secret that unit-root tests are widely used in this domain to decide whether a time serie is (weakly) stationary or not and construct on this idea a profitable mean-reversion strategy. Nowadays you often have to look at smaller and smaller time frames to find such trading opportunities and that means on the back-testing side using more and more historical data to test whether the strategy can be profitable on the long term or not. I found frustrating that the available libraries under R and Python, which are commonly used in the first steps when building a trading algorithm, were too slow or did not offer enough flexibility. To that extent I wanted to develop a library that could be used under higher level languages to get a first idea on the profitability of a strategy and also when developping a more serious back-tester on a larger amount of historical data under a lower level language as C++. 
+I have been developping algorithmic trading tools for a while and it is no secret that unit root tests are widely used in this domain to decide whether a time serie is (weakly) stationary or not and construct on this idea a profitable mean-reversion strategy. Nowadays you often have to look at smaller and smaller time frames to find such trading opportunities and that means on the back-testing side using more and more historical data to test whether the strategy can be profitable on the long term or not. I found frustrating that the available libraries under R and Python, which are commonly used in the first steps when building a trading algorithm, were too slow or did not offer enough flexibility. To that extent I wanted to develop a library that could be used under higher level languages to get a first idea on the profitability of a strategy and also when developping a more serious back-tester on a larger amount of historical data under a lower level language as C++. 
 In algorithmic trading we have to find the right sample size to test for stationarity. If we use a too short sample of historica data on a rolling window the back-testing will be faster but the test precision will be smaller and the results will be less reliable, on the contrary if we use a too large sample the back-testing will be slower but the test precision will be greater and the results will be more reliable. Hence, when testing for stationarity we have to always keep this tradeoff in mind. Optimal sample size are in general between 100 to 2000, leading to relatively small size arrays. I have then decided not to use parallelism when calling Matrix/Vector operations as it would not bring any speed improvement and on the contrary would slow down the code when applied on such small dimensions. Although Armadillo does not allow for parallelism yet, Blaze and Eigen do, I made sure to turn off this ability. However, parallelism is used to speed up the lag length optimization by information criterion minimization in ADF and DF-GLS tests by using OpenMP. All of these libraries are now using vectorization (from SSE to AVX), activating this feature can improve greatly the general performance.
 
 During my experimentations I have tried to find the correct set up for each C++ linear algebra library (Armadillo, Blaze and Eigen compiled with Intel MKL or OpenBLAS) in order to get the fastest results on a sample size of 1000. If anyone can find a faster configuration for one of them, or more generally, if anyone has anything to propose that could make the C++ code or the Cython and Rcpp wrappers faster, he is more than welcome to bring his contribution to this project.
@@ -27,7 +27,7 @@ During my experimentations I have tried to find the correct set up for each C++ 
 - Wrapper to expose URT to Python
 
 # Innovation
-Unit-root tests use lags in order to reduce auto-correlation as much as possible in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency and it can easily been proved by Monte-Carlo simulations. However, very few unit-root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags. The method used in this project is the one explained by Cheung and Lai in "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (1995). This method has been pushed further and adapted to other unit-root tests. 
+Unit root tests use lags in order to reduce auto-correlation as much as possible in the serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency and it can easily been proved by Monte-Carlo simulations. However, very few unit root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags. The method used in this project is the one explained by Cheung and Lai in "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (1995). This method has been pushed further and adapted to other unit root tests. 
 
 The method is simple, starting from a chosen set of sample sizes and a chosen set of number of lags, it consists in 3 steps:
 - step 1: generate a non-stationary random sample (Wiener process) of a given size for ADF, DF-GLS and Phillips-Perron tests and a stationary random sample (Gaussian noise) of a given size for the KPSS test
@@ -165,7 +165,7 @@ NB: It is important to mention the differences of behaviour between these librar
 ## C++ template class *OLS*:
 Declared in ./URT/include/OLS.hpp, defined in ./URT/src/OLS.cpp.
 
-To get fast unit-root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
+To get fast unit root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
 
 - ### Constructor
     The OLS regression is run by instantiating an *OLS* object using the following constructor:
@@ -194,7 +194,7 @@ To get fast unit-root tests, we need a fast and flexible OLS regression allowing
     - *ndef* = number of degrees of freedom
     - *lags* = number of lags
     
-    NB: *IC* and *lags* are for the case when OLS is called by UnitRoot for lag length optimization by information criterion minimization.
+    NB: *IC* and *lags* are for the case when OLS is called by a unit root test class for lag length optimization by information criterion minimization.
     
 - ### Member functions (public)
     - *get_stats()* takes same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics and detects the presence of an intercept term
@@ -784,7 +784,7 @@ if __name__ == "__main__":
 
 The Python wrapper behaves the same way than under C++, the only difference being when the user wants single precision instead of double precision, he will have to convert Python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and URT class name followed by *_f* (*OLS_f* instead of *OLS_d*).
 
-Important: all URT classes accept numpy arrays only as arguments, *OLS_d* and *OLS_f* classes need a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit-root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
+Important: all URT classes accept numpy arrays only as arguments, *OLS_d* and *OLS_f* classes need a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
     
 ## URT for R  
 URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo and the R package RcppArmadillo. 
@@ -868,7 +868,7 @@ run <- function()
 }
 ```
 
-NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as the performance was very poor. For unit-root test classes we could also have created a base R6 class wrapping C++ *UnitRoot* base class from which all unit-root test R6 classes would have inherited but the performance would have been worse than directly including all C++ *UnitRoot* base class variables and methods required into the R6 class wrappers.
+NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as the performance was very poor. For unit root test classes we could also have created a base R6 class wrapping C++ *UnitRoot* base class from which all unit root test R6 classes would have inherited but the performance would have been worse than directly including all C++ *UnitRoot* base class variables and methods required into the R6 class wrappers.
 
 # Benchmarks
 
@@ -920,7 +920,7 @@ int main()
    }
 }
 ```
-The benchmark is run on small sample sizes from 100 to 500 (10000 iterations) and large sample sizes from 1000 to 5000 (1000 iterations) for double and single precision types. We choose to compare the linear algebra libraries performances on a time consuming unit-root test such as ADF with constant and lag length optimization by AIC criterion minimization. 
+The benchmark is run on small sample sizes from 100 to 500 (10000 iterations) and large sample sizes from 1000 to 5000 (1000 iterations) for double and single precision types. We choose to compare the linear algebra libraries performances on a time consuming unit root test such as ADF with constant and lag length optimization by AIC criterion minimization. 
 
 NB: The URT libraries have been built single-threaded meaning that the research for the optimal lag in the ADF test will be done using one thread only. The machine on which this benchmark has been run is equipped with a processor Intel Core i5-3210M @ 2.50GHz and 6GB of RAM. The Intel Turbo Boost has been turned off to keep the processor running at a constant frequency through the different simulations.
 
