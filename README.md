@@ -59,7 +59,7 @@ To use the C++ version of URT you will need to install at least one of these thr
 You will also need to have the C++ libraries Boost (version >= 1.61.0) already installed.
 
 Blaze library will requires at least LAPACK to run whereas Armadillo and Eigen have their own internal wrapper for BLAS/LAPACK routines, however for better performance I recommend installing one of the following BLAS/LAPACK libraries:
-- Intel MKL version 2017
+- Intel MKL version >= 2017.0.098
 - OpenBLAS version >= 0.2.19
 Other BLAS/LAPACK libraries will do as for instance ATLAS. If you decide to link to Intel MKL or OpenBLAS, please use their sequential and not their multi-threaded version. When installing Intel MKL you will get the two versions, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0.
 
