@@ -1033,7 +1033,7 @@ We can see that for small sample sizes R6 classes wrapper performance is pretty 
 
 ### Comparing RcppURT to URCA
 
-The R package URCA (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the similar ADF test with constant and lag length optimization by AIC minimization. RcppURT has been built with the parallel version of URT (using Armadillo library linked to Intel MKL and enabling OpenMP). For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
+The R package URCA (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the similar ADF test with constant and lag length optimization by AIC minimization. RcppURT has been built with the parallel version of URT (using Armadillo library linked to Intel MKL and enabling OpenMP). For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
 
 ![tab2](https://cloud.githubusercontent.com/assets/20603093/21957498/57cf2f8e-da8f-11e6-88a0-705d0c11149f.png)
 
