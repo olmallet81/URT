@@ -6,7 +6,7 @@ URT is a library designed to procure speed while keeping a high level of flexibi
 
 The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. For better performance they can all be compiled by linking to external libraries for high-speed BLAS/LAPACK replacements such as Intel MKL and OpenBLAS or by using their own BLAS/LAPACK routines.
 
-URT can also be used under R and Python. The R version RcppURT is currenty using Armadillo and developped under Rcpp using the RcppArmadillo R package. The Python version CyURT is currently using Blaze and developped under Cython.
+URT can also be used under R and Python. The R wrapper called RcppURT is currenty using Armadillo and developped under Rcpp using the RcppArmadillo R package. The Python wrapper called CyURT is currently using Blaze and developped under Cython.
 URT contains an OLS regression and four of the most used unit root tests: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic method. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
 
 # Why such a project and how can you contribute ?
