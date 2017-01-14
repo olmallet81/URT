@@ -1,8 +1,8 @@
 # makefile for building URT as a shared library
 # example:
 # $ make USE_OPENMP=1 USE_BLAZE=1 USE_BLAS=1
-# will build URT with parallelism active and with Blaze C++ linear algebra library using OpenBLAS for BLAS/LAPACK routines
-# Important: when using Intel MKL, MKL environment for bash has to be set up to allow the compiler to find the path to MKL include and lib directories by adding: . /opt/intel/mkl/bin/mklvars.sh intel64 mod lp64
+# will build URT with parallelism enabled and Blaze C++ linear algebra library using OpenBLAS for BLAS/LAPACK routines
+# Important: when using Intel MKL, MKL environment for bash has to be set up to allow the compiler to find the path to MKL include and lib directories by adding: . /opt/intel/mkl/bin/mklvars.sh intel64 mod lp64 (to be adapted to your own path depending on where your Intel MKL installation is located)
 
 # compiler
 CXX = g++
@@ -54,7 +54,7 @@ else
   endif
 endif
 
-# NB: if neither Intel MKL nor OpenBLAS are called, Armadillo needs to link to its shared library to get its internal BLAS/LAPACK wrappers and Blaze needs to link to LAPACK library, only Eigen does not need to link to any library to work
+# NB: if neither Intel MKL nor OpenBLAS are enabled, Armadillo needs to be linked to its shared library to get its own BLAS/LAPACK routines and Blaze needs to be linked to LAPACK library, only Eigen does not need to be linked to any library to work
 
 # get .cpp source files and name .o object files
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
