@@ -4,9 +4,9 @@ Fast Unit Root Tests and OLS regression in C++ with wrappers for R and Python.
 # Description
 URT is a library designed to procure speed while keeping a high level of flexibility for the user when testing for a unit root in a time serie.
 
-The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. They all use BLAS/LAPACK routines and can be compiled by linking to external libraries containing these routines as for instance Intel MKL and OpenBLAS or by using their own BLAS/LAPACK wrappers.
+The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. They all use BLAS/LAPACK routines and can be compiled by linking to external libraries for high-speed BLAS/LAPACK replacements such as Intel MKL and OpenBLAS or by using their own BLAS/LAPACK routines.
 
-URT can also be used under R and Python. The R version is currenty using Armadillo and developped under Rcpp using the RcppArmadillo R package. The Python version is currently using Blaze and developped under Cython.
+URT can also be used under R and Python. The R version RcppURT is currenty using Armadillo and developped under Rcpp using the RcppArmadillo R package. The Python version CyURT is currently using Blaze and developped under Cython.
 URT contains an OLS regression and four of the most used unit root tests: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic method. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
 
 # Why such a project and how can you contribute ?
@@ -59,11 +59,11 @@ To use the C++ version of URT you will need to install at least one of these thr
 
 You will also need to have the C++ libraries Boost (version >= 1.61.0) already installed.
 
-Blaze library will requires at least LAPACK to run whereas Armadillo and Eigen have their own internal wrapper for BLAS/LAPACK routines, however for better performance I recommend installing one of the following BLAS/LAPACK libraries:
+Blaze library will requires at least LAPACK to run whereas Armadillo and Eigen have their own internal BLAS/LAPACK routines, however for better performance I recommend installing one of the following high-speed BLAS/LAPACK libraries:
 - Intel MKL version >= 2017.0.098
 - OpenBLAS version >= 0.2.19
 
-These libraries will need to be on your C++ compiler path. If you decide to link to Intel MKL or OpenBLAS, please use their sequential and not their multi-threaded version. When installing Intel MKL you will get the two versions, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0.
+These libraries will need to be on your C++ compiler path. If you decide to link to Intel MKL or OpenBLAS, please use their sequential and not their multi-threaded version. When installing Intel MKL you will get the two versions, however OpenBLAS needs to be built from source as sequential using USE_THREAD=0.
 
 To use the Python wrapper CyURT you will need to install the C++ linear algebra library Blaze and:
 - Python version >= 2.7
@@ -97,7 +97,7 @@ The default configuration when running *make* is no parallelism and Armadillo us
 
 Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_BLAS=1* => the shared library libURT.so will be built using parallelism with OpenMP and with the C++ linear algebra library Blaze using OpenBLAS for BLAS/LAPACK routines.
 
-NB: Armadillo does not need any external library for BLAS/LAPACK routines, however it needs to be linked to its shared library. Blaze can run with internal BLAS wrappers but needs to be linked to an external LAPACK library. Eigen can run without calling any external library.
+NB: Armadillo does not need any external library for BLAS/LAPACK routines, however it needs to be linked to its shared library. Blaze can run with internal BLAS routines but needs to be linked to an external LAPACK library. Eigen can run without calling any external library.
 
 ## Example
 
@@ -935,7 +935,7 @@ The following graphs show the results obtained.
 ![graphs2](https://cloud.githubusercontent.com/assets/20603093/21899694/15542800-d8e9-11e6-801b-009ef5279135.png)
 
 ### Observations
-As expected Armadillo with internal BLAS/LAPACK wrappers performance is pretty poor. For small sample sizes Blaze appears to be the fastest for both double and single precision types and more precisely when using Intel MKL. For large sample sizes the performances of the three libraries are quite similar excepted for Armadillo alone that tends to be much slower. We can note the good performance of Eigen in that case with or without external BLAS/LAPACK wrappers.
+Armadillo without the use of OpenBLAS or Intel MKL wrappers obtains poor performance. However, when the wrappers for OpenBLAS or Intel MKL are enabled within Armadillo, the performance is virtually the same as for the other libraries. For small sample sizes Blaze appears to be the fastest for both double and single precision types and more precisely when enabling Intel MKL. For large sample sizes the performances of the three libraries are quite similar excepted for Armadillo alone that tends to be much slower. We can note the good performance of Eigen in that case with or without external BLAS/LAPACK wrappers.
 
 ## Python wrapper
 In this sections we are going to compare the performance of CyURT with the original URT in C++ code using the linear algebra library Blaze by running ./URT/Python/benchmark.py:
@@ -977,7 +977,7 @@ Although slower than the C++ version of URT for small sample sizes, the Python w
 
 ### Comparing CyURT to ARCH
 
-The Python package ARCH contains some unit root tests, the same benchmark than above has been run with ARCH package using the similar ADF test with constant and lag length optimization by AIC minimization. CyURT has been built with the parallel version of URT (using Blaze library linked to Intel MKL) by running make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1. For a fair comparison I made sure that Numpy was calling Intel MKL too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
+The Python package ARCH (version 3.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the similar ADF test with constant and lag length optimization by AIC minimization. CyURT has been built with the parallel version of URT (using Blaze library linked to Intel MKL) by running make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1. For a fair comparison I made sure that Numpy was calling Intel MKL too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
 
 ![tab1](https://cloud.githubusercontent.com/assets/20603093/21957101/8aca6e06-da87-11e6-91e4-2c4f8f359f45.png)
 
@@ -1033,7 +1033,7 @@ We can see that for small sample sizes R6 classes wrapper performance is pretty 
 
 ### Comparing RcppURT to URCA
 
-The R package URCA contains some unit root tests, the same benchmark than above has been run with URCA package using the similar ADF test with constant and lag length optimization by AIC minimization. RcppURT has been built with the parallel version of URT (using Armadillo library linked to Intel MKL) by running make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1. For a fair comparison I made sure that R and URCA package were built with Intel MKL too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
+The R package URCA (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the similar ADF test with constant and lag length optimization by AIC minimization. RcppURT has been built with the parallel version of URT (using Armadillo library linked to Intel MKL) by running make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1. For a fair comparison I made sure that R and URCA package were built with Intel MKL too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
 
 ![tab2](https://cloud.githubusercontent.com/assets/20603093/21957102/8accd678-da87-11e6-83a5-59e6548e2d50.png)
 
