@@ -972,7 +972,13 @@ if __name__ == "__main__":
 ![graphs3](https://cloud.githubusercontent.com/assets/20603093/21899906/e30908ba-d8e9-11e6-8f3c-13e2dac64272.png)
 
 ### Observations
-Although slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase. 
+Although slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase.
+
+### Comparing CyURT to ARCH
+
+The Python package ARCH contains some unit root tests, the same benchmark than above has been run with ARCH package using the similar ADF test with constant and lag length optimization by AIC minimization. CyURT has been built with the parallel version of URT (using Blaze library linked to Intel MKL) by running make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1. For a fair comparison I made sure that Numpy was calling Intel MKL too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
+
+![tab1](https://cloud.githubusercontent.com/assets/20603093/21957101/8aca6e06-da87-11e6-91e4-2c4f8f359f45.png)
 
 ## R wrapper
 In this sections we are going to compare the performance of the R wrappers, R6 classes and Rcpp functions with the original C++ code using the linear algebra library Armadillo by running ./URT/R/benchmark.R:
@@ -1023,6 +1029,9 @@ run <- function()
 
 ### Observations
 We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference tends to disappear.
+
+![tab2](https://cloud.githubusercontent.com/assets/20603093/21957102/8accd678-da87-11e6-83a5-59e6548e2d50.png)
+
 
 # References
 
