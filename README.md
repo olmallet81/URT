@@ -729,10 +729,10 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
     We cannot reject H0
     ```
 
-## URT for Python
+## CyURT: URT for Python 
 URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze.
 
-Before testing URT under Python make sure to have built the URT shared library under ./URT/build with Blaze using for example the command (URT will be compiled without parallelism and with Blaze without external BLAS routines):
+Before testing CyURT under Python make sure to have built the URT shared library under ./URT/build with Blaze using for example the command (URT will be compiled without parallelism and with Blaze without external BLAS routines):
 ```
 $ make USE_BLAZE=1
 ```
@@ -787,7 +787,7 @@ The Python wrapper behaves the same way than under C++, the only difference bein
 
 Important: all URT classes accept numpy arrays only as arguments, *OLS_d* and *OLS_f* classes need a 1-dimension array for dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
     
-## URT for R  
+## RcppURT: URT for R  
 URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo and the R package RcppArmadillo. 
 
 RcppURT contains two different wrappers for URT C++ classes:
@@ -937,7 +937,7 @@ The following graphs show the results obtained.
 As expected Armadillo with internal BLAS/LAPACK wrappers performance is pretty poor. For small sample sizes Blaze appears to be the fastest for both double and single precision types and more precisely when using Intel MKL. For large sample sizes the performances of the three libraries are quite similar excepted for Armadillo alone that tends to be much slower. We can note the good performance of Eigen in that case with or without external BLAS/LAPACK wrappers.
 
 ## Python wrapper
-In this sections we are going to compare the performance of the Python wrapper with the original C++ code using the linear algebra library Blaze by running ./URT/Python/benchmark.py:
+In this sections we are going to compare the performance of CyURT with the original URT in C++ code using the linear algebra library Blaze by running ./URT/Python/benchmark.py:
 
 ```Python
 import numpy as np
@@ -981,7 +981,7 @@ The Python package ARCH contains some unit root tests, the same benchmark than a
 ![tab1](https://cloud.githubusercontent.com/assets/20603093/21957101/8aca6e06-da87-11e6-91e4-2c4f8f359f45.png)
 
 ## R wrapper
-In this sections we are going to compare the performance of the R wrappers, R6 classes and Rcpp functions with the original C++ code using the linear algebra library Armadillo by running ./URT/R/benchmark.R:
+In this sections we are going to compare the performance of RccpURT, R6 classes and Rcpp functions with the original URT in C++ code using the linear algebra library Armadillo by running ./URT/R/benchmark.R:
 
 ```R
 suppressMessages(library(RcppURT))
@@ -1029,6 +1029,10 @@ run <- function()
 
 ### Observations
 We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference tends to disappear.
+
+### Comparing RcppURT to URCA
+
+The R package URCA contains some unit root tests, the same benchmark than above has been run with URCA package using the similar ADF test with constant and lag length optimization by AIC minimization. RcppURT has been built with the parallel version of URT (using Armadillo library linked to Intel MKL) by running make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1. For a fair comparison I made sure that R and URCA package were built with Intel MKL too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
 
 ![tab2](https://cloud.githubusercontent.com/assets/20603093/21957102/8accd678-da87-11e6-83a5-59e6548e2d50.png)
 
