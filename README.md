@@ -65,7 +65,7 @@ Blaze library will requires at least LAPACK to run whereas Armadillo and Eigen h
 
 These libraries will need to be on your C++ compiler path. If you decide to link to Intel MKL or OpenBLAS, please use their sequential and not their multi-threaded version. When installing Intel MKL you will get the two versions, however OpenBLAS needs to be built from source as sequential with USE_THREAD=0.
 
-To use the Python wrapper you will need to install the C++ linear algebra library Blaze and:
+To use the Python wrapper CyURT you will need to install the C++ linear algebra library Blaze and:
 - Python version >= 2.7
 - Numpy version >= 1.11.1
 - Pandas version >= 0.18.1
@@ -73,10 +73,11 @@ To use the Python wrapper you will need to install the C++ linear algebra librar
 
 NB: Pandas is not essential, it will be used in the Python example only.
 
-To use the R wrapper you will need to install the C++ linear algebra library Armadillo and:
-- R version >= 3.3.1
+To use the R wrapper RcppURT you will need to install the C++ linear algebra library Armadillo and:
+- R version >= 3.3.2
 - Rcpp version >= 0.12.8
-- RcppArmadillo version >= 0.7.200.2.0
+- RcppArmadillo version >= 0.7.600.1.0
+- R6 version >= 2.2.0
 
 NB: Some of these tools might work with older versions, I only reported the versions I used to build this project. 
 
