@@ -1,15 +1,2 @@
-# build with R CMD build URT
 
-# add -fopenmp if parallelism required
-PKG_CXXFLAGS = -std=c++14 -Wall -O3 -march=native -DUSE_ARMA
-
-# external libraries path
-MKLPATH = /opt/intel/mkl/lib/intel64/
-BLASPATH = /usr/local/lib/
-
-# with static link to MKL
-PKG_LIBS = -Wl,--start-group ${MKLPATH}libmkl_gf_lp64.a ${MKLPATH}libmkl_core.a ${MKLPATH}libmkl_sequential.a -Wl,--end-group -ldl
-
-# or with static link to OpenBLAS
-#PKG_LIBS = $(BLASPATH)libopenblas.a
 
