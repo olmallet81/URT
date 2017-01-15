@@ -327,10 +327,10 @@ Abstract base class from which all unit root tests will inherit, it contains all
     - *regression* = if set to *true*, OLS regression results will be outputted when running *show()* method, set to *false* by default
     
 - ### Member functions (public)
-    - *get_stat()* to return the test statistic
-    - *get_pval()* to return the test p-value
-    - *get_ols()* to return the OLS regression results
-    - *get_trends()* to return possible trends for the current test
+    - *get_stat()* returns the test statistic
+    - *get_pval()* returns the test p-value
+    - *get_ols()* returns the OLS regression results
+    - *get_trends()* returns the possible trends for the current test
     
     This class has also three pure virtual functions:
     - *statistic()* computes the test statistic
