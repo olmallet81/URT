@@ -166,7 +166,7 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
     
 NB: It is important to mention the differences of behaviour between these libraries when assigning a matrix to a vector: Armadillo will convert this vector into a matrix, Blaze will return a compilation error and Eigen will assign to this vector the first column of the matrix. 
 
-## C++ template class *OLS* (Ordinary Least Squares regression)
+## C++ template class *OLS*
 Declared in ./URT/include/OLS.hpp, defined in ./URT/src/OLS.cpp.
 
 To get fast unit root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
@@ -444,7 +444,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
     We cannot reject H0
     ```
     
-## C++ template class *DFGLS* (Dickey-Fuller Generalized Least Squares test)
+## C++ template class *DFGLS*
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 
 Derived template class from *UnitRoot*, this class has 2 constructors:
@@ -541,7 +541,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
     We cannot reject H0
     ```
 
-## C++ template class *PP* (Phillips-Perron test)
+## C++ template class *PP*
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
 
 Derived template class from *UnitRoot*, this class has 2 constructors:
@@ -636,7 +636,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
     We cannot reject H0
     ```
    
-## C++ template class *KPSS* (Kwiatkowski–Phillips–Schmidt–Shin test)
+## C++ template class *KPSS*
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 
 Derived template class from *UnitRoot*, this class has 2 constructors:
