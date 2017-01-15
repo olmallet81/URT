@@ -298,7 +298,7 @@ NB: the choice has been made not to copy Vector and Matrix, arguments of *OLS* c
 ## C++ template class *UnitRoot*
 Declared in ./URT/include/UnitRoot.hpp, defined in ./URT/src/UnitRoot.cpp.
 
-Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes *ADF*, *DFGLS*, *PP* and *KPSS* will need.
+Abstract base class from which all unit root tests will inherit, it contains all the variables and functions the derived classes [*ADF*](#c-template-class-adf), [*DFGLS*](#c-template-class-dfgls), [*PP*](#c-template-class-pp) and [*KPSS*](#c-template-class-kpss) will need.
 
 - ### Member variables (public)
     - *lags_type* = default number of lags, long (Schwert l12-rule) or short (Schwert l4-rule)
@@ -344,7 +344,7 @@ For ADF and DF-GLS tests an exception will be thrown if the serie being tested d
 ## C++ template class *ADF*
 Declared in ./URT/include/ADF.hpp, defined in ./URT/src/ADF.cpp.
 
-Derived template class from *UnitRoot*, this class has 2 constructors:
+Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class has two constructors:
 
 - ### Constructor for computing ADF test for a given number of lags
 
@@ -446,7 +446,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
 ## C++ template class *DFGLS*
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 
-Derived template class from *UnitRoot*, this class has 2 constructors:
+Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class has two constructors:
 
 - ### Constructor for computing Dickey-Fuller GLS test for a given number of lags
     ```C++
@@ -543,7 +543,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
 ## C++ template class *PP*
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
 
-Derived template class from *UnitRoot*, this class has 2 constructors:
+Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class has two constructors:
 
 - ### Constructor for computing Phillips-Perron test for a given number of lags
     ```C++
@@ -638,7 +638,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
 ## C++ template class *KPSS*
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 
-Derived template class from *UnitRoot*, this class has 2 constructors:
+Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class has two constructors:
 
 - ### Constructor for computing KPSS test for a given number of lags
     ```C++
