@@ -7,7 +7,7 @@ URT is a library designed to procure speed while keeping a high level of flexibi
 The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. For better performance they can all be compiled by linking to external libraries for high-speed BLAS/LAPACK replacements such as Intel MKL and OpenBLAS or by using their own BLAS/LAPACK routines.
 
 URT can also be used under R and Python. The R wrapper called RcppURT is currenty using Armadillo and developped under Rcpp using the R package RcppArmadillo. The Python wrapper called CyURT is currently using Blaze and developped under Cython.
-URT contains an OLS regression and four of the most used unit root tests: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
+URT contains an Ordinary Least Squares regression (OLS) and four of the most used unit root tests: the Augmented Dickey-Fuller test (ADF), the Dickey-Fuller Generalized Least Squares test (DFGLS), the Phillips-Perron test (PP) and the Kwiatkowski–Phillips–Schmidt–Shin test (KPSS). ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
 
 # Why such a project and how can you contribute ?
 I have been developping algorithmic trading tools for a while and it is no secret that unit root tests are widely used in this domain to decide whether a time serie is (weakly) stationary or not and construct on this idea a profitable mean-reversion strategy. Nowadays you often have to look at small time frames as some minutes data to find such trading opportunities and that means on the back-testing side using more and more historical data to test whether the strategy can be profitable on the long term or not. I found frustrating that the available libraries under R and Python, interpreted languages commonly used in the first steps of building a trading algorithm, were too slow or did not offer enough flexibility. To that extent I wanted to develop a library that could be used under higher level languages to get a first idea on the profitability of a strategy and also when developping a more serious back-tester on a larger amount of historical data under a lower level language as C++. 
@@ -17,10 +17,10 @@ In algorithmic trading we have to find the right sample size to test for station
 During my experimentations I have tried to find the correct set up for each C++ linear algebra library (Armadillo, Blaze and Eigen compiled with Intel MKL or OpenBLAS) in order to get the fastest results on a standard sample size of 1000. If anyone can find a faster configuration for one of them, or more generally, if anyone has anything to propose that could make the C++ code or the Cython and Rcpp wrappers faster, he is more than welcome to bring his contribution to this project.
 
 # What is inside this repository ?
-- Ordinary Least Squares regression
+- Ordinary Least Squares regression 
 - Augmented Dickey-Fuller test
 - Dickey-Fuller Generalized Least Squares test
-- Phillips-Perron test
+- Phillips-Perron test 
 - Kwiatkowski–Phillips–Schmidt–Shin test
 - Lag dependent unit-root test p-values
 - Bootstrapped unit-root test p-values 
