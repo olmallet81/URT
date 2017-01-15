@@ -735,15 +735,15 @@ Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class
 ## CyURT: URT for Python 
 URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze.
 
-Before testing CyURT under Python make sure to have built the URT shared library under ./URT/build with Blaze using for example the command (URT will be compiled without parallelism and with Blaze without external BLAS routines):
+Before testing CyURT under Python make sure to have built the URT shared library under ./URT/build with Blaze using for example the command:
 ```
 $ make USE_BLAZE=1
 ```
-To compile the Cython code and build the shared library CyURT.so that will be imported from Python, run setup.py under ./URT/python with the following command: 
+To compile the Cython code and build the shared library CyURT.so that will be imported from Python, run setup.py under ./URT/python with the command: 
 ```
 $ python setup.py build_ext --inplace
 ```
-Before running Python code export the URT C++ shared library path with the following command (under Linux):
+Before running the Python code export URT C++ shared library path with the command:
 ```
 $ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
 ```
