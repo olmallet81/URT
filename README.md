@@ -7,7 +7,7 @@ URT is a library designed to procure speed while keeping a high level of flexibi
 The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. For better performance they can all be compiled by linking to external libraries for high-speed BLAS/LAPACK replacements such as Intel MKL and OpenBLAS or by using their own BLAS/LAPACK routines.
 
 URT can also be used under R and Python. The R wrapper called RcppURT is currenty using Armadillo and developped under Rcpp using the R package RcppArmadillo. The Python wrapper called CyURT is currently using Blaze and developped under Cython.
-URT contains an Ordinary Least Squares regression (OLS) and four of the most used unit root tests: the Augmented Dickey-Fuller test (ADF), the Dickey-Fuller Generalized Least Squares test (DFGLS), the Phillips-Perron test (PP) and the Kwiatkowski–Phillips–Schmidt–Shin test (KPSS). ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
+URT contains an Ordinary Least Squares regression (OLS) and four of the most used unit root tests: the Augmented Dickey-Fuller test (ADF), the Dickey-Fuller Generalized Least Squares test (DF-GLS), the Phillips-Perron test and the Kwiatkowski–Phillips–Schmidt–Shin test (KPSS). ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
 
 # Why such a project and how can you contribute ?
 I have been developping algorithmic trading tools for a while and it is no secret that unit root tests are widely used in this domain to decide whether a time serie is (weakly) stationary or not and construct on this idea a profitable mean-reversion strategy. Nowadays you often have to look at small time frames as some minutes data to find such trading opportunities and that means on the back-testing side using more and more historical data to test whether the strategy can be profitable on the long term or not. I found frustrating that the available libraries under R and Python, interpreted languages commonly used in the first steps of building a trading algorithm, were too slow or did not offer enough flexibility. To that extent I wanted to develop a library that could be used under higher level languages to get a first idea on the profitability of a strategy and also when developping a more serious back-tester on a larger amount of historical data under a lower level language as C++. 
@@ -44,10 +44,10 @@ The method is simple, starting from a chosen set of sample sizes and a chosen se
 In order to increase the precision of the method some terms have been added going further than degree 2 for the first sum and/or the second sum, while trying to get significant heteroskedasticity consistent t-statistics for the regression coefficients obtained. Both sample sizes and number of lags sets proposed by Cheung and Kai have been expanded. For the most important critical values that is the ones at the significance levels 1%, 5% and 10% for ADF, DF-GLS and Phillips-Perron tests and 99%, 95% and 90% for the KPSS test, Monte-Carlo critical values have been computed using a high number of simulations and for reduced sets of sizes and lags to compare and improve the estimated critical values precision by modifying the initial set of sizes and lags and by adding or removing some terms to the original equation proposed by Cheung and Lai.
 
 The coefficients obtained by OLS regression for each unit-root test and each significance level are reported in the header files in ./URT/include:
-- Coeff_adf.hpp for ADF test
-- Coeff_dfgls.hpp for DF-GLS test
-- Coeff_pp.hpp for Phillips-Perron tests (t-statistic and normalized statistic)
-- Coeff_kpss.hpp for KPSS test
+- Coeff_adf.hpp for the ADF test
+- Coeff_dfgls.hpp for the DF-GLS test
+- Coeff_pp.hpp for the Phillips-Perron tests (t-statistic and normalized statistic)
+- Coeff_kpss.hpp for the KPSS test
 
 NB: arrays indexed by 0 contain the asymptotic estimate of the critical value for the corresponding significance level *Tau(0)* and the coefficients of the first term of the equation *Tau(i)*, arrays indexed by 1 contain the coefficients of the second term of the equation *Phi(j)*.
 
@@ -166,7 +166,7 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
     
 NB: It is important to mention the differences of behaviour between these libraries when assigning a matrix to a vector: Armadillo will convert this vector into a matrix, Blaze will return a compilation error and Eigen will assign to this vector the first column of the matrix. 
 
-## C++ template class *OLS*:
+## C++ template class *OLS* (Ordinary Least Squares regression)
 Declared in ./URT/include/OLS.hpp, defined in ./URT/src/OLS.cpp.
 
 To get fast unit root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
@@ -342,7 +342,7 @@ Abstract base class from which all unit-root tests will inherit, it contains all
 - ### Exceptions
 For ADF and DF-GLS tests an exception will be thrown if the serie being tested does not have enough elements for the required number of lags. The number of additional elements to be added will be returned.
 
-## C++ template class *ADF*
+## C++ template class *ADF* (Augmented Dickey-Fuller test)
 Declared in ./URT/include/ADF.hpp, defined in ./URT/src/ADF.cpp.
 
 Derived template class from *UnitRoot*, this class has 2 constructors:
@@ -444,7 +444,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
     We cannot reject H0
     ```
     
-## C++ template class *DFGLS*
+## C++ template class *DFGLS* (Dickey-Fuller Generalized Least Squares test)
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 
 Derived template class from *UnitRoot*, this class has 2 constructors:
@@ -541,7 +541,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
     We cannot reject H0
     ```
 
-## C++ template class *PP*
+## C++ template class *PP* (Phillips-Perron test)
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
 
 Derived template class from *UnitRoot*, this class has 2 constructors:
@@ -636,7 +636,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
     We cannot reject H0
     ```
    
-## C++ template class *KPSS*
+## C++ template class *KPSS* (Kwiatkowski–Phillips–Schmidt–Shin test)
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 
 Derived template class from *UnitRoot*, this class has 2 constructors:
