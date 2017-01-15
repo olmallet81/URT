@@ -22,8 +22,8 @@ During my experimentations I have tried to find the correct set up for each C++ 
 - [Dickey-Fuller Generalized Least Squares test](#c-template-class-dfgls)
 - [Phillips-Perron test](#c-template-class-pp) 
 - [Kwiatkowski–Phillips–Schmidt–Shin test](#c-template-class-kpss)
-- [Wrapper to expose URT to R](#cyurt-urt-for-python) 
-- [Wrapper to expose URT to Python](#rcppurt-urt-for-r)
+- [CyURT: wrapper to use URT under R](#cyurt-urt-for-python) 
+- [RcppURT: wrapper to use URT under Python](#rcppurt-urt-for-r)
 - [Benchmarks](#benchmarks)
 
 # Innovation
