@@ -878,6 +878,7 @@ NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as 
 
 ## C++
 
+- ### Presentation
 In this section we are going to compare URT performance using alternatively Armadillo, Blaze and Eigen, each one of these linear algebra libraries using alternatively Intel MKL, OpenBLAS and their internal BLAS/LAPACK wrapper (at the exception of Blaze which must be linked at least to an external LAPACK library).
 Once the nine URT shared libraries have been built we are ready to proceed by running for each one of them ./URT/benchmark/benchmark.cpp:
 
@@ -940,6 +941,8 @@ The following graphs show the results obtained.
 Armadillo without the use of OpenBLAS or Intel MKL wrappers obtains poor performance. However, when the wrappers for OpenBLAS or Intel MKL are enabled within Armadillo, the performance is virtually the same as for the other libraries. For small sample sizes Blaze appears to be the fastest for both double and single precision types and more precisely when enabling Intel MKL. For large sample sizes the performances of the three libraries are quite similar excepted for Armadillo alone that tends to be much slower. We can note the good performance of Eigen in that case with or without external BLAS/LAPACK wrappers.
 
 ## Python wrapper
+
+- ### Presentation
 In this sections we are going to compare the performance of CyURT with the original URT in C++ code using the linear algebra library Blaze by running ./URT/Python/benchmark.py:
 
 ```Python
@@ -978,12 +981,13 @@ if __name__ == "__main__":
 Although slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase.
 
 - ### Comparing CyURT to ARCH
-
 The Python package ARCH (version 3.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the same ADF test with constant and lag length optimization by AIC minimization. CyURT has been built with URT using Blaze library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that Numpy was also calling Intel MKL libraries. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
 
 ![tab1](https://cloud.githubusercontent.com/assets/20603093/21959453/14d5b71c-dac0-11e6-8b4f-3d760e522315.png)
 
 ## R wrapper
+
+- ### Presentation
 In this sections we are going to compare the performance of RccpURT, R6 classes and Rcpp functions with the original URT in C++ code using the linear algebra library Armadillo by running ./URT/R/benchmark.R:
 
 ```R
@@ -1034,7 +1038,6 @@ run <- function()
 We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference tends to disappear.
 
 - ### Comparing RcppURT to URCA
-
 The R package URCA (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the same ADF test with constant and lag length optimization by AIC minimization. RcppURT has been built with URT using Armadillo library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries with OpenMP enabled. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
 
 ![tab2](https://cloud.githubusercontent.com/assets/20603093/21959600/d4fd6ef6-dac3-11e6-8d1a-9c138c9b79ed.png)
