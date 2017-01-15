@@ -198,7 +198,7 @@ To get fast unit root tests, we need a fast and flexible OLS regression allowing
     - *ndef* = number of degrees of freedom
     - *lags* = number of lags
     
-    NB: *IC* and *lags* are for the case when OLS is called by a unit root test class for lag length optimization by information criterion minimization.
+    NB: *IC* and *lags* are for the case when *OLS* is used by a unit root test class for lag length optimization by information criterion minimization.
     
 - ### Member functions (public)
     - *get_stats()* takes same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics and detects the presence of an intercept term
