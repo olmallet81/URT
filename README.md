@@ -67,8 +67,8 @@ These libraries will need to be on your C++ compiler path. If you decide to link
 
 To use the Python wrapper CyURT you will need to install the C++ linear algebra library Blaze and:
 - Python version >= 2.7
-- Numpy version >= 1.11.1
-- Pandas version >= 0.18.1
+- Numpy version >= 1.11.3
+- Pandas version >= 0.19.2
 - Cython version >= 0.24.1
 
 NB: Pandas is not essential, it will be used in the Python example only.
@@ -979,7 +979,7 @@ if __name__ == "__main__":
 Although slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase.
 
 - ### Comparing CyURT to ARCH
-The Python package ARCH (version 3.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the same ADF test with constant term and lag length optimization by AIC minimization. CyURT has been built with URT using Blaze library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that Numpy was also calling Intel MKL libraries. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
+The Python package [ARCH](https://pypi.python.org/pypi/arch/3.0) (version 4.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the same ADF test with constant term and lag length optimization by AIC minimization. CyURT has been built with URT using Blaze library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that Numpy was also calling Intel MKL libraries. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
 
    ![tab1](https://cloud.githubusercontent.com/assets/20603093/21963128/b785a050-db2c-11e6-83a3-0d712575e1be.png)
 
@@ -1035,7 +1035,7 @@ run <- function()
 We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference tends to disappear.
 
 - ### Comparing RcppURT to URCA
-The R package URCA (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the same ADF test with constant term and lag length optimization by AIC minimization. RcppURT has been built with URT using Armadillo library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries with OpenMP enabled. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
+The R package [URCA](https://cran.r-project.org/web/packages/urca/index.html) (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the same ADF test with constant term and lag length optimization by AIC minimization. RcppURT has been built with URT using Armadillo library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries with OpenMP enabled. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
 
    ![tab2](https://cloud.githubusercontent.com/assets/20603093/21963141/f06fcea4-db2c-11e6-92a1-b55804ce2b28.png)
 
