@@ -17,15 +17,14 @@ In algorithmic trading we have to find the right sample size to test for station
 During my experimentations I have tried to find the correct set up for each C++ linear algebra library (Armadillo, Blaze and Eigen compiled with Intel MKL or OpenBLAS) in order to get the fastest results on a standard sample size of 1000. If anyone can find a faster configuration for one of them, or more generally, if anyone has anything to propose that could make the C++ code or the Cython and Rcpp wrappers faster, he is more than welcome to bring his contribution to this project.
 
 # What is inside this repository ?
-- Ordinary Least Squares regression 
+- [Ordinary Least Squares regression](#c-template-class-ols) 
 - [Augmented Dickey-Fuller test](#c-template-class-adf)
-- Dickey-Fuller Generalized Least Squares test
-- Phillips-Perron test 
-- Kwiatkowski–Phillips–Schmidt–Shin test
-- Lag dependent unit-root test p-values
-- Bootstrapped unit-root test p-values 
-- Wrapper to expose URT to R 
-- Wrapper to expose URT to Python
+- [Dickey-Fuller Generalized Least Squares test](#c-template-class-dfgls)
+- [Phillips-Perron test](#c-template-class-pp) 
+- [Kwiatkowski–Phillips–Schmidt–Shin test](#c-template-class-kpss)
+- [Wrapper to expose URT to R](#cyurt-urt-for-python) 
+- [Wrapper to expose URT to Python](#rcppurt-urt-for-r)
+- [Benchmarks](#benchmarks)
 
 # Innovation
 Unit root tests use lags in order to reduce auto-correlation as much as possible in the time serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency and it can easily been proved by Monte-Carlo simulations. However, very few unit root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags. The method used in this project is the one explained by Cheung and Lai in "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (1995). This method has been pushed further and adapted to other unit root tests. 
