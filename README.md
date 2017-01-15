@@ -18,7 +18,7 @@ During my experimentations I have tried to find the correct set up for each C++ 
 
 # What is inside this repository ?
 - Ordinary Least Squares regression 
-- Augmented Dickey-Fuller test [click on this link](## c++-template-class-*adf*-(augmented-dickey-fuller-test))
+- [Augmented Dickey-Fuller test](## C++-template-class-*ADF*)
 - Dickey-Fuller Generalized Least Squares test
 - Phillips-Perron test 
 - Kwiatkowski–Phillips–Schmidt–Shin test
@@ -342,7 +342,7 @@ Abstract base class from which all unit-root tests will inherit, it contains all
 - ### Exceptions
 For ADF and DF-GLS tests an exception will be thrown if the serie being tested does not have enough elements for the required number of lags. The number of additional elements to be added will be returned.
 
-## C++ template class *ADF* (Augmented Dickey-Fuller test)
+## C++ template class *ADF*
 Declared in ./URT/include/ADF.hpp, defined in ./URT/src/ADF.cpp.
 
 Derived template class from *UnitRoot*, this class has 2 constructors:
