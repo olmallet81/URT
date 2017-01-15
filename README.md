@@ -979,7 +979,7 @@ Although slower than the C++ version of URT for small sample sizes, the Python w
 
 The Python package ARCH (version 3.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the similar ADF test with constant and lag length optimization by AIC minimization. CyURT has been built with the parallel version of URT (using Blaze library linked to Intel MKL and enabling OpenMP). For a fair comparison I made sure that Numpy was also calling Intel MKL libraries. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
 
-![tab1](https://cloud.githubusercontent.com/assets/20603093/21957487/219724d0-da8f-11e6-8b76-7b1d8b8250cf.png)
+![tab1](https://cloud.githubusercontent.com/assets/20603093/21959453/14d5b71c-dac0-11e6-8b4f-3d760e522315.png)
 
 ## R wrapper
 In this sections we are going to compare the performance of RccpURT, R6 classes and Rcpp functions with the original URT in C++ code using the linear algebra library Armadillo by running ./URT/R/benchmark.R:
@@ -1035,7 +1035,7 @@ We can see that for small sample sizes R6 classes wrapper performance is pretty 
 
 The R package URCA (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the similar ADF test with constant and lag length optimization by AIC minimization. RcppURT has been built with the parallel version of URT (using Armadillo library linked to Intel MKL and enabling OpenMP). For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
 
-![tab2](https://cloud.githubusercontent.com/assets/20603093/21957498/57cf2f8e-da8f-11e6-88a0-705d0c11149f.png)
+![tab2](https://cloud.githubusercontent.com/assets/20603093/21959454/14ec5184-dac0-11e6-8fa0-1fc2292ee6e6.png)
 
 # References
 
