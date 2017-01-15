@@ -339,7 +339,7 @@ Abstract base class from which all unit root tests will inherit, it contains all
     NB: *UnitRoot* template class is designed in a way that test statistic and test p-value will not be re-calculated if all parameters remain identical. For example, if user calls *pvalue()* method and after *show()*, *pvalue()* will not be run again unless the user has modified at least one parameter of the current test.
  
 - ### Exceptions
-For ADF and DF-GLS tests an exception will be thrown if the serie being tested does not have enough elements for the required number of lags. The number of additional elements to be added will be returned.
+For ADF and DF-GLS tests an exception will be thrown when running the member function *statistic()* or *pvalue()* or *show()* if the serie being tested does not have enough elements for the required number of lags. The number of additional elements to be added will be outputted.
 
 ## C++ template class *ADF*
 Declared in ./URT/include/ADF.hpp, defined in ./URT/src/ADF.cpp.
