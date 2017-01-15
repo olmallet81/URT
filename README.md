@@ -6,8 +6,8 @@ URT is a library designed to procure speed while keeping a high level of flexibi
 
 The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: Armadillo, Blaze and Eigen. The user can switch from one library to another and compare performaces. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. For better performance they can all be compiled by linking to external libraries for high-speed BLAS/LAPACK replacements such as Intel MKL and OpenBLAS or by using their own BLAS/LAPACK routines.
 
-URT can also be used under R and Python. The R wrapper called RcppURT is currenty using Armadillo and developped under Rcpp using the RcppArmadillo R package. The Python wrapper called CyURT is currently using Blaze and developped under Cython.
-URT contains an OLS regression and four of the most used unit root tests: ADF, DF-GLS, Phillips-Perron and KPSS. ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic method. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
+URT can also be used under R and Python. The R wrapper called RcppURT is currenty using Armadillo and developped under Rcpp using the R package RcppArmadillo. The Python wrapper called CyURT is currently using Blaze and developped under Cython.
+URT contains an Ordinary Least Squares regression (OLS) and four of the most used unit root tests: the Augmented Dickey-Fuller test (ADF), the Dickey-Fuller Generalized Least Squares test (DF-GLS), the Phillips-Perron test and the Kwiatkowski–Phillips–Schmidt–Shin test (KPSS). ADF and DF-GLS allow for lag length optimization through different methods as information criterion minimization and t-statistic. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
 
 # Why such a project and how can you contribute ?
 I have been developping algorithmic trading tools for a while and it is no secret that unit root tests are widely used in this domain to decide whether a time serie is (weakly) stationary or not and construct on this idea a profitable mean-reversion strategy. Nowadays you often have to look at small time frames as some minutes data to find such trading opportunities and that means on the back-testing side using more and more historical data to test whether the strategy can be profitable on the long term or not. I found frustrating that the available libraries under R and Python, interpreted languages commonly used in the first steps of building a trading algorithm, were too slow or did not offer enough flexibility. To that extent I wanted to develop a library that could be used under higher level languages to get a first idea on the profitability of a strategy and also when developping a more serious back-tester on a larger amount of historical data under a lower level language as C++. 
@@ -17,15 +17,14 @@ In algorithmic trading we have to find the right sample size to test for station
 During my experimentations I have tried to find the correct set up for each C++ linear algebra library (Armadillo, Blaze and Eigen compiled with Intel MKL or OpenBLAS) in order to get the fastest results on a standard sample size of 1000. If anyone can find a faster configuration for one of them, or more generally, if anyone has anything to propose that could make the C++ code or the Cython and Rcpp wrappers faster, he is more than welcome to bring his contribution to this project.
 
 # What is inside this repository ?
-- Ordinary Least Squares regression
-- Augmented Dickey-Fuller test
-- Dickey-Fuller Generalized Least Squares test
-- Phillips-Perron test
-- Kwiatkowski–Phillips–Schmidt–Shin test
-- Lag dependent unit-root test p-values
-- Bootstrapped unit-root test p-values 
-- Wrapper to expose URT to R 
-- Wrapper to expose URT to Python
+- [Ordinary Least Squares regression](#c-template-class-ols) 
+- [Augmented Dickey-Fuller test](#c-template-class-adf)
+- [Dickey-Fuller Generalized Least Squares test](#c-template-class-dfgls)
+- [Phillips-Perron test](#c-template-class-pp) 
+- [Kwiatkowski–Phillips–Schmidt–Shin test](#c-template-class-kpss)
+- [CyURT: wrapper to use URT under R](#cyurt-urt-for-python) 
+- [RcppURT: wrapper to use URT under Python](#rcppurt-urt-for-r)
+- [Benchmarks](#benchmarks)
 
 # Innovation
 Unit root tests use lags in order to reduce auto-correlation as much as possible in the time serie being tested. The test p-value is lag dependent as the critical values will be different depending on the number of lags, several studies have shown this dependency and it can easily been proved by Monte-Carlo simulations. However, very few unit root tests librairies take this phenomenom into account and return wrong p-values for a large number of lags. The method used in this project is the one explained by Cheung and Lai in "Lag Order and Critical Values of the Augmented Dickey-Fuller Test" (1995). This method has been pushed further and adapted to other unit root tests. 
@@ -44,10 +43,10 @@ The method is simple, starting from a chosen set of sample sizes and a chosen se
 In order to increase the precision of the method some terms have been added going further than degree 2 for the first sum and/or the second sum, while trying to get significant heteroskedasticity consistent t-statistics for the regression coefficients obtained. Both sample sizes and number of lags sets proposed by Cheung and Kai have been expanded. For the most important critical values that is the ones at the significance levels 1%, 5% and 10% for ADF, DF-GLS and Phillips-Perron tests and 99%, 95% and 90% for the KPSS test, Monte-Carlo critical values have been computed using a high number of simulations and for reduced sets of sizes and lags to compare and improve the estimated critical values precision by modifying the initial set of sizes and lags and by adding or removing some terms to the original equation proposed by Cheung and Lai.
 
 The coefficients obtained by OLS regression for each unit-root test and each significance level are reported in the header files in ./URT/include:
-- Coeff_adf.hpp for ADF test
-- Coeff_dfgls.hpp for DF-GLS test
-- Coeff_pp.hpp for Phillips-Perron tests (t-statistic and normalized statistic)
-- Coeff_kpss.hpp for KPSS test
+- Coeff_adf.hpp for the ADF test
+- Coeff_dfgls.hpp for the DF-GLS test
+- Coeff_pp.hpp for the Phillips-Perron tests (t-statistic and normalized statistic)
+- Coeff_kpss.hpp for the KPSS test
 
 NB: arrays indexed by 0 contain the asymptotic estimate of the critical value for the corresponding significance level *Tau(0)* and the coefficients of the first term of the equation *Tau(i)*, arrays indexed by 1 contain the coefficients of the second term of the equation *Phi(j)*.
 
@@ -166,7 +165,7 @@ All URT classes and functions are within the namespace *urt*. As URT allows the 
     
 NB: It is important to mention the differences of behaviour between these libraries when assigning a matrix to a vector: Armadillo will convert this vector into a matrix, Blaze will return a compilation error and Eigen will assign to this vector the first column of the matrix. 
 
-## C++ template class *OLS*:
+## C++ template class *OLS*
 Declared in ./URT/include/OLS.hpp, defined in ./URT/src/OLS.cpp.
 
 To get fast unit root tests, we need a fast and flexible OLS regression allowing to get the parameters (regressor coefficients) solution of the multiple linear equation y = X.b, as well as their variances to compute the t-statistics. These statistics will be used by the unit-root tests to decide whether the serie is (weakly) stationary or not.
@@ -198,7 +197,7 @@ To get fast unit root tests, we need a fast and flexible OLS regression allowing
     - *ndef* = number of degrees of freedom
     - *lags* = number of lags
     
-    NB: *IC* and *lags* are for the case when OLS is called by a unit root test class for lag length optimization by information criterion minimization.
+    NB: *IC* and *lags* are for the case when *OLS* is used by a unit root test class for lag length optimization by information criterion minimization.
     
 - ### Member functions (public)
     - *get_stats()* takes same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics and detects the presence of an intercept term
@@ -299,7 +298,7 @@ NB: the choice has been made not to copy Vector and Matrix, arguments of *OLS* c
 ## C++ template class *UnitRoot*
 Declared in ./URT/include/UnitRoot.hpp, defined in ./URT/src/UnitRoot.cpp.
 
-Abstract base class from which all unit-root tests will inherit, it contains all the variables and functions the derived classes *ADF*, *DFGLS*, *PP* and *KPSS* will need.
+Abstract base class from which all unit root tests will inherit, it contains all the variables and functions the derived classes [*ADF*](#c-template-class-adf), [*DFGLS*](#c-template-class-dfgls), [*PP*](#c-template-class-pp) and [*KPSS*](#c-template-class-kpss) will need.
 
 - ### Member variables (public)
     - *lags_type* = default number of lags, long (Schwert l12-rule) or short (Schwert l4-rule)
@@ -345,7 +344,7 @@ For ADF and DF-GLS tests an exception will be thrown if the serie being tested d
 ## C++ template class *ADF*
 Declared in ./URT/include/ADF.hpp, defined in ./URT/src/ADF.cpp.
 
-Derived template class from *UnitRoot*, this class has 2 constructors:
+Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class has two constructors:
 
 - ### Constructor for computing ADF test for a given number of lags
 
@@ -447,7 +446,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
 ## C++ template class *DFGLS*
 Declared in ./URT/include/DFGLS.hpp, defined in ./URT/src/DFGLS.cpp.
 
-Derived template class from *UnitRoot*, this class has 2 constructors:
+Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class has two constructors:
 
 - ### Constructor for computing Dickey-Fuller GLS test for a given number of lags
     ```C++
@@ -544,7 +543,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
 ## C++ template class *PP*
 Declared in ./URT/include/PP.hpp, defined in ./URT/src/PP.cpp.
 
-Derived template class from *UnitRoot*, this class has 2 constructors:
+Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class has two constructors:
 
 - ### Constructor for computing Phillips-Perron test for a given number of lags
     ```C++
@@ -639,7 +638,7 @@ Derived template class from *UnitRoot*, this class has 2 constructors:
 ## C++ template class *KPSS*
 Declared in ./URT/include/KPSS.hpp, defined in ./URT/src/KPSS.cpp.
 
-Derived template class from *UnitRoot*, this class has 2 constructors:
+Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class has two constructors:
 
 - ### Constructor for computing KPSS test for a given number of lags
     ```C++
