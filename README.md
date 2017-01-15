@@ -18,7 +18,7 @@ During my experimentations I have tried to find the correct set up for each C++ 
 
 # What is inside this repository ?
 - Ordinary Least Squares regression 
-- Augmented Dickey-Fuller test
+- Augmented Dickey-Fuller test [click on this link](## c++-template-class-*adf*-(augmented-dickey-fuller-test))
 - Dickey-Fuller Generalized Least Squares test
 - Phillips-Perron test 
 - Kwiatkowski–Phillips–Schmidt–Shin test
