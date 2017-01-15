@@ -976,7 +976,7 @@ if __name__ == "__main__":
 ![graphs3](https://cloud.githubusercontent.com/assets/20603093/21963508/3a86ca04-db34-11e6-984a-38f11fc3c687.png)
 
 - ### Observations
-Although slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase.
+Although a bit slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase.
 
 - ### Comparing CyURT to ARCH
 The Python package [ARCH](https://pypi.python.org/pypi/arch/3.0) (version 4.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the same ADF test with constant term and lag length optimization by AIC minimization. CyURT has been built with URT using Blaze library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that Numpy was also calling Intel MKL libraries. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
