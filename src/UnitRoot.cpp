@@ -1037,8 +1037,6 @@ void UnitRoot<T>::run_bootstrap()
    #else
    result = std::shared_ptr<OLS<T>>(new OLS<T>(saved_result));
    #endif
-
-    // NB: if we want to obtain the same critical values as shown in most of tables we will use gaussian random numbers, however this is wrong as we do not know the residual distribution, then the best way of obtaining the true critical values is to use the model residuals and shuffle them to obtain new paths. However this method is valid when the sample size is large enough, indeed when too small the residuals diversity will be small and the critical values estimations will poor when using lags.
 }
 
 //*************************************************************************************************
