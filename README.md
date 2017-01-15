@@ -33,7 +33,7 @@ Unit root tests use lags in order to reduce auto-correlation as much as possible
 The method is simple, starting from a chosen set of sample sizes and a chosen set of number of lags, it consists in 3 steps:
 - step 1: generate a non-stationary random sample (Wiener process) of a given size for ADF, DF-GLS and Phillips-Perron tests and a stationary random sample (Gaussian noise) of a given size for the KPSS test
 - step 2: compute the corresponding test statistic for a given number of lags
-- repeat step 1 and 2 many times to get test statistics for a given pair sample size and number of lags
+- repeat step 1 and 2 many times to get the test statistics for a given pair sample size and number of lags
 - step 3: sort the statistics obtained to get their distribution and record the critical value for all required significance levels 
 - repeat step 1 to 3 for all possible pairs of sample size and number of lags and fit by OLS regression these critical values for all required significance levels to the equation proposed by Cheung and Lai:
 
