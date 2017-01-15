@@ -930,13 +930,13 @@ NB: The URT libraries have been built single-threaded meaning that the research 
 
 The following graphs show the results obtained.
 
-### Results on small sample sizes
+- ### Results on small sample sizes
 ![graphs1](https://cloud.githubusercontent.com/assets/20603093/21899692/10af315a-d8e9-11e6-85aa-c9df2df4c2a7.png)
 
-### Results on large sample sizes
+- ### Results on large sample sizes
 ![graphs2](https://cloud.githubusercontent.com/assets/20603093/21899694/15542800-d8e9-11e6-801b-009ef5279135.png)
 
-### Observations
+- ### Observations
 Armadillo without the use of OpenBLAS or Intel MKL wrappers obtains poor performance. However, when the wrappers for OpenBLAS or Intel MKL are enabled within Armadillo, the performance is virtually the same as for the other libraries. For small sample sizes Blaze appears to be the fastest for both double and single precision types and more precisely when enabling Intel MKL. For large sample sizes the performances of the three libraries are quite similar excepted for Armadillo alone that tends to be much slower. We can note the good performance of Eigen in that case with or without external BLAS/LAPACK wrappers.
 
 ## Python wrapper
@@ -971,13 +971,13 @@ if __name__ == "__main__":
 
         print '{:8d}'.format(sizes[i]), '{:8.1f}'.format(end - start)
 ```
-### Results on small and large sample sizes
+- ### Results on small and large sample sizes
 ![graphs3](https://cloud.githubusercontent.com/assets/20603093/21899906/e30908ba-d8e9-11e6-8f3c-13e2dac64272.png)
 
-### Observations
+- ### Observations
 Although slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase.
 
-### Comparing CyURT to ARCH
+- ### Comparing CyURT to ARCH
 
 The Python package ARCH (version 3.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the same ADF test with constant and lag length optimization by AIC minimization. CyURT has been built with URT using Blaze library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that Numpy was also calling Intel MKL libraries. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
 
@@ -1027,13 +1027,13 @@ run <- function()
 }
 ```
 
-### Results on small and large sample sizes
+- ### Results on small and large sample sizes
 ![graphs4](https://cloud.githubusercontent.com/assets/20603093/21899911/e52af612-d8e9-11e6-9760-88e16cac48a6.png)
 
-### Observations
+- ### Observations
 We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference tends to disappear.
 
-### Comparing RcppURT to URCA
+- ### Comparing RcppURT to URCA
 
 The R package URCA (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the same ADF test with constant and lag length optimization by AIC minimization. RcppURT has been built with URT using Armadillo library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries with OpenMP enabled. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
 
