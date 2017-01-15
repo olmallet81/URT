@@ -74,7 +74,7 @@ To use the Python wrapper CyURT you will need to install the C++ linear algebra 
 NB: Pandas is not essential, it will be used in the Python example only.
 
 To use the R wrapper RcppURT you will need to install the C++ linear algebra library Armadillo and:
-- R version >= 3.3.2
+- R version >= 3.3.2 (preferably built from source with Intel MKL and parallelism enabled)
 - Rcpp version >= 0.12.8
 - RcppArmadillo version >= 0.7.600.1.0
 - R6 version >= 2.2.0
