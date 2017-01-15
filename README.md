@@ -318,7 +318,7 @@ Abstract base class from which all unit root tests will inherit, it contains all
         - *c* = constant (for all tests, default value)
         - *ct* = constant trend (for all tests)
         - *ctt* = quadratic trend (for ADF test only)
-    - *level* = statistic (absolute) threshold for optimal lag length selection, for T-STAT method only, set to *1.64* by default
+    - *level* = statistic (absolute) threshold for optimal lag length selection, for *T-STAT* method only, set to *1.64* by default
     - *lags* = model number of lags
     - *max_lags* = maximum number of lags, for models with lag length optimization, initialized to Schwert l12-rule by default
     - *niter* = number of iterations when computing test p-value by bootstrap, initialized to 1000 by default
@@ -328,8 +328,8 @@ Abstract base class from which all unit root tests will inherit, it contains all
 - ### Member functions (public)
     - *get_stat()* to return the test statistic
     - *get_pval()* to return the test p-value
-    - *get_ols()* to return the OLS regression results (returns object of type urt::OLS)
-    - *get_trends()* to return possible trends for the current test (returns std::vector)
+    - *get_ols()* to return the OLS regression results
+    - *get_trends()* to return possible trends for the current test
     
     This class has also three pure virtual functions:
     - *statistic()* computes the test statistic
