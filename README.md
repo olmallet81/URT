@@ -74,7 +74,7 @@ To use the Python wrapper CyURT you will need to install the C++ linear algebra 
 NB: Pandas is not essential, it will be used in the Python example only.
 
 To use the R wrapper RcppURT you will need to install the C++ linear algebra library Armadillo and:
-- R version >= 3.3.2 (preferably built from source with Intel MKL and parallelism enabled)
+- R version >= 3.3.2 (preferably built from source with Intel MKL and OpenMP enabled)
 - Rcpp version >= 0.12.8
 - RcppArmadillo version >= 0.7.600.1.0
 - R6 version >= 2.2.0
@@ -103,7 +103,9 @@ NB: Armadillo does not need any external library for BLAS/LAPACK routines, howev
 
 - step 1: build libURT.so using the makefile under ./URT/build with:
 ```
+$ cd URT/build
 $ make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1
+$ cd ../../
 ```
 
 - step 2: export shared library location with:
