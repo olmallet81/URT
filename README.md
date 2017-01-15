@@ -53,7 +53,7 @@ NB: arrays indexed by 0 contain the asymptotic estimate of the critical value fo
 
 # Requirements
 To use the C++ version of URT you will need to install at least one of these three free C++ linear algebra libraries:
-- Armadillo version >= 7.300.1
+- Armadillo version >= 7.600.1
 - Blaze version >= 3.0
 - Eigen version >= 3.3.1
 
