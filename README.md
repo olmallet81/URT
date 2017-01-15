@@ -878,7 +878,7 @@ NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as 
 
 ## C++
 
-In this section we are going to compare URT performance using alternatively Armadillo, Blaze and Eigen, each one of these linear algebra libraries using alternatively Intel MKL, OpenBLAS and their internal BLAS/LAPACK wrapper (at the exception of Blaze which must be linked at least to an external LAPACK library).
+In this section we are going to compare URT performance using alternatively Armadillo, Blaze and Eigen, each one of these linear algebra libraries using alternatively Intel MKL, OpenBLAS and their internal BLAS/LAPACK routines (at the exception of Blaze which must be linked at least to an external LAPACK library).
 Once the nine URT shared libraries have been built we are ready to proceed by running for each one of them ./URT/benchmark/benchmark.cpp:
 
 ```C++
@@ -941,7 +941,7 @@ Armadillo without the use of OpenBLAS or Intel MKL wrappers obtains poor perform
 
 ## Python wrapper
 
-In this sections we are going to compare the performance of CyURT with the original URT in C++ code using the linear algebra library Blaze by running ./URT/Python/benchmark.py:
+In this section we are going to compare the performance of CyURT with the original URT in C++ code using the linear algebra library Blaze by running ./URT/Python/benchmark.py:
 
 ```Python
 import numpy as np
@@ -985,7 +985,7 @@ The Python package ARCH (version 3.0) contains some unit root tests, the same be
 
 ## R wrapper
 
-In this sections we are going to compare the performance of RccpURT, R6 classes and Rcpp functions with the original URT in C++ code using the linear algebra library Armadillo by running ./URT/R/benchmark.R:
+In this section we are going to compare the performance of RccpURT, R6 classes and Rcpp functions with the original URT in C++ code using the linear algebra library Armadillo by running ./URT/R/benchmark.R:
 
 ```R
 suppressMessages(library(RcppURT))
