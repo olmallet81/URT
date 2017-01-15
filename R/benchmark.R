@@ -19,19 +19,19 @@ run <- function()
     # with R6 classes
     start1 = Sys.time()
     for (k in 1:niter) {
-        test = ADF_d$new(data, method='AIC')
-        # uncomment this line and comment the one above to switch to single precision
-        #test = ADF_f$new(data, method='AIC')
-        test$statistic()
+      test = ADF_d$new(data, method='AIC')
+      # uncomment this line and comment the one above to switch to single precision
+      #test = ADF_f$new(data, method='AIC')
+      test$statistic()
     }
     end1 = Sys.time()
 
     # with Rcpp functions
     start2 = Sys.time()
     for (k in 1:niter) {
-        test = ADFtest_d(data, method='AIC')
-        # uncomment this line and comment the one above to switch to single precision
-        #test = ADFtest_f(data, method='AIC')
+      test = ADFtest_d(data, method='AIC')
+      # uncomment this line and comment the one above to switch to single precision
+      #test = ADFtest_f(data, method='AIC')
     }
     end2 = Sys.time()
 
