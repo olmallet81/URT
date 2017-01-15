@@ -179,7 +179,7 @@ To get fast unit root tests, we need a fast and flexible OLS regression allowing
     with:
     - *y* = vector of the dependent variable
     - *x* = matrix of the independent variables (it can include intercept, constant trend, etc...)
-    - *stats* if turned to *true*, additional statistics will be computed as R-squared, adjusted R-squared, F statistic and Durbin-Watson statistic
+    - *stats* if turned to *true*, additional statistics will be computed such as R-squared, adjusted R-squared, F test statistic and Durbin-Watson test statistic
      
 - ### Member variables (public)
     - *param* = regressors coefficients
@@ -190,7 +190,7 @@ To get fast unit root tests, we need a fast and flexible OLS regression allowing
     - *SSR* = sum of squares residuals
     - *R2* = R-squared
     - *adj_R2* = adjusted R-squared
-    - *F_stat* = F-statistic
+    - *F_stat* = F test statistic
     - *DW_stat* = Durbin-Watson test statistic
     - *IC* = information criterion
     - *nobs* = number of observations
@@ -201,7 +201,7 @@ To get fast unit root tests, we need a fast and flexible OLS regression allowing
     NB: *IC* and *lags* are for the case when *OLS* is used by a unit root test class for lag length optimization by information criterion minimization.
     
 - ### Member functions (public)
-    - *get_stats()* takes same *x* and *y* as arguments as the constructor, computes the additional OLS regression statistics and detects the presence of an intercept term
+    - *get_stats()* takes same *x* and *y* as arguments as the constructor, detects the presence of an intercept term and computes the additional regression statistics
     - *show()* outputs the results
     
 - ### Additionnal tools (not members of *OLS*)
