@@ -924,9 +924,9 @@ int main()
    }
 }
 ```
-The benchmark is run on small sample sizes from 100 to 500 (10000 iterations) and large sample sizes from 1000 to 5000 (1000 iterations) for double and single precision types. We choose to compare the linear algebra libraries performances on a time consuming unit root test such as ADF with constant and lag length optimization by AIC criterion minimization. 
+The benchmark is run on small sample sizes from 100 to 500 (10000 iterations) and large sample sizes from 1000 to 5000 (1000 iterations) for double and single precision types. We choose to compare the linear algebra libraries performances on a time consuming unit root test such as ADF with constant term and lag length optimization by AIC criterion minimization. 
 
-NB: The URT libraries have been built single-threaded meaning that the research for the optimal lag in the ADF test will be done using one thread only. The machine on which this benchmark has been run is equipped with a processor Intel Core i5-3210M @ 2.50GHz and 6GB of RAM. The Intel Turbo Boost has been turned off to keep the processor running at a constant frequency through the different simulations.
+NB: The URT libraries have been built single-threaded for the purpose of this benchmark meaning that the research for the optimal number of lags in the ADF test has been done using one thread only. The machine on which this benchmark has been run is equipped with a processor Intel Core i5-3210M @ 2.50GHz and 6GB of RAM. The Intel Turbo Boost has been turned off to keep the processor running at a constant frequency through the different simulations.
 
 The following graphs show the results obtained.
 
@@ -979,7 +979,7 @@ if __name__ == "__main__":
 Although slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase.
 
 - ### Comparing CyURT to ARCH
-The Python package ARCH (version 3.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the same ADF test with constant and lag length optimization by AIC minimization. CyURT has been built with URT using Blaze library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that Numpy was also calling Intel MKL libraries. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
+The Python package ARCH (version 3.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the same ADF test with constant term and lag length optimization by AIC minimization. CyURT has been built with URT using Blaze library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that Numpy was also calling Intel MKL libraries. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
 
    ![tab1](https://cloud.githubusercontent.com/assets/20603093/21959453/14d5b71c-dac0-11e6-8b4f-3d760e522315.png)
 
@@ -1035,7 +1035,7 @@ run <- function()
 We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is comparable with the original C++ code. For large sample size this difference tends to disappear.
 
 - ### Comparing RcppURT to URCA
-The R package URCA (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the same ADF test with constant and lag length optimization by AIC minimization. RcppURT has been built with URT using Armadillo library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries with OpenMP enabled. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
+The R package URCA (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the same ADF test with constant term and lag length optimization by AIC minimization. RcppURT has been built with URT using Armadillo library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries with OpenMP enabled. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
 
    ![tab2](https://cloud.githubusercontent.com/assets/20603093/21959600/d4fd6ef6-dac3-11e6-8d1a-9c138c9b79ed.png)
 
