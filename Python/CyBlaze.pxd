@@ -33,6 +33,7 @@ cdef extern from "blaze/math/CustomVector.h" namespace "blaze" nogil:
         CustomVector() nogil
         CustomVector(T*, int ) nogil
 
+# convenient typedef
 ctypedef CustomVector[double,_unaligned,_unpadded,_columnVector] VectorCd
 ctypedef CustomVector[float,_unaligned,_unpadded,_columnVector] VectorCf
 
