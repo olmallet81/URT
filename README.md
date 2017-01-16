@@ -800,7 +800,7 @@ RcppURT contains two different wrappers for URT C++ classes:
     
 - The first wrapper as shown in ./URT/R/example1.R has been written using R6 classes, and behaves the same way than under C++. As for the Python wrapper, the URT C++ class name followed by *_d* is for double precision type and followed by *_f* for single precision type (example: *OLS_d* and *OLS_f* for C++ class *OLS*). 
 
-- The second wrapper as shown in ./URT/R/example2.R has been written as Rcpp functions of URT C++ classes to avoid adding interpreted code as for the first wrapper and to improve the performance in the case the user does not need the classes flexibility. These functions names are:
+- The second wrapper as shown in ./URT/R/example2.R has been written as Rcpp functions of URT C++ classes to avoid adding interpreted code as for the first wrapper and to improve the performance in the case the user does not need classes flexibility. These functions names are:
 
     - *OLSreg_d()* and *OLSreg_f()* for OLS regression
     - *ADFtest_d()* and *ADFtest_f()* for the Augmented Dickey-Fuller test
@@ -808,7 +808,7 @@ RcppURT contains two different wrappers for URT C++ classes:
     - *PPtest_d()* and *PPtest_f()* for the Phillips-Perron test
     - *KPSStest_d()* and *KPSStest_f()* for the Kwiatkowski–Phillips–Schmidt–Shin test
 
-To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R. All URT headers have been placed into the include directory and all source files into the src directory. Adjust the Makevars file in the src directory whether you want to compile Armadillo with external link to Intel MKL or to OpenBLAS (or any other BLAS/LAPACK library of your choice as long as Armadillo can accept it). Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
+To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R. All URT headers have been placed into the include directory and all source files into the src directory. Adjust the Makevars file in the src directory whether you want to compile Armadillo with external link to Intel MKL or to OpenBLAS (or any other BLAS/LAPACK library of your choice as long as Armadillo can accept it). 
 
 To build the RcppURT package run under ./URT/R the following command: 
 ```
