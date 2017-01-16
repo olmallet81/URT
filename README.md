@@ -748,7 +748,7 @@ Before running the Python code export URT C++ shared library path with the comma
 ```
 $ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
 ```
-Before running the example below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for C++ examples).
+Before running the example below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for the C++ examples).
 
 You are now ready to run ./URT/python/example.py:
 
@@ -787,7 +787,7 @@ if __name__ == "__main__":
     test.show()
 ```
 
-The Python wrapper behaves the same way than under C++, the only difference being when the user wants single precision instead of double precision, he will have to convert Python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and URT class name followed by *_f* (*OLS_f* instead of *OLS_d*).
+The Python wrapper behaves the same way than under C++, the only difference being when the user wants single precision instead of double precision, he will have to convert Python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and the URT class name followed by *_f* (*OLS_f* instead of *OLS_d*).
 
 Important: all URT classes accept Numpy arrays only as arguments, *OLS_d* and *OLS_f* classes need a 1-dimension array for the dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so Numpy arrays need to be Fortran style.
 
@@ -798,9 +798,9 @@ URT can be called from R. The Rcpp wrapper has been written with the C++ linear 
 
 RcppURT contains two different wrappers for URT C++ classes:
     
-- The first wrapper as shown in ./URT/R/example1.R has been written using R6 classes, and behaves the same way than under C++. As for the Python wrapper, URT C++ classes name followed by *_d* are for double precision type and followed by *_f* are for single precision type (example: *OLS_d* and *OLS_f* for C++ class *OLS*). 
+- The first wrapper as shown in ./URT/R/example1.R has been written using R6 classes, and behaves the same way than under C++. As for the Python wrapper, the URT C++ class name followed by *_d* is for double precision type and followed by *_f* for single precision type (example: *OLS_d* and *OLS_f* for C++ class *OLS*). 
 
-- The second wrapper as shown in ./URT/R/example2.R has been written as Rcpp functions of the C++ classes to avoid adding interpreted code as for the first wrapper and to improve the performance in the case the user does not need the classes flexibility. These functions names are:
+- The second wrapper as shown in ./URT/R/example2.R has been written as Rcpp functions of URT C++ classes to avoid adding interpreted code as for the first wrapper and to improve the performance in the case the user does not need the classes flexibility. These functions names are:
 
     - *OLSreg_d()* and *OLSreg_f()* for OLS regression
     - *ADFtest_d()* and *ADFtest_f()* for the Augmented Dickey-Fuller test
@@ -820,7 +820,7 @@ Once the package is built, install it with root rights with the following comman
 $ R CMD INSTALL --no-lock RcppURT_1.0.tar.gz
 ```
     
-Before running the examples below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for C++ examples).
+Before running the examples below make sure to have run ./URT/examples/example1.cpp (to write random data to CSV files, the same that were used for the C++ examples).
 
 You are now ready to run ./URT/R/example1.R:
 
