@@ -995,7 +995,7 @@ The Python package [ARCH](https://pypi.python.org/pypi/arch/3.0) (version 4.0) c
 The same comparison than above has been done with the Python package [STATSMODELS](http://statsmodels.sourceforge.net/devel/generated/statsmodels.tsa.stattools.adfuller.html) (version 0.6.1) that contains some unit root tests. The ratio column corresponding this time to STATSMODELS performance (SM column in the table) by CyURT performance.
 ARCH and STATSMODELS performances being very similar (probably due to the fact that they both use the same OLS regression function from STATSMODELS package), the performance factor is almost the same as above.
 
-   ![tab2](https://cloud.githubusercontent.com/assets/20603093/21994519/06da54d4-dc18-11e6-8bdf-14afbf0b05bf.png)
+   ![tab2](https://cloud.githubusercontent.com/assets/20603093/21994747/3bf57fa8-dc19-11e6-823d-192352f90ff1.png)
 
 ## R wrapper
 
@@ -1051,7 +1051,7 @@ We can see that for small sample sizes R6 classes wrapper performance is pretty 
 - ### Comparing RcppURT to URCA
 The R package [URCA](https://cran.r-project.org/web/packages/urca/index.html) (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the same ADF test with constant term and lag length optimization by AIC minimization. RcppURT has been built with URT using Armadillo library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries and OpenMP enabled. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the ratio column corresponding to URCA performance by RcppURT performance.  
 
-   ![tab3](https://cloud.githubusercontent.com/assets/20603093/21994688/f4195038-dc18-11e6-95bd-a5c6ddeb2f8f.png)
+   ![tab3](https://cloud.githubusercontent.com/assets/20603093/21994748/3c0bb7b4-dc19-11e6-9e93-f9c53dd0f80a.png)
 
 # References
 
