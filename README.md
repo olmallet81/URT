@@ -6,7 +6,7 @@ URT is a library designed to procure speed while keeping a high level of flexibi
 
 The core code is in C++ and based on three of the most widely used C++ linear algebra libraries: [Armadillo](http://arma.sourceforge.net/), [Blaze](https://bitbucket.org/blaze-lib/blaze) and [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page). The user can switch from one library to another and compare performances. While some are faster than other depending on array dimensions all of them have been given a chance as they are under active development and future updates might improve their respective performances. They can all be compiled by linking to external libraries for high-speed [BLAS](http://www.netlib.org/blas/)/[LAPACK](http://www.netlib.org/lapack/) replacements for better performance such as [Intel MKL](https://software.intel.com/en-us/intel-mkl) and [OpenBLAS](http://www.openblas.net/) or by using their own BLAS/LAPACK routines.
 
-URT can also be used under R and Python. The R wrapper called RcppURT is currenty using Armadillo and developped under [Rcpp](http://www.rcpp.org/)  and [R6](https://cran.r-project.org/web/packages/R6/vignettes/Introduction.html) using the R package [RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html). The Python wrapper called CyURT is currently using Blaze and developped under [Cython](http://cython.org/).
+URT can also be used under R and Python. The R wrapper called RcppURT is currenty using Armadillo and developped under [Rcpp](http://www.rcpp.org/)  and [R6](https://cran.r-project.org/web/packages/R6/vignettes/Introduction.html) using the R package [RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html). The Python wrapper called CyURT is currently using Blaze and developped under [Cython](http://cython.readthedocs.io/en/latest/src/userguide/wrapping_CPlusPlus.html).
 URT contains an Ordinary Least Squares regression (OLS) and four of the most used unit root tests: the Augmented Dickey-Fuller test (ADF), the Dickey-Fuller Generalized Least Squares test (DF-GLS), the Phillips-Perron test and the Kwiatkowski–Phillips–Schmidt–Shin test (KPSS). ADF and DF-GLS allow for lag length optimization through different methods such as information criterion minimization and t-statistic. Test p-values can be computed via an extension of the method proposed by Cheung and Lai back in 1995 or by bootstrap. 
 
 # Why such a project and how can you contribute ?
@@ -59,7 +59,7 @@ To use the C++ version of URT you will need to install at least one of these thr
 
 You will also need to have the C++ libraries Boost (version >= 1.61.0) already installed.
 
-Blaze library will requires at least LAPACK to run whereas Armadillo and Eigen have their own internal BLAS/LAPACK routines, however for better performance I recommend installing one of the following high-speed BLAS/LAPACK libraries:
+Blaze library requires at least LAPACK to run whereas Armadillo and Eigen have their own internal BLAS/LAPACK routines, however for better performance I recommend installing one of the following high-speed BLAS/LAPACK libraries:
 - Intel MKL version >= 2017.0.098
 - OpenBLAS version >= 0.2.19
 
@@ -733,7 +733,7 @@ Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class
     ```
 
 ## CyURT: URT for Python 
-URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze.
+URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze. He is located in ./URT/Python.
 
 Before testing CyURT under Python make sure to have built the URT shared library under ./URT/build with Blaze using for example the command:
 ```
@@ -788,10 +788,12 @@ if __name__ == "__main__":
 
 The Python wrapper behaves the same way than under C++, the only difference being when the user wants single precision instead of double precision, he will have to convert Python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and URT class name followed by *_f* (*OLS_f* instead of *OLS_d*).
 
-Important: all URT classes accept numpy arrays only as arguments, *OLS_d* and *OLS_f* classes need a 1-dimension array for the dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so numpy arrays need to be Fortran style.
+Important: all URT classes accept Numpy arrays only as arguments, *OLS_d* and *OLS_f* classes need a 1-dimension array for the dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so Numpy arrays need to be Fortran style.
+
+NB: When passing a Numpy array from Python to the Cython wrapper, no copy will be made, the same memory will be re-used for better performance. The same will happen when returning an array from C++ to Python, Numpy under Cython will wrap this array without making any copy.
     
 ## RcppURT: URT for R  
-URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo and the R package RcppArmadillo. 
+URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo and the R package RcppArmadillo. He is located in ./URT/R.
 
 RcppURT contains two different wrappers for URT C++ classes:
     
@@ -872,8 +874,10 @@ run <- function()
 }
 ```
 
-NB: the choice has been made not to use Rcpp modules to wrap URT C++ classes as the performance was very poor. For unit root test classes we could also have created a base R6 class wrapping C++ *UnitRoot* base class from which all unit root test R6 classes would have inherited but the performance would have been worse than directly including all C++ *UnitRoot* base class variables and methods required into the R6 class wrappers.
+The choice has been made not to use Rcpp modules to wrap URT C++ classes as the performance was very poor. For unit root test classes we could also have created a base R6 class wrapping C++ *UnitRoot* base class from which all unit root test R6 classes would have inherited but the performance would have been worse than directly including all C++ *UnitRoot* base class variables and methods required into the R6 class wrappers.
 
+NB: When passing an array from R to the Rcpp wrapper, no copy will be made for double precision type, the same memory will be re-used for better performance. However, as R accepts double precision type only, a copy will be made when passing an array from R to the Rcpp wrapper for single precision type. No copy will be made when returning an array from C++ to R, Rcpp will wrap this array without making any copy.
+    
 # Benchmarks
 
 ## C++
