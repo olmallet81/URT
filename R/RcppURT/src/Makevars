@@ -1,4 +1,4 @@
-# build with R CMD build URT
+# build with R CMD build RcppURT
 
 # add -fopenmp if parallelism required
 PKG_CXXFLAGS = -std=c++14 -Wall -O3 -march=native -DUSE_ARMA
