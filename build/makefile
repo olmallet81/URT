@@ -17,7 +17,7 @@ RM = rm -rf core
 
 # add OpenMP if required
 ifeq ($(USE_OPENMP), 1)
-  CXX += -fopenmp
+  OPT = -fopenmp
 endif
 
 # compiler flags
@@ -74,7 +74,7 @@ $(TARGET): $(OBJS)
 # compile source files into object files
 $(OBJS): $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
-	@$(CXX) $(CXXFLAGS) -c $^ -o $@
+	@$(CXX) $(OPT) $(CXXFLAGS) -c $^ -o $@
 	@echo "----- compiled "$(notdir $<)" into "$(notdir $@)" successfully!"
 
 .PHONY: clean deep_clean
