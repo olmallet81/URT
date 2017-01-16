@@ -993,7 +993,7 @@ The Python package [ARCH](https://pypi.python.org/pypi/arch/3.0) (version 4.0) c
    
 - ### Comparing CyURT to STATSMODELS
 The same comparison than above has been done with the Python package [STATSMODELS](http://statsmodels.sourceforge.net/devel/generated/statsmodels.tsa.stattools.adfuller.html) (version 0.6.1) that contains some unit root tests. The ratio column corresponding this time to STATSMODELS performance (SM column in the table) by CyURT performance.
-ARCH and STATSMODELS performances being very similar (probably due to the fact that they both call the same OLS regression function from STATSMODELS package), the performance factor is almost the same as above.
+ARCH and STATSMODELS performances being very similar (probably due to the fact that they both use the same OLS regression function from STATSMODELS package), the performance factor is almost the same as above.
 
    ![tab2](https://cloud.githubusercontent.com/assets/20603093/21994519/06da54d4-dc18-11e6-8bdf-14afbf0b05bf.png)
 
