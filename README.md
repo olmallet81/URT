@@ -791,7 +791,13 @@ if __name__ == "__main__":
     test.show()
 ```
 
-The Python wrapper behaves the same way than under C++, the only difference being when the user wants single precision instead of double precision, he will have to convert Python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and the URT class name followed by *_f* (*OLS_f* instead of *OLS_d*).
+The Cython wrapper behaves the same way than under C++, the only difference being when the user wants single precision instead of double precision, he will have to convert Python data, double precision by default to single precision as shown in the example above with *yf* and *xf* and the URT class name followed by *_f* (*OLS_f* instead of *OLS_d*).
+
+The following changes have been made from the C++ original code to the Cython wrapper:
+- *get_stat()* method in C++ has become the class property *stat*
+- *get_pval()* method in C++ has become the class property *pval*
+- *get_ols()* method in C++ has become the class property *ols*
+- *get_trends()* method in C++ has become the class property *trends*
 
 Important: all URT classes accept Numpy arrays only as arguments, *OLS_d* and *OLS_f* classes need a 1-dimension array for the dependent variable vector and a 2-dimension array for the matrix of independent variables. All other classes (unit root tests) need a 1-dimension array. Blaze matrices have been set to be column-major so Numpy arrays need to be Fortran style.
 
@@ -812,7 +818,7 @@ RcppURT contains two different wrappers for URT C++ classes:
     - *PPtest_d()* and *PPtest_f()* for the Phillips-Perron test
     - *KPSStest_d()* and *KPSStest_f()* for the Kwiatkowski–Phillips–Schmidt–Shin test
 
-To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R. All URT headers have been placed into the include directory and all source files into the src directory. Adjust the Makevars file in the src directory whether you want to compile Armadillo with external link to Intel MKL or to OpenBLAS (or any other BLAS/LAPACK library of your choice as long as Armadillo can accept it). 
+To get URT working under R, I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R. All URT headers have been placed into the include directory and all source files into the src directory. Adjust the Makevars file in the src directory whether you want to compile Armadillo with external link to Intel MKL or to OpenBLAS (or any other BLAS/LAPACK library of your choice as long as Armadillo can accept it). 
 
 To build the RcppURT package run under ./URT/R the following command: 
 ```
@@ -881,6 +887,12 @@ run <- function()
 
 The choice has been made not to use Rcpp modules to wrap URT C++ classes as the performance was very poor. For unit root test classes we could also have created a base R6 class wrapping C++ *UnitRoot* base class from which all unit root test R6 classes would have inherited but the performance would have been worse than directly including all C++ *UnitRoot* base class variables and methods required into the R6 class wrappers.
 
+The following changes have been made from the C++ original code to the R6 wrapper:
+- *get_stat()* method in C++ has become the class property *stat* 
+- *get_pval()* method in C++ has become the class property *pval*
+- *get_ols()* method in C++ has become the class property *ols*
+- *get_trends()* method in C++ has become the class property *trends*
+
 NB: When passing an array from R to the Rcpp wrapper, no copy will be made for double precision type, the same memory will be re-used for better performance. However, as R accepts double precision type only, a copy will be made when passing an array from R to the Rcpp wrapper for single precision type. When returning an array from C++ to R, this array will be first wrapped under Rcpp and then copied in R.
     
 # Benchmarks
@@ -948,7 +960,7 @@ The following graphs show the results obtained.
 - ### Observations
 Armadillo without the use of OpenBLAS or Intel MKL wrappers obtains poor performance. However, when the wrappers for OpenBLAS or Intel MKL are enabled within Armadillo, the performance is virtually the same as for the other libraries. For small sample sizes Blaze appears to be the fastest for both double and single precision types and more precisely when enabling Intel MKL. For large sample sizes the performances of the three libraries are quite similar excepted for Armadillo alone that tends to be much slower. We can note the good performance of Eigen in that case with or without external BLAS/LAPACK wrappers.
 
-## Python wrapper
+## Cython wrapper
 
 In this section we are going to compare the performance of CyURT with the original URT in C++ code using the linear algebra library Blaze by running ./URT/Python/benchmark.py:
 
@@ -992,14 +1004,13 @@ The Python package [ARCH](https://pypi.python.org/pypi/arch/3.0) (version 4.0) c
 
    ![tab1](https://cloud.githubusercontent.com/assets/20603093/21994520/06dabd8e-dc18-11e6-956a-ec74b10e3b6f.png)
    
-   
 - ### Comparing CyURT to STATSMODELS
 The same comparison than above has been done with the Python package [STATSMODELS](http://statsmodels.sourceforge.net/devel/generated/statsmodels.tsa.stattools.adfuller.html) (version 0.6.1) that contains some unit root tests. The ratio column corresponding this time to STATSMODELS performance (SM column in the table) by CyURT performance.
 ARCH and STATSMODELS performances being very similar (probably due to the fact that they both use the same OLS regression function from STATSMODELS package), the performance factor is almost the same as above.
 
    ![tab2](https://cloud.githubusercontent.com/assets/20603093/21994747/3bf57fa8-dc19-11e6-823d-192352f90ff1.png)
 
-## R wrapper
+## Rcpp wrapper
 
 In this section we are going to compare the performance of RccpURT, R6 classes and Rcpp functions with the original URT in C++ code using the linear algebra library Armadillo by running ./URT/R/benchmark.R:
 
