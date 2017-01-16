@@ -12,6 +12,8 @@ URT contains an Ordinary Least Squares regression (OLS) and four of the most fam
 
 URT is single-threaded for most of unit root tests but goes parallel for the most time consuming ones by using [OpenMP](http://www.openmp.org/). The unit root tests concerned are ADF and DF-GLS with lag length optimization by information criterion minimization.
 
+URT has been written under Linux but can be easily adapted to run Windows or OSX as all the libraries used in this project exist on these platforms.
+
 # Why such a project and how can you contribute ?
 I have been developing algorithmic trading tools for a while and it is no secret that unit root tests are widely used in this domain to decide whether a time serie is (weakly) stationary or not and construct on this idea a profitable mean-reversion strategy. Nowadays you often have to look at smaller and smaller time frames as minute data to find such trading opportunities and that means on the back-testing side using more and more historical data to test whether the strategy can be profitable on the long term or not. I found frustrating that the available libraries under R and Python, interpreted languages commonly used in the first steps of building a trading algorithm, were too slow or did not offer enough flexibility. To that extent I wanted to develop a library that could be used under higher level languages to get a first idea on the profitability of a strategy and also when developping a more serious back-tester on a larger amount of historical data under a lower level language such as C++. 
 
@@ -743,6 +745,10 @@ URT can be called from Python. The Cython wrapper has been written with the C++ 
 Before testing CyURT under Python make sure to have built the URT shared library under ./URT/build with Blaze using for example the command:
 ```
 $ make USE_BLAZE=1
+```
+If you want URT to be multi-threaded and linked to Intel MKL for better performance, use instead the command:
+```
+$ make USE_OPENMP=1 USE_BLAZE=1 USE_MKL=1
 ```
 To compile the Cython code and build the shared library CyURT.so that will be imported from Python, run setup.py under ./URT/python with the command: 
 ```
