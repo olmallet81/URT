@@ -734,7 +734,7 @@ Derived template class from [*UnitRoot*](#c-template-class-unitroot), this class
     ```
 
 ## CyURT: URT for Python 
-URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze. He is located in ./URT/Python.
+URT can be called from Python. The Cython wrapper has been written with the C++ linear algebra library Blaze. This wrapper is located in ./URT/Python.
 
 Before testing CyURT under Python make sure to have built the URT shared library under ./URT/build with Blaze using for example the command:
 ```
@@ -794,13 +794,13 @@ Important: all URT classes accept Numpy arrays only as arguments, *OLS_d* and *O
 NB: When passing a Numpy array from Python to the Cython wrapper, no copy will be made, the same memory will be re-used for better performance. The same will happen when returning an array from C++ to Python, Numpy under Cython will wrap this array without making any copy.
     
 ## RcppURT: URT for R  
-URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo and the R package RcppArmadillo. He is located in ./URT/R.
+URT can be called from R. The Rcpp wrapper has been written with the C++ linear algebra library Armadillo and the R package RcppArmadillo. This package is located in ./URT/R.
 
 RcppURT contains two different wrappers for URT C++ classes:
     
-- The first wrapper as shown in ./URT/R/example1.R has been written using R6 classes, and behaves the same way as under C++. As for the Python wrapper, URT C++ classes name followed by *_d* are for double precision type and followed by *_f* are for single precision type (example: *OLS_d* and *OLS_f* for C++ class *OLS*). However, as R real variable's type are double precision by default the difference in term of performance between double precision classes and single precision classes will be almost the same because of an additional copy made for converting R array into Armadillo floating type vector or matrices.
+- The first wrapper as shown in ./URT/R/example1.R has been written using R6 classes, and behaves the same way than under C++. As for the Python wrapper, URT C++ classes name followed by *_d* are for double precision type and followed by *_f* are for single precision type (example: *OLS_d* and *OLS_f* for C++ class *OLS*). 
 
-- The second wrapper as shown ./URT/R/example2.R has been written as Rcpp functions of the C++ classes as the performance of the first wrapper is pretty poor because of the use of R6 classes adding a great deal of interpreted code. These functions offer better performance but less flexibility as the user will have to run another function when modifying even only one parameter. These functions names are:
+- The second wrapper as shown in ./URT/R/example2.R has been written as Rcpp functions of the C++ classes to avoid adding interpreted code as for the first wrapper and to improve the performance in the case the user does not need the classes flexibility. These functions names are:
 
     - *OLSreg_d()* and *OLSreg_f()* for OLS regression
     - *ADFtest_d()* and *ADFtest_f()* for the Augmented Dickey-Fuller test
@@ -808,7 +808,7 @@ RcppURT contains two different wrappers for URT C++ classes:
     - *PPtest_d()* and *PPtest_f()* for the Phillips-Perron test
     - *KPSStest_d()* and *KPSStest_f()* for the Kwiatkowski–Phillips–Schmidt–Shin test
 
-To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R. All URT headers have been placed into the include directory and all source files into the src directory. Adjust the Makevars file in the src directory whether you want to compile Armadillo with link to Intel MKL or with link to OpenBLAS. Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
+To get URT working under R I recommend building an R package from URT C++ source files. The R package called RcppURT is already prepared under ./URT/R. All URT headers have been placed into the include directory and all source files into the src directory. Adjust the Makevars file in the src directory whether you want to compile Armadillo with external link to Intel MKL or to OpenBLAS (or any other BLAS/LAPACK library of your choice as long as Armadillo can accept it). Use the static version of these libraries not the dynamic ones to build the R package RcppURT.
 
 To build the RcppURT package run under ./URT/R the following command: 
 ```
