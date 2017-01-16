@@ -978,7 +978,7 @@ if __name__ == "__main__":
         print '{:8d}'.format(sizes[i]), '{:8.1f}'.format(end - start)
 ```
 - ### Results on small and large sample sizes
-![graphs3](https://cloud.githubusercontent.com/assets/20603093/21982607/1420ba76-dbe5-11e6-9bfb-a0dc463a17f0.png)
+![graphs3](https://cloud.githubusercontent.com/assets/20603093/21984017/d9dc79fc-dbeb-11e6-8632-d4a97ac83a3f.png)
 
 - ### Observations
 Although a bit slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase.
