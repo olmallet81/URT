@@ -109,7 +109,7 @@ $ make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1
 $ cd ../../
 ```
 
-- step 2: export shared library location with:
+- step 2: export the shared library location with:
 ```
 $ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
 ```
@@ -125,6 +125,8 @@ $ ./run
 ``` 
 
 You can repeat step 3 and 4 to compile other examples in ./URT/examples.
+
+NB: Instead of exporting libURT.so path, under Linux you can rather add *LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH* to the .bashrc file. 
 
 # Design
 
@@ -744,7 +746,7 @@ To compile the Cython code and build the shared library CyURT.so that will be im
 ```
 $ python setup.py build_ext --inplace
 ```
-Before running the Python code export URT C++ shared library path with the command:
+Before running the Python code export the URT C++ shared library path (if you did not add this path already to the .bashrc file) with the command:
 ```
 $ export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH
 ```
