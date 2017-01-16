@@ -986,9 +986,16 @@ if __name__ == "__main__":
 Although a bit slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase.
 
 - ### Comparing CyURT to ARCH
-The Python package [ARCH](https://pypi.python.org/pypi/arch/3.0) (version 4.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the same ADF test with constant term and lag length optimization by AIC minimization. CyURT has been built with URT using Blaze library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that Numpy was also calling Intel MKL libraries. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio ARCH performance by CyURT performance.  
+The Python package [ARCH](https://pypi.python.org/pypi/arch/3.0) (version 4.0) contains some unit root tests, the same benchmark than above has been run with ARCH package using the same ADF test with constant term and lag length optimization by AIC minimization. CyURT has been built with URT using Blaze library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that Numpy was also calling Intel MKL libraries. The table below presents the results obtained (in seconds), the ratio column corresponding to ARCH performance by CyURT performance.  
 
-   ![tab1](https://cloud.githubusercontent.com/assets/20603093/21963128/b785a050-db2c-11e6-83a3-0d712575e1be.png)
+   ![tab1](https://cloud.githubusercontent.com/assets/20603093/21994520/06dabd8e-dc18-11e6-956a-ec74b10e3b6f.png)
+   
+   
+- ### Comparing CyURT to STATSMODELS
+The same comparison than above has been done with the Python package [STATSMODELS](http://statsmodels.sourceforge.net/devel/generated/statsmodels.tsa.stattools.adfuller.html) (version 0.6.1) that contains some unit root tests. The ratio column corresponding this time to STATSMODELS performance (SM column in the table) by CyURT performance.
+ARCH and STATSMODELS performances being very similar (probably due to the fact that they both call the same OLS regression function from STATSMODELS package), the performance factor is almost the same as above.
+
+   ![tab2](https://cloud.githubusercontent.com/assets/20603093/21994519/06da54d4-dc18-11e6-8bdf-14afbf0b05bf.png)
 
 ## R wrapper
 
@@ -1042,9 +1049,9 @@ run <- function()
 We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is close to the performance of the original C++ code. For large sample size this difference tends to disappear. We can also notice that for double precision the performance of the Rcpp functions wrapper is closer to the performance of the C++ version of URT and (even beating it for large sample size) than it is for single precision. This is due to the fact that for double precision no copy is made when passing an array from R to C++, whereas for single precision a copy is made to convert the R array in double precision by default to a single precision C++ array. We can see this phenomenom very clearly for small sample sizes: for double precision Rcpp functions wrapper and C++ code tend to converge as the size increase whereas they tend to diverge for single precision as the size of the array to be copied increases. 
 
 - ### Comparing RcppURT to URCA
-The R package [URCA](https://cran.r-project.org/web/packages/urca/index.html) (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the same ADF test with constant term and lag length optimization by AIC minimization. RcppURT has been built with URT using Armadillo library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries and OpenMP enabled. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the factor column corresponding to the ratio URCA performance by RcppURT performance.  
+The R package [URCA](https://cran.r-project.org/web/packages/urca/index.html) (version 1.3-0) contains some unit root tests, the same benchmark than above has been run with URCA package using the same ADF test with constant term and lag length optimization by AIC minimization. RcppURT has been built with URT using Armadillo library linked to Intel MKL and OpenMP enabled. For a fair comparison I made sure that R and URCA package were also built with Intel MKL libraries and OpenMP enabled. The Rcpp functions have been used for the benchmark and not the R6 classes as URCA is made of functions too. The table below presents the results obtained (in seconds), the ratio column corresponding to URCA performance by RcppURT performance.  
 
-   ![tab2](https://cloud.githubusercontent.com/assets/20603093/21963184/c4c2c04e-db2d-11e6-8b05-d6f6b2d43e1d.png)
+   ![tab3](https://cloud.githubusercontent.com/assets/20603093/21994521/06db8fca-dc18-11e6-9dbb-759d30a11fc6.png)
 
 # References
 
