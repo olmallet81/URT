@@ -1,8 +1,8 @@
 # makefile for building URT as a shared library
 # example:
 # $ make USE_OPENMP=1 USE_BLAZE=1 USE_BLAS=1
-# will build URT with parallelism enabled and Blaze C++ linear algebra library using OpenBLAS for BLAS/LAPACK routines
-# Important: when using Intel MKL, MKL environment for bash has to be set up to allow the compiler to find the path to MKL include and lib directories by adding: . /opt/intel/mkl/bin/mklvars.sh intel64 mod lp64 (to be adapted to your own path depending on where your Intel MKL installation is located)
+# This command will build URT with OpenMP enabled and Blaze C++ linear algebra library using OpenBLAS for BLAS/LAPACK routines
+# Important: when using Intel MKL, MKL environment for bash under Linux has to be set up to allow the compiler to find the path to MKL include and lib directories by adding in the .bashrc file: . /path/to/intel/mkl/bin/mklvars.sh intel64 mod lp64 (to be adapted to your own path depending on where your Intel MKL installation is located)
 
 # compiler
 CXX = g++
@@ -32,11 +32,11 @@ else
   CXXFLAGS += -DUSE_ARMA
 endif
 
-# adjust the following paths to your own
+# adjust the following paths to your own paths, only necessary when linking dynamically and libraries are not on the compiler path, or when linking statically
 
-# setting up Intel MKL libs path
+# setting up Intel MKL libraries path
 MKLPATH = /opt/intel/mkl/lib/intel64/
-# setting up OpenBLAS lib path
+# setting up OpenBLAS library path
 BLASPATH = /usr/local/lib/
 
 # linker flags
