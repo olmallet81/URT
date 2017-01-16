@@ -28,8 +28,8 @@ During my experimentations I have tried to find the correct set up for each C++ 
 - [Phillips-Perron test](#c-template-class-pp) 
 - [Kwiatkowski–Phillips–Schmidt–Shin test](#c-template-class-kpss)
 - [Lag dependent unit root test p-values](#innovation)
-- [CyURT: wrapper to use URT under Python](#cyurt-urt-for-python) 
-- [RcppURT: wrapper to use URT under R](#rcppurt-urt-for-r)
+- [CyURT: wrapper to run URT under Python](#cyurt-urt-for-python) 
+- [RcppURT: wrapper to run URT under R](#rcppurt-urt-for-r)
 - [Benchmarks](#benchmarks)
 
 # Innovation
