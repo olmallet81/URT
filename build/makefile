@@ -32,7 +32,9 @@ else
   CXXFLAGS += -DUSE_ARMA
 endif
 
-# setting up MKL libs path
+# adjust the following paths to your own
+
+# setting up Intel MKL libs path
 MKLPATH = /opt/intel/mkl/lib/intel64/
 # setting up OpenBLAS lib path
 BLASPATH = /usr/local/lib/
@@ -40,12 +42,16 @@ BLASPATH = /usr/local/lib/
 # linker flags
 ifeq ($(USE_MKL), 1)
   CXXFLAGS += -DUSE_MKL
-  #LIBFLAGS = -L${MKLPATH} -Wl,--no-as-needed -lmkl_gf_lp64 -lmkl_sequential -lmkl_core -ldl
-  LIBFLAGS = -Wl,--start-group ${MKLPATH}libmkl_gf_lp64.a ${MKLPATH}libmkl_core.a ${MKLPATH}libmkl_sequential.a -Wl,--end-group -lpthread -ldl
+  # with dynamic link to Intel MKL
+  LIBFLAGS = -L${MKLPATH} -Wl,--no-as-needed -lmkl_gf_lp64 -lmkl_sequential -lmkl_core -ldl
+  # or with static link to Intel MKL
+  #LIBFLAGS = -Wl,--start-group ${MKLPATH}libmkl_gf_lp64.a ${MKLPATH}libmkl_core.a ${MKLPATH}libmkl_sequential.a -Wl,--end-group -lpthread -ldl
 else ifeq ($(USE_BLAS), 1) 
   CXXFLAGS += -DUSE_BLAS
-  #LIBFLAGS = -L$(BLASPATH) -lopenblas
-  LIBFLAGS = $(BLASPATH)libopenblas.a
+  # with dynamic link to OpenBLAS
+  LIBFLAGS = -L$(BLASPATH) -lopenblas
+  # or with static link to OpenBLAS
+  #LIBFLAGS = $(BLASPATH)libopenblas.a
 else
   ifeq ($(USE_ARMA), 1)
     LIBFLAGS = -larmadillo
