@@ -978,7 +978,7 @@ if __name__ == "__main__":
         print '{:8d}'.format(sizes[i]), '{:8.1f}'.format(end - start)
 ```
 - ### Results on small and large sample sizes
-![graphs3](https://cloud.githubusercontent.com/assets/20603093/21963508/3a86ca04-db34-11e6-984a-38f11fc3c687.png)
+![graphs3](https://cloud.githubusercontent.com/assets/20603093/21982607/1420ba76-dbe5-11e6-9bfb-a0dc463a17f0.png)
 
 - ### Observations
 Although a bit slower than the C++ version of URT for small sample sizes, the Python wrapper performance is almost the same for large sample size and even slightly faster as the sample size increase.
@@ -1034,7 +1034,7 @@ run <- function()
 ```
 
 - ### Results on small and large sample sizes
-![graphs4](https://cloud.githubusercontent.com/assets/20603093/21963894/e237d4d2-db39-11e6-94b0-ad97ddbce6d7.png)
+![graphs4](https://cloud.githubusercontent.com/assets/20603093/21982608/142dcdce-dbe5-11e6-9c2a-26fb6c4e8a75.png)
 
 - ### Observations
 We can see that for small sample sizes R6 classes wrapper performance is pretty poor due to the extensive use of interpreted code, however Rcpp functions wrapper performance is close to the performance of the original C++ code. For large sample size this difference tends to disappear.
