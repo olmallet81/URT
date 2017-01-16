@@ -23,6 +23,8 @@ ext = Extension('CyURT',
                extra_link_args = ['-L../lib'],
                language='c++')
 
+# NB: in extra_compile_args replace the header <mkl_cblas.h> by the one of your choice, for example OpenBLAS will use the header <cblas.h> 
+
 ext.cython_directives = {'boundscheck': False,'wraparound': False}
 # turn off bounds-checking for entire function
 # turn off negative index wrapping for entire function
