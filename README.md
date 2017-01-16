@@ -100,7 +100,7 @@ To build the shared library, the user can set the following variables:
 
 The default configuration when running *make* is OpenMP disabled and Armadillo using its internal BLAS/LAPACK routines. 
 
-Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_BLAS=1* => the shared library libURT.so will be built with OpenMP enabled and with the C++ linear algebra library Blaze using OpenBLAS for BLAS/LAPACK routines.
+Example: *make USE_OPENMP=1 USE_BLAZE=1 USE_BLAS=1* => URT shared library will be built with OpenMP enabled and with the C++ linear algebra library Blaze using OpenBLAS for BLAS/LAPACK routines.
 
 NB: Armadillo does not need any external library for BLAS/LAPACK routines, however it needs to be linked to its shared library. Blaze can run with internal BLAS routines but needs to be linked to an external LAPACK library. Eigen can run without calling any external library.
 
