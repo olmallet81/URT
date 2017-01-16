@@ -876,7 +876,7 @@ run <- function()
 
 The choice has been made not to use Rcpp modules to wrap URT C++ classes as the performance was very poor. For unit root test classes we could also have created a base R6 class wrapping C++ *UnitRoot* base class from which all unit root test R6 classes would have inherited but the performance would have been worse than directly including all C++ *UnitRoot* base class variables and methods required into the R6 class wrappers.
 
-NB: When passing an array from R to the Rcpp wrapper, no copy will be made for double precision type, the same memory will be re-used for better performance. However, as R accepts double precision type only, a copy will be made when passing an array from R to the Rcpp wrapper for single precision type. No copy will be made when returning an array from C++ to R, Rcpp will wrap this array without making any copy.
+NB: When passing an array from R to the Rcpp wrapper, no copy will be made for double precision type, the same memory will be re-used for better performance. However, as R accepts double precision type only, a copy will be made when passing an array from R to the Rcpp wrapper for single precision type. When returning an array from C++ to R, this array will be first wrapped under Rcpp and then copied in R.
     
 # Benchmarks
 
