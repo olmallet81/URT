@@ -70,7 +70,7 @@ These libraries will need to be on your C++ compiler path. If you decide to link
 
 To use the Python wrapper CyURT you will need to install the C++ linear algebra library Blaze and:
 - Python version >= 2.7
-- Numpy version >= 1.11.3
+- Numpy version >= 1.11.3 (preferably built from source with Intel MKL and OpenMP enabled)
 - Pandas version >= 0.19.2
 - Cython version >= 0.24.1
 
