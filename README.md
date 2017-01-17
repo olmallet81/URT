@@ -132,7 +132,7 @@ You can repeat step 3 and 4 to compile other examples in ./URT/examples.
 
 Instead of exporting URT shared library path, under Linux you can rather add the following lin to th .bashrc file:
 ```
-LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH 
+export LD_LIBRARY_PATH=/path/to/URT/lib:$LD_LIBRARY_PATH 
 ```
 
 # Design
