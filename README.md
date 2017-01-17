@@ -106,7 +106,7 @@ NB: Armadillo does not need any external library for BLAS/LAPACK routines, howev
 
 ## Example
 
-- step 1: build libURT.so using the makefile under ./URT/build with:
+- step 1: build URT shared library libURT.so using the makefile under ./URT/build with:
 ```
 $ cd URT/build
 $ make USE_OPENMP=1 USE_ARMA=1 USE_MKL=1
