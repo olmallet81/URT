@@ -1,7 +1,7 @@
 # build with R CMD build RcppURT
 
 # add -fopenmp if parallelism required
-PKG_CXXFLAGS = -std=c++14 -Wall -O3 -march=native -DUSE_ARMA
+PKG_CXXFLAGS = -std=c++11 -Wall -O3 -march=native -DUSE_ARMA
 
 # external libraries path (adjust these paths to your owns)
 MKLPATH = /opt/intel/mkl/lib/intel64/
