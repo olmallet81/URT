@@ -19,7 +19,7 @@ ext = Extension('CyURT',
                sources = ['CyURT.pyx'],
                include_dirs = [get_include()],
                libraries = ['URT'],
-               extra_compile_args = ['-std=c++14','-Wall','-march=native','-DUSE_BLAZE','-DBLAZE_BLAS_INCLUDE_FILE <mkl_cblas.h>'],
+               extra_compile_args = ['-std=c++11','-Wall','-march=native','-DUSE_BLAZE','-DBLAZE_BLAS_INCLUDE_FILE <mkl_cblas.h>'],
                extra_link_args = ['-L../lib'],
                language='c++')
 
