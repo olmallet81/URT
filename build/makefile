@@ -21,7 +21,7 @@ ifeq ($(USE_OPENMP), 1)
 endif
 
 # compiler flags
-CXXFLAGS = -std=c++14 -Wall -fpic -O3 -march=native
+CXXFLAGS = -std=c++11 -Wall -fpic -O3 -march=native
 
 ifeq ($(USE_EIGEN), 1)
   CXXFLAGS += -DUSE_EIGEN
