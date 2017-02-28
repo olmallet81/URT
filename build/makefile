@@ -17,7 +17,7 @@ RM = rm -rf core
 
 # add OpenMP if required
 ifeq ($(USE_OPENMP), 1)
-  OPT = -fopenmp
+  CXX += -fopenmp
 endif
 
 # compiler flags
