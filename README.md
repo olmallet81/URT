@@ -215,7 +215,9 @@ To get fast unit root tests, we need a fast and flexible OLS regression allowing
     - *show()* outputs the results
     
 - ### Additionnal tools (not members of *OLS*)
+
 URT provides three functions located in ./URT/include/Tools.hpp, to add quickly constant terms to a *Matrix* object:
+
     - *add_intercept()* inserts a column of ones at the end of a *Matrix* object as shown in the example below
     - *add_constant_trend()* inserts a constant trend at the end of a *Matrix* object (1,2,3,...)
     - *add_quadratic_trend()* inserts a quadratic trend at the end of a *Matrix* object (1,4,9,...)
