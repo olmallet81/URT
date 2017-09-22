@@ -217,19 +217,19 @@ To get fast unit root tests, we need a fast and flexible OLS regression allowing
 - ### Additionnal tools (not members of *OLS*)
 URT provides three functions located in ./URT/include/Tools.hpp, to add quickly constant terms to a *Matrix* object:
 
-    - *add_intercept()* inserts a column of ones at the end of a *Matrix* object as shown in the example below
-    - *add_constant_trend()* inserts a constant trend at the end of a *Matrix* object (1,2,3,...)
-    - *add_quadratic_trend()* inserts a quadratic trend at the end of a *Matrix* object (1,4,9,...)
+- *add_intercept()* inserts a column of ones at the end of a *Matrix* object as shown in the example below
+- *add_constant_trend()* inserts a constant trend at the end of a *Matrix* object (1,2,3,...)
+- *add_quadratic_trend()* inserts a quadratic trend at the end of a *Matrix* object (1,4,9,...)
     
 In the same header are defined some functions generating random data for testing URT classes:
 
-    - *gaussian_noise()* will generate a *Vector* or *Matrix* object of normally distributed random data (stationary process)
-    - *wiener_process()* will generate a a *Vector* or *Matrix* object of Wiener processes (non-stationary process)
+- *gaussian_noise()* will generate a *Vector* or *Matrix* object of normally distributed random data (stationary process)
+- *wiener_process()* will generate a a *Vector* or *Matrix* object of Wiener processes (non-stationary process)
     
 The header ./URT/include/CsvManager.hpp contains functions for CSV files management:
 
-    - *WriteToCSV()* will write a *Matrix* or *Vector* object to a CSV file
-    - *ReadFromCSV()* will read a CSV file and store the data into a *Matrix* or *Vector* object
+- *WriteToCSV()* will write a *Matrix* or *Vector* object to a CSV file
+- *ReadFromCSV()* will read a CSV file and store the data into a *Matrix* or *Vector* object
 
 Data can then be exported from C++ to R or Python to validate the results returned by URT wrappers.
     
