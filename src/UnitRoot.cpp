@@ -1076,7 +1076,10 @@ void UnitRoot<T>::compute_pval()
 template <typename T>
 const T& UnitRoot<T>::pvalue()
 {
-   if (!bootstrap) {
+   if (std::isnan(stat)) {
+      pval =  -std::nan("");
+   } 
+   else if (!bootstrap) {
       // if a new test has been run or p-value was previously computed by bootstrap
       if (new_test || prev_bootstrap) {
          // computing critical values
@@ -1087,7 +1090,8 @@ const T& UnitRoot<T>::pvalue()
          new_test = false;
       }
       // NB: if test parameters remain identical but p-value was previously computed using bootstrap, p-value will be recomputed using the critical values coefficients
-   } else {
+   } 
+   else {
       // setting number of iterations
       set_niter();
 
@@ -1189,13 +1193,21 @@ void UnitRoot<T>::show()
    // KPSS is a one-sided right-tailed test so we need to select different critical values than ADF, DFGLS and PP which are one-sided left-tailed tests
    if (test_name == "KPSS") {
       idx = {12, 10, 9};
-   } else {
+   } 
+   else {
       idx = {2, 4, 5};
    }
-
-   std::cout << "   1% " << std::setw(11) << critical_values[idx[0]] << "\n";
-   std::cout << "   5% " << std::setw(11) << critical_values[idx[1]] << "\n";
-   std::cout << "  10% " << std::setw(11) << critical_values[idx[2]] << "\n";
+  
+   if (std::isnan(stat)) {
+      std::cout << "   1% " << std::setw(11) << -std::nan("") << "\n";
+      std::cout << "   5% " << std::setw(11) << -std::nan("") << "\n";
+      std::cout << "  10% " << std::setw(11) << -std::nan("") << "\n";
+   } 
+   else {
+      std::cout << "   1% " << std::setw(11) << critical_values[idx[0]] << "\n";
+      std::cout << "   5% " << std::setw(11) << critical_values[idx[1]] << "\n";
+      std::cout << "  10% " << std::setw(11) << critical_values[idx[2]] << "\n";
+   }
 
    if (bootstrap) {
       std::cout << "\n  (*) computed by bootstrap\n";
@@ -1214,8 +1226,12 @@ void UnitRoot<T>::show()
    }
    else if (pval <= 0.10) {
       std::cout << "  We can reject H0 at the 10% significance level\n";
-   } else {
+   } 
+   else if (!std::isnan(pval)) {
       std::cout << "  We cannot reject H0\n";
+   } 
+   else {
+      std::cout << "  We cannot conclude, nan produced\n";
    }
    std::cout << "\n";
 
