@@ -218,21 +218,19 @@ void OLS<T>::show()
 {
    Vector<T> pval(nreg);
 
-   try { 
-      // declaring Student's distribution
-      boost::math::students_t tdistrib(ndf);
+   // declaring Student's distribution
+   boost::math::students_t tdistrib(ndf);
 
-      // declaring function computing t-statistic p-value
-      std::function<T(T)> P = [&tdistrib](const T& z){ return 2 * (1 - boost::math::cdf(tdistrib, fabs(z))); };
+   // declaring function computing t-statistic p-value
+   std::function<T(T)> P = [&tdistrib](const T& z){ return 2 * (1 - boost::math::cdf(tdistrib, fabs(z))); };
 
-      for (int j = 0; j < nreg; ++j) {
+   for (int j = 0; j < nreg; ++j) {
+      if (!std::isnan(t_stat[j])) {
          pval[j] = P(t_stat[j]);
+      } 
+      else {
+         pval[j] = -std::nan("");
       }
-   }
-   // catching any exception caused by boost::math::cdf() or boost::math::students_t()		 
-   catch (std::exception& e) {
-      std::cout << e.what() << "\n";
-      throw std::invalid_argument("\n  Error: in OLS::show(), p-value computation failed, argument might be infinite.\n\n");
    }
     
    int gap = 2;
