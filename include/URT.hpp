@@ -109,6 +109,7 @@
 
 #include <fstream>
 #include <map>
+#include <memory>
 
 #include <boost/math/distributions/students_t.hpp>
 #include <boost/math/special_functions/gamma.hpp>
